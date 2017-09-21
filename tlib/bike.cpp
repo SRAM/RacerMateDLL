@@ -134,9 +134,13 @@ void Bike::computeGearRatio(void)  {
 
 /**********************************************************************
 	new front up shifter
+	nca+++ 2017/09/20 ver 4.1.0
+  	redefined "up" as going to greater inches/turn,
+	bigger front chainring, which is smaller index.
+	Swapped frontUp and frontDown function names
 **********************************************************************/
 
-void Bike::frontUp(void)  {
+void Bike::frontDown(void)  {				// was frontUp
 
 	state.params.front_ix++;
 
@@ -174,7 +178,7 @@ void Bike::rearUp(void)  {
 	new front down shifter
 **********************************************************************/
 
-void Bike::frontDown(void)  {
+void Bike::frontUp(void)  {				// was frontDown
 
 	state.params.front_ix--;
 

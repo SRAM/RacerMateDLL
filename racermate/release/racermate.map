@@ -1,6 +1,6 @@
  racermate
 
- Timestamp is 59c30a39 (Wed Sep 20 17:39:21 2017)
+ Timestamp is 59c42666 (Thu Sep 21 13:51:50 2017)
 
  Preferred load address is 10000000
 
@@ -61,8 +61,8 @@
  0001:00000ad0       ?_Deallocate@std@@YAXPAXII@Z 10001ad0 f i common:person.obj
  0001:00000b40       ?getName@Person@@QAEPADXZ  10001b40 f i common:person.obj
  0001:00000bc0       ??0Person@@QAE@XZ          10001bc0 f   common:person.obj
- 0001:00000be0       ??_GPerson@@UAEPAXI@Z      10001be0 f i common:person.obj
  0001:00000be0       ??_EPerson@@UAEPAXI@Z      10001be0 f i * CIL library *:* CIL module *
+ 0001:00000be0       ??_GPerson@@UAEPAXI@Z      10001be0 f i common:person.obj
  0001:00000c10       ??0PERSON_DATA@@QAE@XZ     10001c10 f i common:person.obj
  0001:00000cf0       ??1PERSON_DATA@@QAE@XZ     10001cf0 f i common:person.obj
  0001:00000ec0       ??1Person@@UAE@XZ          10001ec0 f   common:person.obj
@@ -72,8 +72,8 @@
  0001:00001120       ?deallocate@?$_Wrap_alloc@V?$allocator@D@std@@@std@@QAEXPADI@Z 10002120 f i common:person.obj
  0001:00001170       ??4OLDSDIRS@@QAEAAV0@ABV0@@Z 10002170 f i glib:logger.obj
  0001:00001190       ??0Logger@@QAE@PBD0@Z      10002190 f   glib:logger.obj
- 0001:00001350       ??_GLogger@@UAEPAXI@Z      10002350 f i glib:logger.obj
  0001:00001350       ??_ELogger@@UAEPAXI@Z      10002350 f i * CIL library *:* CIL module *
+ 0001:00001350       ??_GLogger@@UAEPAXI@Z      10002350 f i glib:logger.obj
  0001:000013d0       ?close@Logger@@QAEXXZ      100023d0 f   glib:logger.obj
  0001:00001460       ?cleanup_logfiles@Logger@@AAEXXZ 10002460 f   glib:logger.obj
  0001:00001690       ?sort_function@@YAHPBX0@Z  10002690 f   glib:logger.obj
@@ -88,36 +88,36 @@
  0001:00001aa0       ??_EfatalError@@UAEPAXI@Z  10002aa0 f i glib:win_utils.obj
  0001:00001b50       ?direxists@@YA_NPBD@Z      10002b50 f   glib:win_utils.obj
  0001:00001b70       ___local_stdio_scanf_options 10002b70 f i glib:utils.obj
- 0001:00001b80       ?finish@Performance@@UAEXXZ 10002b80 f i tlib:performance.obj
- 0001:00001b80       ?_Orphan_all@?$_Vector_alloc@U?$_Vec_base_types@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@@std@@@2@@std@@@std@@QAEXXZ 10002b80 f i dll_globals.obj
- 0001:00001b80       ?_Orphan_all@?$_Vector_alloc@U?$_Vec_base_types@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@std@@QAEXXZ 10002b80 f i glib:utils.obj
- 0001:00001b80       ??3@YAXPAX0@Z              10002b80 f i glib:utils.obj
- 0001:00001b80       ?startCal_x@dataSource@@UAEXXZ 10002b80 f i tlib:datasource.obj
- 0001:00001b80       ??1Tmr@RACERMATE@@QAE@XZ   10002b80 f i rmg:tmr.obj
- 0001:00001b80       ?gradeUp@Decoder@@UAEXXZ   10002b80 f i tlib:decoder.obj
- 0001:00001b80       ?_Orphan_all@?$_Deque_alloc@U?$_Deque_base_types@UTCRF@@V?$allocator@UTCRF@@@std@@@std@@@std@@QAEXXZ 10002b80 f i rmg:crf.obj
- 0001:00001b80       @_guard_check_icall_nop@4  10002b80 f i MSVCRT:guard_support.obj
- 0001:00001b80       ?inc_speed@Decoder@@UAEXXZ 10002b80 f i tlib:decoder.obj
- 0001:00001b80       ?dec_speed@Decoder@@UAEXXZ 10002b80 f i tlib:decoder.obj
- 0001:00001b80       ?logData@Physics@@AAEXXZ   10002b80 f i tlib:physics.obj
- 0001:00001b80       ?finish@dataSource@@UAEXXZ 10002b80 f i tlib:datasource.obj
- 0001:00001b80       ?pause@RTD@@UAEXXZ         10002b80 f i tlib:rtd.obj
- 0001:00001b80       ?gradeUp@dataSource@@UAEXXZ 10002b80 f i tlib:datasource.obj
- 0001:00001b80       ?finish@Simulator@@UAEXXZ  10002b80 f i tlib:simulator.obj
- 0001:00001b80       ?makelogpacket@RTD@@MAEXXZ 10002b80 f i tlib:computrainer.obj
- 0001:00001b80       ?gradeDown@Decoder@@UAEXXZ 10002b80 f i tlib:decoder.obj
  0001:00001b80       ?reset@dataSource@@UAEXXZ  10002b80 f i tlib:datasource.obj
- 0001:00001b80       ?update@Decoder@@UAEXXZ    10002b80 f i tlib:decoder.obj
  0001:00001b80       ?gradeDown@dataSource@@UAEXXZ 10002b80 f i tlib:datasource.obj
- 0001:00001b80       ?test@dataSource@@UAEXXZ   10002b80 f i tlib:datasource.obj
- 0001:00001b80       ?flush@dataSource@@UAEXXZ  10002b80 f i tlib:datasource.obj
- 0001:00001b80       ??1?$_Compressed_pair@U?$_Wrap_alloc@V?$allocator@UTCRF@@@std@@@std@@V?$_Deque_val@U?$_Deque_simple_types@UTCRF@@@std@@@2@$00@std@@QAE@XZ 10002b80 f i rmg:crf.obj
+ 0001:00001b80       ?finish@dataSource@@UAEXXZ 10002b80 f i tlib:datasource.obj
+ 0001:00001b80       ?start@dataSource@@UAEXXZ  10002b80 f i tlib:datasource.obj
+ 0001:00001b80       ?finish@Simulator@@UAEXXZ  10002b80 f i tlib:simulator.obj
  0001:00001b80       ?disconnected@ctsrvWorker@RACERMATE@@AAEXXZ 10002b80 f i ctsrv:ctsrvworker.obj
+ 0001:00001b80       ?test@dataSource@@UAEXXZ   10002b80 f i tlib:datasource.obj
+ 0001:00001b80       @_guard_check_icall_nop@4  10002b80 f i MSVCRT:guard_support.obj
+ 0001:00001b80       ?_Orphan_all@?$_Vector_alloc@U?$_Vec_base_types@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@std@@QAEXXZ 10002b80 f i glib:utils.obj
+ 0001:00001b80       ?pause@RTD@@UAEXXZ         10002b80 f i tlib:rtd.obj
  0001:00001b80       ?qt_static_metacall@ANT@RACERMATE@@CAXPAVQObject@@W4Call@QMetaObject@@HPAPAX@Z 10002b80 f i rmant:moc_ant.obj
  0001:00001b80       ?integrate@Decoder@@UAEXXZ 10002b80 f i tlib:decoder.obj
- 0001:00001b80       ?clear_averages@dataSource@@UAEXXZ 10002b80 f i tlib:datasource.obj
+ 0001:00001b80       ?_Orphan_all@?$_Deque_alloc@U?$_Deque_base_types@UTCRF@@V?$allocator@UTCRF@@@std@@@std@@@std@@QAEXXZ 10002b80 f i rmg:crf.obj
+ 0001:00001b80       ?update@Decoder@@UAEXXZ    10002b80 f i tlib:decoder.obj
+ 0001:00001b80       ?startCal_x@dataSource@@UAEXXZ 10002b80 f i tlib:datasource.obj
+ 0001:00001b80       ?dec_speed@Decoder@@UAEXXZ 10002b80 f i tlib:decoder.obj
+ 0001:00001b80       ??1?$_Compressed_pair@U?$_Wrap_alloc@V?$allocator@UTCRF@@@std@@@std@@V?$_Deque_val@U?$_Deque_simple_types@UTCRF@@@std@@@2@$00@std@@QAE@XZ 10002b80 f i rmg:crf.obj
+ 0001:00001b80       ?gradeDown@Decoder@@UAEXXZ 10002b80 f i tlib:decoder.obj
  0001:00001b80       ?_Orphan_all@?$_Vector_alloc@U?$_Vec_base_types@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@@std@@@2@@std@@@std@@QAEXXZ 10002b80 f i dll_globals.obj
- 0001:00001b80       ?start@dataSource@@UAEXXZ  10002b80 f i tlib:datasource.obj
+ 0001:00001b80       ?gradeUp@Decoder@@UAEXXZ   10002b80 f i tlib:decoder.obj
+ 0001:00001b80       ?clear_averages@dataSource@@UAEXXZ 10002b80 f i tlib:datasource.obj
+ 0001:00001b80       ?makelogpacket@RTD@@MAEXXZ 10002b80 f i tlib:computrainer.obj
+ 0001:00001b80       ?logData@Physics@@AAEXXZ   10002b80 f i tlib:physics.obj
+ 0001:00001b80       ?_Orphan_all@?$_Vector_alloc@U?$_Vec_base_types@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@@std@@@2@@std@@@std@@QAEXXZ 10002b80 f i dll_globals.obj
+ 0001:00001b80       ?gradeUp@dataSource@@UAEXXZ 10002b80 f i tlib:datasource.obj
+ 0001:00001b80       ?flush@dataSource@@UAEXXZ  10002b80 f i tlib:datasource.obj
+ 0001:00001b80       ??3@YAXPAX0@Z              10002b80 f i glib:utils.obj
+ 0001:00001b80       ??1Tmr@RACERMATE@@QAE@XZ   10002b80 f i rmg:tmr.obj
+ 0001:00001b80       ?finish@Performance@@UAEXXZ 10002b80 f i tlib:performance.obj
+ 0001:00001b80       ?inc_speed@Decoder@@UAEXXZ 10002b80 f i tlib:decoder.obj
  0001:00001b90       _printf                    10002b90 f i glib:utils.obj
  0001:00001bc0       __vsscanf_l                10002bc0 f i glib:utils.obj
  0001:00001bf0       _sscanf                    10002bf0 f i glib:utils.obj
@@ -136,8 +136,8 @@
  0001:00002420       ?_Copy@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEXII@Z 10003420 f i glib:utils.obj
  0001:000025b0       ?allocate@?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@QAEPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@I@Z 100035b0 f i glib:utils.obj
  0001:00002610       ?allocate@?$_Wrap_alloc@V?$allocator@D@std@@@std@@QAEPADI@Z 10003610 f i glib:utils.obj
- 0001:00002660       ??0?$_Wrap_alloc@V?$allocator@UTCRF@@@std@@@std@@QAE@XZ 10003660 f i rmg:crf.obj
  0001:00002660       ??0?$_Wrap_alloc@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@std@@QAE@XZ 10003660 f i glib:utils.obj
+ 0001:00002660       ??0?$_Wrap_alloc@V?$allocator@UTCRF@@@std@@@std@@QAE@XZ 10003660 f i rmg:crf.obj
  0001:00002670       ??$_Destroy_range1@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@PAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@std@@YAXPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@0AAU?$_Wrap_alloc@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@0@U?$integral_constant@_N$0A@@0@@Z 10003670 f i glib:utils.obj
  0001:000026f0       ??$_Uninitialized_move_al_unchecked1@PAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAV12@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@YAPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@PAV10@00AAU?$_Wrap_alloc@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@0@U_General_ptr_iterator_tag@0@U_Any_tag@0@@Z 100036f0 f i glib:utils.obj
  0001:000027a0       ??0fatalError@@QAE@PBDH0@Z 100037a0 f   glib:fatalerror.obj
@@ -153,8 +153,8 @@
  0001:00002b20       ?getCycles@fastTimer@@QAEKXZ 10003b20 f   glib:fasttimer.obj
  0001:00002b30       ?read@fastTimer@@QAE_JXZ   10003b30 f   glib:fasttimer.obj
  0001:00002b60       ?getAverageSeconds@fastTimer@@QAENXZ 10003b60 f   glib:fasttimer.obj
- 0001:00002ba0       ?getSeconds@fastTimer@@QAENXZ 10003ba0 f   glib:fasttimer.obj
  0001:00002ba0       ?getseconds@fastTimer@@QAENXZ 10003ba0 f   glib:fasttimer.obj
+ 0001:00002ba0       ?getSeconds@fastTimer@@QAENXZ 10003ba0 f   glib:fasttimer.obj
  0001:00002c00       ?getms@fastTimer@@QAEKXZ   10003c00 f   glib:fasttimer.obj
  0001:00002c70       ?getFreq@fastTimer@@QAE_JXZ 10003c70 f   glib:fasttimer.obj
  0001:00002c80       ?delay@fastTimer@@QAEXK@Z  10003c80 f   glib:fasttimer.obj
@@ -228,14 +228,14 @@
  0001:00005bf0       ?set_ftp@Formula@@QAEXM@Z  10006bf0 f i tlib:formula.obj
  0001:00005c10       ?get_ftp@qtFormula@@QAEMXZ 10006c10 f i dll.obj
  0001:00005c10       ?get_ftp@Formula@@QAEMXZ   10006c10 f i tlib:formula.obj
- 0001:00005c20       ?get_x_np@Formula@@QAEMXZ  10006c20 f i tlib:formula.obj
  0001:00005c20       ?get_x_np@qtFormula@@QAEMXZ 10006c20 f i dll.obj
- 0001:00005c30       ?get_x_tss@qtFormula@@QAEMXZ 10006c30 f i dll.obj
+ 0001:00005c20       ?get_x_np@Formula@@QAEMXZ  10006c20 f i tlib:formula.obj
  0001:00005c30       ?get_x_tss@Formula@@QAEMXZ 10006c30 f i tlib:formula.obj
- 0001:00005c40       ?get_x_if@Formula@@QAEMXZ  10006c40 f i tlib:formula.obj
+ 0001:00005c30       ?get_x_tss@qtFormula@@QAEMXZ 10006c30 f i dll.obj
  0001:00005c40       ?get_x_if@qtFormula@@QAEMXZ 10006c40 f i dll.obj
- 0001:00005c50       ?get_avg_watts@qtFormula@@QAEMXZ 10006c50 f i dll.obj
+ 0001:00005c40       ?get_x_if@Formula@@QAEMXZ  10006c40 f i tlib:formula.obj
  0001:00005c50       ?get_avg_watts@Formula@@QAEMXZ 10006c50 f i tlib:formula.obj
+ 0001:00005c50       ?get_avg_watts@qtFormula@@QAEMXZ 10006c50 f i dll.obj
  0001:00005c60       ??0Formula@@QAE@ABV0@@Z    10006c60 f i tlib:formula.obj
  0001:00005d20       ??4Formula@@QAEAAV0@ABV0@@Z 10006d20 f i tlib:formula.obj
  0001:00005f90       ??_FFormula@@QAEXXZ        10006f90 f i tlib:formula.obj
@@ -244,89 +244,89 @@
  0001:00006210       ??1Formula@@UAE@XZ         10007210 f   tlib:formula.obj
  0001:000062a0       ?reset@Formula@@QAEXXZ     100072a0 f   tlib:formula.obj
  0001:00006320       ?calc@Formula@@QAEXM@Z     10007320 f   tlib:formula.obj
- 0001:00006370       ??$emplace_back@ABUFORMULA_PAIR@@@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@QAEXABUFORMULA_PAIR@@@Z 10007370 f i tlib:formula.obj
  0001:00006370       ?push_back@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@QAEXABUFORMULA_PAIR@@@Z 10007370 f i tlib:formula.obj
- 0001:00006400       ?pop_front@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@QAEXXZ 10007400 f i tlib:formula.obj
- 0001:00006400       ?pop_front@?$deque@UFORMULA2_PAIR@@V?$allocator@UFORMULA2_PAIR@@@std@@@std@@QAEXXZ 10007400 f i dll.obj
+ 0001:00006370       ??$emplace_back@ABUFORMULA_PAIR@@@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@QAEXABUFORMULA_PAIR@@@Z 10007370 f i tlib:formula.obj
  0001:00006400       ?pop_front@?$deque@NV?$allocator@N@std@@@std@@QAEXXZ 10007400 f i tlib:velotron.obj
+ 0001:00006400       ?pop_front@?$deque@UFORMULA2_PAIR@@V?$allocator@UFORMULA2_PAIR@@@std@@@std@@QAEXXZ 10007400 f i dll.obj
+ 0001:00006400       ?pop_front@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@QAEXXZ 10007400 f i tlib:formula.obj
  0001:00006420       ??1?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@QAE@XZ 10007420 f i tlib:formula.obj
  0001:00006420       ??1?$deque@NV?$allocator@N@std@@@std@@QAE@XZ 10007420 f i tlib:velotron.obj
  0001:00006440       ??0?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@QAE@ABV01@@Z 10007440 f i tlib:formula.obj
- 0001:000064f0       ??H?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@QBE?AV01@H@Z 100074f0 f i dll.obj
  0001:000064f0       ??H?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@QBE?AV01@H@Z 100074f0 f i tlib:velotron.obj
  0001:000064f0       ??H?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@QBE?AV01@H@Z 100074f0 f i tlib:velotron.obj
  0001:000064f0       ??H?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@QBE?AV01@H@Z 100074f0 f i tlib:formula.obj
- 0001:000064f0       ??H?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@QBE?AV01@H@Z 100074f0 f i tlib:formula.obj
+ 0001:000064f0       ??H?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@QBE?AV01@H@Z 100074f0 f i dll.obj
  0001:000064f0       ??H?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@QBE?AV01@H@Z 100074f0 f i dll.obj
- 0001:00006530       ??1?$_Deque_alloc@U?$_Deque_base_types@NV?$allocator@N@std@@@std@@@std@@QAE@XZ 10007530 f i tlib:velotron.obj
+ 0001:000064f0       ??H?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@QBE?AV01@H@Z 100074f0 f i tlib:formula.obj
  0001:00006530       ??1?$_Deque_alloc@U?$_Deque_base_types@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@@std@@QAE@XZ 10007530 f i tlib:formula.obj
- 0001:00006550       ?_Tidy@?$deque@UFORMULA2_PAIR@@V?$allocator@UFORMULA2_PAIR@@@std@@@std@@IAEXXZ 10007550 f i dll.obj
- 0001:00006550       ?_Tidy@?$deque@UTCRF@@V?$allocator@UTCRF@@@std@@@std@@IAEXXZ 10007550 f i rmg:crf.obj
- 0001:00006550       ?_Tidy@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@IAEXXZ 10007550 f i tlib:formula.obj
+ 0001:00006530       ??1?$_Deque_alloc@U?$_Deque_base_types@NV?$allocator@N@std@@@std@@@std@@QAE@XZ 10007530 f i tlib:velotron.obj
  0001:00006550       ?_Tidy@?$deque@NV?$allocator@N@std@@@std@@IAEXXZ 10007550 f i tlib:velotron.obj
+ 0001:00006550       ?_Tidy@?$deque@UTCRF@@V?$allocator@UTCRF@@@std@@@std@@IAEXXZ 10007550 f i rmg:crf.obj
+ 0001:00006550       ?_Tidy@?$deque@UFORMULA2_PAIR@@V?$allocator@UFORMULA2_PAIR@@@std@@@std@@IAEXXZ 10007550 f i dll.obj
+ 0001:00006550       ?_Tidy@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@IAEXXZ 10007550 f i tlib:formula.obj
  0001:00006610       ?_Growmap@?$deque@NV?$allocator@N@std@@@std@@IAEXI@Z 10007610 f i tlib:velotron.obj
  0001:00006610       ?_Growmap@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@IAEXI@Z 10007610 f i tlib:formula.obj
  0001:00006760       ?erase@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@QAE?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@0@Z 10007760 f i tlib:formula.obj
- 0001:00006930       ?end@?$deque@UFORMULA2_PAIR@@V?$allocator@UFORMULA2_PAIR@@@std@@@std@@QBE?AV?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@2@XZ 10007930 f i dll.obj
  0001:00006930       ?end@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@QAE?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@XZ 10007930 f i tlib:formula.obj
- 0001:00006930       ?end@?$deque@NV?$allocator@N@std@@@std@@QBE?AV?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@XZ 10007930 f i tlib:velotron.obj
  0001:00006930       ?end@?$deque@NV?$allocator@N@std@@@std@@QAE?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@XZ 10007930 f i tlib:velotron.obj
  0001:00006930       ?end@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@QBE?AV?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@XZ 10007930 f i tlib:formula.obj
  0001:00006930       ?end@?$deque@UFORMULA2_PAIR@@V?$allocator@UFORMULA2_PAIR@@@std@@@std@@QAE?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@2@XZ 10007930 f i dll.obj
- 0001:00006950       ?begin@?$deque@UFORMULA2_PAIR@@V?$allocator@UFORMULA2_PAIR@@@std@@@std@@QBE?AV?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@2@XZ 10007950 f i dll.obj
- 0001:00006950       ?begin@?$deque@NV?$allocator@N@std@@@std@@QAE?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@XZ 10007950 f i tlib:velotron.obj
- 0001:00006950       ?begin@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@QBE?AV?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@XZ 10007950 f i tlib:formula.obj
+ 0001:00006930       ?end@?$deque@NV?$allocator@N@std@@@std@@QBE?AV?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@XZ 10007930 f i tlib:velotron.obj
+ 0001:00006930       ?end@?$deque@UFORMULA2_PAIR@@V?$allocator@UFORMULA2_PAIR@@@std@@@std@@QBE?AV?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@2@XZ 10007930 f i dll.obj
  0001:00006950       ?begin@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@QAE?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@XZ 10007950 f i tlib:formula.obj
+ 0001:00006950       ?begin@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@QBE?AV?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@XZ 10007950 f i tlib:formula.obj
  0001:00006950       ?begin@?$deque@NV?$allocator@N@std@@@std@@QBE?AV?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@XZ 10007950 f i tlib:velotron.obj
  0001:00006950       ?begin@?$deque@UFORMULA2_PAIR@@V?$allocator@UFORMULA2_PAIR@@@std@@@std@@QAE?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@2@XZ 10007950 f i dll.obj
- 0001:00006970       ?deallocate@?$_Wrap_alloc@V?$allocator@PAN@std@@@std@@QAEXPAPANI@Z 10007970 f i tlib:velotron.obj
- 0001:00006970       ?deallocate@?$_Wrap_alloc@V?$allocator@PAUFORMULA_PAIR@@@std@@@std@@QAEXPAPAUFORMULA_PAIR@@I@Z 10007970 f i tlib:formula.obj
+ 0001:00006950       ?begin@?$deque@NV?$allocator@N@std@@@std@@QAE?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@XZ 10007950 f i tlib:velotron.obj
+ 0001:00006950       ?begin@?$deque@UFORMULA2_PAIR@@V?$allocator@UFORMULA2_PAIR@@@std@@@std@@QBE?AV?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@2@XZ 10007950 f i dll.obj
  0001:00006970       ?deallocate@?$_Wrap_alloc@V?$allocator@UGEARINFO@@@std@@@std@@QAEXPAUGEARINFO@@I@Z 10007970 f i tlib:rtd.obj
+ 0001:00006970       ?deallocate@?$_Wrap_alloc@V?$allocator@PAN@std@@@std@@QAEXPAPANI@Z 10007970 f i tlib:velotron.obj
  0001:00006970       ?deallocate@?$_Wrap_alloc@V?$allocator@M@std@@@std@@QAEXPAMI@Z 10007970 f i tlib:computrainer.obj
- 0001:000069d0       ?allocate@?$_Wrap_alloc@V?$allocator@PAN@std@@@std@@QAEPAPANI@Z 100079d0 f i tlib:velotron.obj
+ 0001:00006970       ?deallocate@?$_Wrap_alloc@V?$allocator@PAUFORMULA_PAIR@@@std@@@std@@QAEXPAPAUFORMULA_PAIR@@I@Z 10007970 f i tlib:formula.obj
  0001:000069d0       ?allocate@?$_Wrap_alloc@V?$allocator@PAUFORMULA_PAIR@@@std@@@std@@QAEPAPAUFORMULA_PAIR@@I@Z 100079d0 f i tlib:formula.obj
+ 0001:000069d0       ?allocate@?$_Wrap_alloc@V?$allocator@PAN@std@@@std@@QAEPAPANI@Z 100079d0 f i tlib:velotron.obj
+ 0001:00006a30       ?_Make_iter@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@QBE?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@@Z 10007a30 f i tlib:formula.obj
  0001:00006a30       ?_Make_iter@?$deque@UFORMULA2_PAIR@@V?$allocator@UFORMULA2_PAIR@@@std@@@std@@QBE?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@2@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@2@@Z 10007a30 f i dll.obj
  0001:00006a30       ?_Make_iter@?$deque@NV?$allocator@N@std@@@std@@QBE?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@@Z 10007a30 f i tlib:velotron.obj
- 0001:00006a30       ?_Make_iter@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@QBE?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@@Z 10007a30 f i tlib:formula.obj
- 0001:00006a60       ??$move@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@V12@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@V10@00@Z 10007a60 f i tlib:formula.obj
  0001:00006a60       ??$copy@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@0V10@@Z 10007a60 f i tlib:formula.obj
+ 0001:00006a60       ??$move@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@V12@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@V10@00@Z 10007a60 f i tlib:formula.obj
  0001:00006b00       ??$insert@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@QAE?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@1@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@1@00@Z 10007b00 f i tlib:formula.obj
  0001:00006d30       ??$_Construct@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@QAEXV?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@1@0@Z 10007d30 f i tlib:formula.obj
  0001:00006dd0       ??$move_backward@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@V12@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@V10@00@Z 10007dd0 f i tlib:formula.obj
+ 0001:00006e60       ?update@Decoder@@UAEXM@Z   10007e60 f i tlib:decoder.obj
+ 0001:00006e60       ?setConstantWatts@dataSource@@UAEXM@Z 10007e60 f i tlib:datasource.obj
+ 0001:00006e60       ?emergencyStop@dataSource@@UAEXH@Z 10007e60 f i tlib:datasource.obj
  0001:00006e60       ?setPhysicsMode@dataSource@@UAEXH@Z 10007e60 f i tlib:datasource.obj
- 0001:00006e60       ?set_ftp@UDPClient@RACERMATE@@QAEXM@Z 10007e60 f i ctsrv:udp_client.obj
+ 0001:00006e60       ??$destroy@PAU?$_List_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@PAX@std@@@?$_Wrap_alloc@V?$allocator@U?$_List_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@PAX@std@@@std@@@std@@QAEXPAPAU?$_List_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@PAX@1@@Z 10007e60 f i dll_globals.obj
+ 0001:00006e60       ?setShutDownDelay@dataSource@@UAEXK@Z 10007e60 f i tlib:datasource.obj
+ 0001:00006e60       ?keydown@dataSource@@UAEXI@Z 10007e60 f i tlib:datasource.obj
+ 0001:00006e60       ?setConstantCurrent@dataSource@@UAEXM@Z 10007e60 f i tlib:datasource.obj
  0001:00006e60       ?set_grade@dataSource@@UAEXM@Z 10007e60 f i tlib:datasource.obj
- 0001:00006e60       ?set_performance_file_name_x@dataSource@@UAEXPBD@Z 10007e60 f i tlib:datasource.obj
  0001:00006e60       ?setkgs@dataSource@@UAEXM@Z 10007e60 f i tlib:datasource.obj
  0001:00006e60       ?setTimeout@dataSource@@UAEXK@Z 10007e60 f i tlib:datasource.obj
- 0001:00006e60       ?set_physics_pause@Decoder@@UAEX_N@Z 10007e60 f i tlib:decoder.obj
- 0001:00006e60       ?setConstantWatts@dataSource@@UAEXM@Z 10007e60 f i tlib:datasource.obj
- 0001:00006e60       ??$destroy@PAU?$_List_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@PAX@std@@@?$_Wrap_alloc@V?$allocator@U?$_List_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@PAX@std@@@std@@@std@@QAEXPAPAU?$_List_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@PAX@1@@Z 10007e60 f i dll_globals.obj
- 0001:00006e60       ?end_cal@dataSource@@UAEXE@Z 10007e60 f i tlib:datasource.obj
- 0001:00006e60       ?setConstantCurrent@dataSource@@UAEXM@Z 10007e60 f i tlib:datasource.obj
- 0001:00006e60       ??$destroy@U_Container_proxy@std@@@?$_Wrap_alloc@V?$allocator@U_Container_proxy@std@@@std@@@std@@QAEXPAU_Container_proxy@1@@Z 10007e60 f i tlib:formula.obj
- 0001:00006e60       ??$destroy@PAU?$_List_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@PAX@std@@@?$_Wrap_alloc@V?$allocator@U?$_List_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@PAX@std@@@std@@@std@@QAEXPAPAU?$_List_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@PAX@1@@Z 10007e60 f i dll_globals.obj
- 0001:00006e60       ?update@Decoder@@UAEXM@Z   10007e60 f i tlib:decoder.obj
  0001:00006e60       ?set_manual_mph@Decoder@@UAEXM@Z 10007e60 f i tlib:decoder.obj
+ 0001:00006e60       ?set_physics_pause@Decoder@@UAEX_N@Z 10007e60 f i tlib:decoder.obj
+ 0001:00006e60       ??$destroy@PAU?$_List_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@PAX@std@@@?$_Wrap_alloc@V?$allocator@U?$_List_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@PAX@std@@@std@@@std@@QAEXPAPAU?$_List_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@PAX@1@@Z 10007e60 f i dll_globals.obj
  0001:00006e60       ?set_manual_mph@dataSource@@UAEXM@Z 10007e60 f i tlib:datasource.obj
- 0001:00006e60       ?emergencyStop@dataSource@@UAEXH@Z 10007e60 f i tlib:datasource.obj
- 0001:00006e60       ?keydown@dataSource@@UAEXI@Z 10007e60 f i tlib:datasource.obj
- 0001:00006e60       ?setShutDownDelay@dataSource@@UAEXK@Z 10007e60 f i tlib:datasource.obj
+ 0001:00006e60       ?set_performance_file_name_x@dataSource@@UAEXPBD@Z 10007e60 f i tlib:datasource.obj
+ 0001:00006e60       ??$destroy@U_Container_proxy@std@@@?$_Wrap_alloc@V?$allocator@U_Container_proxy@std@@@std@@@std@@QAEXPAU_Container_proxy@1@@Z 10007e60 f i tlib:formula.obj
+ 0001:00006e60       ?set_ftp@UDPClient@RACERMATE@@QAEXM@Z 10007e60 f i ctsrv:udp_client.obj
+ 0001:00006e60       ?end_cal@dataSource@@UAEXE@Z 10007e60 f i tlib:datasource.obj
  0001:00006e70       ?push_front@?$deque@UFORMULA_PAIR@@V?$allocator@UFORMULA_PAIR@@@std@@@std@@QAEXABUFORMULA_PAIR@@@Z 10007e70 f i tlib:formula.obj
  0001:00006f00       ??$_Move_no_deprecate@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@V12@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@V10@00@Z 10007f00 f i tlib:formula.obj
  0001:00006f00       ??$_Copy_no_deprecate@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@0V10@@Z 10007f00 f i tlib:formula.obj
  0001:00006f90       ??$reverse@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@@std@@YAXV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@0@Z 10007f90 f i tlib:formula.obj
  0001:00006ff0       ??$rotate@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@V10@00@Z 10007ff0 f i tlib:formula.obj
  0001:000070c0       ??$_Move_backward1@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@0V10@Urandom_access_iterator_tag@0@2@Z 100080c0 f i tlib:formula.obj
- 0001:00007140       ??$_Move_no_deprecate1@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@0V10@Urandom_access_iterator_tag@0@2@Z 10008140 f i tlib:formula.obj
  0001:00007140       ??$_Copy_no_deprecate1@V?$_Deque_unchecked_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@V?$_Deque_unchecked_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@0V10@Urandom_access_iterator_tag@0@2@Z 10008140 f i tlib:formula.obj
+ 0001:00007140       ??$_Move_no_deprecate1@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@0V10@Urandom_access_iterator_tag@0@2@Z 10008140 f i tlib:formula.obj
  0001:000071c0       ??$_Reverse_unchecked@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@@std@@YAXV?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@0@Z 100081c0 f i tlib:formula.obj
  0001:00007240       ??$_Rotate_unchecked1@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@@std@@YA?AV?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@V10@00Urandom_access_iterator_tag@0@@Z 10008240 f i tlib:formula.obj
  0001:000072b0       ??$_Move_backward_unchecked1@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@V12@@std@@YA?AV?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@V10@00U_General_ptr_iterator_tag@0@@Z 100082b0 f i tlib:formula.obj
  0001:000072b0       ??$_Move_backward_unchecked1@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@V12@@std@@YA?AV?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@V10@00U_General_ptr_iterator_tag@0@@Z 100082b0 f i dll.obj
- 0001:00007320       ??$_Copy_unchecked1@V?$_Deque_unchecked_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@@std@@YA?AV?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@V?$_Deque_unchecked_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@0V10@U_General_ptr_iterator_tag@0@@Z 10008320 f i tlib:formula.obj
- 0001:00007320       ??$_Copy_unchecked1@V?$_Deque_unchecked_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@2@@std@@YA?AV?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@V?$_Deque_unchecked_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@0V10@U_General_ptr_iterator_tag@0@@Z 10008320 f i dll.obj
  0001:00007320       ??$_Move_unchecked1@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@V12@@std@@YA?AV?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@V10@00U_General_ptr_iterator_tag@0@@Z 10008320 f i tlib:formula.obj
+ 0001:00007320       ??$_Copy_unchecked1@V?$_Deque_unchecked_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@2@@std@@YA?AV?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@V?$_Deque_unchecked_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@0V10@U_General_ptr_iterator_tag@0@@Z 10008320 f i dll.obj
+ 0001:00007320       ??$_Copy_unchecked1@V?$_Deque_unchecked_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@std@@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@2@@std@@YA?AV?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@V?$_Deque_unchecked_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA_PAIR@@@std@@@std@@@0@0V10@U_General_ptr_iterator_tag@0@@Z 10008320 f i tlib:formula.obj
  0001:00007320       ??$_Move_unchecked1@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@V12@@std@@YA?AV?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@V10@00U_General_ptr_iterator_tag@0@@Z 10008320 f i dll.obj
  0001:000073a0       ??0Monarch@@QAE@ABV0@@Z    100083a0 f i tlib:monarch.obj
  0001:000074a0       ??4Monarch@@QAEAAV0@ABV0@@Z 100084a0 f i tlib:monarch.obj
@@ -398,8 +398,8 @@
  0001:0000c8c0       ??_GBike@@UAEPAXI@Z        1000d8c0 f i tlib:bike.obj
  0001:0000c8c0       ??_EBike@@UAEPAXI@Z        1000d8c0 f i * CIL library *:* CIL module *
  0001:0000c930       ??1Bike@@UAE@XZ            1000d930 f   tlib:bike.obj
- 0001:0000c980       ?frontUp@Bike@@QAEXXZ      1000d980 f   tlib:bike.obj
- 0001:0000c9e0       ?frontDown@Bike@@QAEXXZ    1000d9e0 f   tlib:bike.obj
+ 0001:0000c980       ?frontDown@Bike@@QAEXXZ    1000d980 f   tlib:bike.obj
+ 0001:0000c9e0       ?frontUp@Bike@@QAEXXZ      1000d9e0 f   tlib:bike.obj
  0001:0000ca40       ?setupVirtualGearInches@Bike@@AAEXXZ 1000da40 f   tlib:bike.obj
  0001:0000cd40       ?run@Bike@@QAEHXZ          1000dd40 f   tlib:bike.obj
  0001:0000ce60       ?upkeydown@Bike@@QAEXXZ    1000de60 f   tlib:bike.obj
@@ -410,28 +410,28 @@
  0001:0000d090       ??0RIDER_DATA@@QAE@XZ      1000e090 f i tlib:decoder.obj
  0001:0000d130       ??1RIDER_DATA@@QAE@XZ      1000e130 f i tlib:decoder.obj
  0001:0000d140       ??4PERSON_DATA@@QAEAAU0@ABU0@@Z 1000e140 f i tlib:decoder.obj
+ 0001:0000d280       ?getConstantWatts@dataSource@@UAEMXZ 1000e280 f i tlib:datasource.obj
  0001:0000d280       ?getGrade@dataSource@@UAENXZ 1000e280 f i tlib:datasource.obj
- 0001:0000d280       ?get_measured_ergo_watts@Decoder@@UAENXZ 1000e280 f i tlib:decoder.obj
  0001:0000d280       ?get_ftp@UDPClient@RACERMATE@@QAEMXZ 1000e280 f i ctsrv:udp_client.obj
  0001:0000d280       ?getWatts@dataSource@@UAENXZ 1000e280 f i tlib:datasource.obj
- 0001:0000d280       ?getConstantWatts@dataSource@@UAEMXZ 1000e280 f i tlib:datasource.obj
- 0001:0000d280       ?get_start_miles@dataSource@@UAEMXZ 1000e280 f i tlib:datasource.obj
  0001:0000d280       ?getTotalMiles@dataSource@@UAENXZ 1000e280 f i tlib:datasource.obj
+ 0001:0000d280       ?get_start_miles@dataSource@@UAEMXZ 1000e280 f i tlib:datasource.obj
+ 0001:0000d280       ?get_measured_ergo_watts@Decoder@@UAENXZ 1000e280 f i tlib:decoder.obj
  0001:0000d290       ?get_gear_pair@Decoder@@UAE?AUGEARPAIR@Bike@@XZ 1000e290 f i tlib:decoder.obj
- 0001:0000d290       ?get_gear_indices@Decoder@@UAE?AUGEARPAIR@Bike@@XZ 1000e290 f i tlib:decoder.obj
  0001:0000d290       ?get_gear_pair@dataSource@@UAE?AUGEARPAIR@Bike@@XZ 1000e290 f i tlib:datasource.obj
+ 0001:0000d290       ?get_gear_indices@Decoder@@UAE?AUGEARPAIR@Bike@@XZ 1000e290 f i tlib:decoder.obj
  0001:0000d290       ?get_gear_indices_x@dataSource@@UAE?AUGEARPAIR@Bike@@XZ 1000e290 f i tlib:datasource.obj
  0001:0000d2b0       ?set_weight_lbs@Decoder@@UAEXN@Z 1000e2b0 f i tlib:decoder.obj
  0001:0000d2e0       ?set_weight_kgs@Decoder@@UAEXN@Z 1000e2e0 f i tlib:decoder.obj
  0001:0000d300       ?set_lower_hr@Decoder@@UAEXM@Z 1000e300 f i tlib:decoder.obj
  0001:0000d320       ?set_upper_hr@Decoder@@UAEXM@Z 1000e320 f i tlib:decoder.obj
  0001:0000d340       ?decode@Decoder@@UAEHPAEK@Z 1000e340 f i tlib:decoder.obj
- 0001:0000d350       ?out_of_data@dataSource@@UAE_NXZ 1000e350 f i tlib:datasource.obj
  0001:0000d350       ?is_perf@dataSource@@UAE_NXZ 1000e350 f i tlib:datasource.obj
  0001:0000d350       ?get_physics_pause@Decoder@@UAE_NXZ 1000e350 f i tlib:decoder.obj
- 0001:0000d350       ?is_realtime@dataSource@@UAE_NXZ 1000e350 f i tlib:datasource.obj
  0001:0000d350       ?getControlByte@dataSource@@UAEEXZ 1000e350 f i tlib:datasource.obj
+ 0001:0000d350       ?is_realtime@dataSource@@UAE_NXZ 1000e350 f i tlib:datasource.obj
  0001:0000d350       ?start_cal@dataSource@@UAEEXZ 1000e350 f i tlib:datasource.obj
+ 0001:0000d350       ?out_of_data@dataSource@@UAE_NXZ 1000e350 f i tlib:datasource.obj
  0001:0000d360       ?setDistance@Decoder@@UAEXM@Z 1000e360 f i tlib:decoder.obj
  0001:0000d3a0       ??0Decoder@@QAE@HPAVCourse@@AAVRIDER_DATA@@H@Z 1000e3a0 f   tlib:decoder.obj
  0001:0000da40       ??_GDecoder@@UAEPAXI@Z     1000ea40 f i tlib:decoder.obj
@@ -447,44 +447,44 @@
  0001:0000e900       ?compute_armed_rpm@Decoder@@IAEXXZ 1000f900 f   tlib:decoder.obj
  0001:0000e9d0       ?seed_avgs@Decoder@@QAEXXZ 1000f9d0 f   tlib:decoder.obj
  0001:0000ea40       ??0RESULT@@QAE@XZ          1000fa40 f i tlib:datasource.obj
- 0001:0000eb30       ?save@RTD@@MAEPAD_N@Z      1000fb30 f i tlib:computrainer.obj
- 0001:0000eb30       ?read@dataSource@@UAEHH@Z  1000fb30 f i tlib:datasource.obj
- 0001:0000eb30       ?get_ant_cm@ANT@RACERMATE@@QAEKI@Z 1000fb30 f i rmant:ant.obj
+ 0001:0000eb30       ?jumpmiles@dataSource@@UAEHM@Z 1000fb30 f i tlib:datasource.obj
  0001:0000eb30       ?set_constant_force_x@dataSource@@UAEHM@Z 1000fb30 f i tlib:datasource.obj
  0001:0000eb30       ?addcourse@dataSource@@UAEHPBD@Z 1000fb30 f i tlib:datasource.obj
- 0001:0000eb30       ?jumpmiles@dataSource@@UAEHM@Z 1000fb30 f i tlib:datasource.obj
+ 0001:0000eb30       ?read@dataSource@@UAEHH@Z  1000fb30 f i tlib:datasource.obj
+ 0001:0000eb30       ?save@RTD@@MAEPAD_N@Z      1000fb30 f i tlib:computrainer.obj
  0001:0000eb30       ?updateHardware@dataSource@@UAEH_N@Z 1000fb30 f i tlib:datasource.obj
- 0001:0000eb40       ?check_udp_keys@Ctsrv@RACERMATE@@QAEHXZ 1000fb40 f i ctsrv:ctsrv.obj
- 0001:0000eb40       ?get_x_accum_tdc@dataSource@@UAEHXZ 1000fb40 f i tlib:datasource.obj
- 0001:0000eb40       ?get_x_status_bits@dataSource@@UAEHXZ 1000fb40 f i tlib:datasource.obj
- 0001:0000eb40       ?packetsAvailable@dataSource@@UAEHXZ 1000fb40 f i tlib:datasource.obj
- 0001:0000eb40       __is_c_termination_complete 1000fb40 f i MSVCRT:ucrt_stubs.obj
- 0001:0000eb40       ?get_physics_x@dataSource@@UAEPAVPhysics@@XZ 1000fb40 f i tlib:datasource.obj
- 0001:0000eb40       ?reset@UDPClient@RACERMATE@@QAEHXZ 1000fb40 f i ctsrv:udp_client.obj
- 0001:0000eb40       _ResetAlltoIdle            1000fb40 f i dll.obj
- 0001:0000eb40       ?getFirstName@dataSource@@UAEPADXZ 1000fb40 f i tlib:datasource.obj
- 0001:0000eb40       ?reset_stats@UDPClient@RACERMATE@@QAEHXZ 1000fb40 f i ctsrv:udp_client.obj
- 0001:0000eb40       ?getvidfile@dataSource@@UAEPADXZ 1000fb40 f i tlib:datasource.obj
+ 0001:0000eb30       ?get_ant_cm@ANT@RACERMATE@@QAEKI@Z 1000fb30 f i rmant:ant.obj
  0001:0000eb40       ?getLastName@dataSource@@UAEPADXZ 1000fb40 f i tlib:datasource.obj
  0001:0000eb40       ?get_perf_file_name_x@dataSource@@UAEPBDXZ 1000fb40 f i tlib:datasource.obj
- 0001:0000eb40       ___scrt_stub_for_is_c_termination_complete 1000fb40 f i MSVCRT:ucrt_stubs.obj
+ 0001:0000eb40       ?check_udp_keys@Ctsrv@RACERMATE@@QAEHXZ 1000fb40 f i ctsrv:ctsrv.obj
+ 0001:0000eb40       ?reset_stats@UDPClient@RACERMATE@@QAEHXZ 1000fb40 f i ctsrv:udp_client.obj
+ 0001:0000eb40       ?get_x_status_bits@dataSource@@UAEHXZ 1000fb40 f i tlib:datasource.obj
+ 0001:0000eb40       ?packetsAvailable@dataSource@@UAEHXZ 1000fb40 f i tlib:datasource.obj
+ 0001:0000eb40       ?getvidfile@dataSource@@UAEPADXZ 1000fb40 f i tlib:datasource.obj
+ 0001:0000eb40       ?get_physics_x@dataSource@@UAEPAVPhysics@@XZ 1000fb40 f i tlib:datasource.obj
  0001:0000eb40       ?getvidbase@dataSource@@UAEPADXZ 1000fb40 f i tlib:datasource.obj
+ 0001:0000eb40       ?get_x_accum_tdc@dataSource@@UAEHXZ 1000fb40 f i tlib:datasource.obj
+ 0001:0000eb40       ?reset@UDPClient@RACERMATE@@QAEHXZ 1000fb40 f i ctsrv:udp_client.obj
  0001:0000eb40       ?get_calibration_x@dataSource@@UAEHXZ 1000fb40 f i tlib:datasource.obj
+ 0001:0000eb40       __is_c_termination_complete 1000fb40 f i MSVCRT:ucrt_stubs.obj
  0001:0000eb40       _SetErgModeLoad            1000fb40 f i dll.obj
+ 0001:0000eb40       _ResetAlltoIdle            1000fb40 f i dll.obj
+ 0001:0000eb40       ___scrt_stub_for_is_c_termination_complete 1000fb40 f i MSVCRT:ucrt_stubs.obj
+ 0001:0000eb40       ?getFirstName@dataSource@@UAEPADXZ 1000fb40 f i tlib:datasource.obj
  0001:0000eb50       ?get_result@dataSource@@UAE?AURESULT@@XZ 1000fb50 f i tlib:datasource.obj
  0001:0000eb70       ?set_x_wind@dataSource@@UAEXM@Z 1000fb70 f i tlib:datasource.obj
  0001:0000eba0       ?get_physics_mode_x@dataSource@@UAE?AW4MODE@Physics@@XZ 1000fba0 f i tlib:datasource.obj
  0001:0000ebb0       ?get_computrainer_mode_x@dataSource@@UAEEXZ 1000fbb0 f i tlib:datasource.obj
  0001:0000ebb0       ?get_control_byte_x@dataSource@@UAEEXZ 1000fbb0 f i tlib:datasource.obj
  0001:0000ebc0       ?set_hr_bounds@dataSource@@UAEXHH_N@Z 1000fbc0 f i tlib:datasource.obj
- 0001:0000ebd0       ?get_accum_keys@dataSource@@UAEHXZ 1000fbd0 f i tlib:datasource.obj
  0001:0000ebd0       ?get_keys@dataSource@@UAEHXZ 1000fbd0 f i tlib:datasource.obj
- 0001:0000ebe0       ?getRecord@dataSource@@UAEHH@Z 1000fbe0 f i tlib:datasource.obj
+ 0001:0000ebd0       ?get_accum_keys@dataSource@@UAEHXZ 1000fbd0 f i tlib:datasource.obj
  0001:0000ebe0       ?seek@dataSource@@UAEHJ@Z  1000fbe0 f i tlib:datasource.obj
- 0001:0000ebe0       ?getPreviousRecord@dataSource@@UAEHK@Z 1000fbe0 f i tlib:datasource.obj
  0001:0000ebe0       ?myexport@dataSource@@UAEHPAD@Z 1000fbe0 f i tlib:datasource.obj
- 0001:0000ebf0       _get_trainer_type          1000fbf0 f i dll.obj
+ 0001:0000ebe0       ?getRecord@dataSource@@UAEHH@Z 1000fbe0 f i tlib:datasource.obj
+ 0001:0000ebe0       ?getPreviousRecord@dataSource@@UAEHK@Z 1000fbe0 f i tlib:datasource.obj
  0001:0000ebf0       ?getNextRecord@dataSource@@UAEHXZ 1000fbf0 f i tlib:datasource.obj
+ 0001:0000ebf0       _get_trainer_type          1000fbf0 f i dll.obj
  0001:0000ec00       ?get_nRecords@dataSource@@UAEHXZ 1000fc00 f i tlib:datasource.obj
  0001:0000ec10       ?getOffset@dataSource@@UAEJXZ 1000fc10 f i tlib:datasource.obj
  0001:0000ec20       ?remap@dataSource@@UAEXUtagRECT@@MM@Z 1000fc20 f i tlib:datasource.obj
@@ -512,31 +512,31 @@
  0001:00010020       ?filter@SS@@AAEXXZ         10011020 f   tlib:ss.obj
  0001:00010410       ?reset@SS@@QAEXXZ          10011410 f   tlib:ss.obj
  0001:00010640       ?do_ten_hz_filter@SS@@QAEXPAUMETADATA@@_N11@Z 10011640 f   tlib:ss.obj
- 0001:00010bf0       ___vcrt_initialize         10011bf0 f i MSVCRT:ucrt_stubs.obj
- 0001:00010bf0       ___scrt_stub_for_acrt_initialize 10011bf0 f i MSVCRT:ucrt_stubs.obj
- 0001:00010bf0       ?is_realtime@RTD@@UAE_NXZ  10011bf0 f i tlib:computrainer.obj
- 0001:00010bf0       ___acrt_uninitialize       10011bf0 f i MSVCRT:ucrt_stubs.obj
- 0001:00010bf0       ___scrt_stub_for_acrt_thread_attach 10011bf0 f i MSVCRT:ucrt_stubs.obj
- 0001:00010bf0       ___vcrt_uninitialize_critical 10011bf0 f i MSVCRT:ucrt_stubs.obj
- 0001:00010bf0       ___acrt_thread_attach      10011bf0 f i MSVCRT:ucrt_stubs.obj
- 0001:00010bf0       ___scrt_stub_for_acrt_uninitialize_critical 10011bf0 f i MSVCRT:ucrt_stubs.obj
- 0001:00010bf0       ___vcrt_thread_attach      10011bf0 f i MSVCRT:ucrt_stubs.obj
- 0001:00010bf0       ___vcrt_uninitialize       10011bf0 f i MSVCRT:ucrt_stubs.obj
- 0001:00010bf0       ___scrt_stub_for_acrt_uninitialize 10011bf0 f i MSVCRT:ucrt_stubs.obj
- 0001:00010bf0       ___acrt_thread_detach      10011bf0 f i MSVCRT:ucrt_stubs.obj
- 0001:00010bf0       ___scrt_stub_for_acrt_thread_detach 10011bf0 f i MSVCRT:ucrt_stubs.obj
- 0001:00010bf0       ___acrt_uninitialize_critical 10011bf0 f i MSVCRT:ucrt_stubs.obj
- 0001:00010bf0       ___vcrt_thread_detach      10011bf0 f i MSVCRT:ucrt_stubs.obj
  0001:00010bf0       ___acrt_initialize         10011bf0 f i MSVCRT:ucrt_stubs.obj
+ 0001:00010bf0       ___vcrt_uninitialize_critical 10011bf0 f i MSVCRT:ucrt_stubs.obj
+ 0001:00010bf0       ___scrt_stub_for_acrt_thread_detach 10011bf0 f i MSVCRT:ucrt_stubs.obj
+ 0001:00010bf0       ___scrt_stub_for_acrt_initialize 10011bf0 f i MSVCRT:ucrt_stubs.obj
+ 0001:00010bf0       ___scrt_stub_for_acrt_uninitialize_critical 10011bf0 f i MSVCRT:ucrt_stubs.obj
+ 0001:00010bf0       ___acrt_thread_attach      10011bf0 f i MSVCRT:ucrt_stubs.obj
+ 0001:00010bf0       ___acrt_uninitialize       10011bf0 f i MSVCRT:ucrt_stubs.obj
+ 0001:00010bf0       ___vcrt_uninitialize       10011bf0 f i MSVCRT:ucrt_stubs.obj
+ 0001:00010bf0       ___vcrt_thread_detach      10011bf0 f i MSVCRT:ucrt_stubs.obj
+ 0001:00010bf0       ?is_realtime@RTD@@UAE_NXZ  10011bf0 f i tlib:computrainer.obj
+ 0001:00010bf0       ___scrt_stub_for_acrt_thread_attach 10011bf0 f i MSVCRT:ucrt_stubs.obj
+ 0001:00010bf0       ___acrt_thread_detach      10011bf0 f i MSVCRT:ucrt_stubs.obj
+ 0001:00010bf0       ___vcrt_initialize         10011bf0 f i MSVCRT:ucrt_stubs.obj
+ 0001:00010bf0       ___scrt_stub_for_acrt_uninitialize 10011bf0 f i MSVCRT:ucrt_stubs.obj
+ 0001:00010bf0       ___acrt_uninitialize_critical 10011bf0 f i MSVCRT:ucrt_stubs.obj
+ 0001:00010bf0       ___vcrt_thread_attach      10011bf0 f i MSVCRT:ucrt_stubs.obj
  0001:00010c00       ?getConstantWatts@Computrainer@@UAEMXZ 10011c00 f i tlib:computrainer.obj
- 0001:00010c10       ?get_physics_mode@Velotron@@UAE?AW4MODE@Physics@@XZ 10011c10 f i tlib:velotron.obj
  0001:00010c10       ?get_physics_mode_x@Computrainer@@UAE?AW4MODE@Physics@@XZ 10011c10 f i tlib:computrainer.obj
- 0001:00010c20       ?get_computrainer_mode_x@Computrainer@@UAEEXZ 10011c20 f i tlib:computrainer.obj
+ 0001:00010c10       ?get_physics_mode@Velotron@@UAE?AW4MODE@Physics@@XZ 10011c10 f i tlib:velotron.obj
  0001:00010c20       ?get_control_byte_x@Computrainer@@UAEEXZ 10011c20 f i tlib:computrainer.obj
+ 0001:00010c20       ?get_computrainer_mode_x@Computrainer@@UAEEXZ 10011c20 f i tlib:computrainer.obj
  0001:00010c20       ?getControlByte@Computrainer@@UAEEXZ 10011c20 f i tlib:computrainer.obj
  0001:00010c30       ??0Computrainer@@QAE@PBDAAVRIDER_DATA@@PAVCourse@@PAVBike@@W4LoggingType@@0H@Z 10011c30 f   tlib:computrainer.obj
- 0001:00010d70       ??_GComputrainer@@UAEPAXI@Z 10011d70 f i tlib:computrainer.obj
  0001:00010d70       ??_EComputrainer@@UAEPAXI@Z 10011d70 f i * CIL library *:* CIL module *
+ 0001:00010d70       ??_GComputrainer@@UAEPAXI@Z 10011d70 f i tlib:computrainer.obj
  0001:00010df0       ??0Computrainer@@QAE@PAVSerial@@AAVRIDER_DATA@@PAVCourse@@PAVBike@@W4LoggingType@@@Z 10011df0 f   tlib:computrainer.obj
  0001:00010f40       ?getNextRecord@Computrainer@@UAEHXZ 10011f40 f   tlib:computrainer.obj
  0001:000114f0       ?init@Computrainer@@AAEXXZ 100124f0 f   tlib:computrainer.obj
@@ -573,16 +573,16 @@
  0001:00012470       ??0Simulator@@QAE@AAVRIDER_DATA@@_NPAVCourse@@PBD@Z 10013470 f   tlib:simulator.obj
  0001:00012570       ??_ESimulator@@UAEPAXI@Z   10013570 f i * CIL library *:* CIL module *
  0001:00012570       ??_GSimulator@@UAEPAXI@Z   10013570 f i tlib:simulator.obj
- 0001:000125c0       ?getNextRecord@Performance@@UAEHXZ 100135c0 f   tlib:performance.obj
  0001:000125c0       ?getNextRecord@Simulator@@UAEHXZ 100135c0 f   tlib:simulator.obj
- 0001:00012600       ?reset@Performance@@UAEXXZ 10013600 f   tlib:performance.obj
+ 0001:000125c0       ?getNextRecord@Performance@@UAEHXZ 100135c0 f   tlib:performance.obj
  0001:00012600       ?reset@Simulator@@UAEXXZ   10013600 f   tlib:simulator.obj
+ 0001:00012600       ?reset@Performance@@UAEXXZ 10013600 f   tlib:performance.obj
  0001:000126a0       ?start@Simulator@@UAEXXZ   100136a0 f   tlib:simulator.obj
- 0001:000126c0       ?set_manual_mph@Simulator@@UAEXM@Z 100136c0 f   tlib:simulator.obj
  0001:000126c0       ?set_manual_mph@Performance@@UAEXM@Z 100136c0 f   tlib:performance.obj
+ 0001:000126c0       ?set_manual_mph@Simulator@@UAEXM@Z 100136c0 f   tlib:simulator.obj
  0001:000126e0       ??0Performance@@QAE@AAVRIDER_DATA@@_NPBD@Z 100136e0 f   tlib:performance.obj
- 0001:00012800       ??_GPerformance@@UAEPAXI@Z 10013800 f i tlib:performance.obj
  0001:00012800       ??_EPerformance@@UAEPAXI@Z 10013800 f i * CIL library *:* CIL module *
+ 0001:00012800       ??_GPerformance@@UAEPAXI@Z 10013800 f i tlib:performance.obj
  0001:00012890       ?start@Performance@@UAEXXZ 10013890 f   tlib:performance.obj
  0001:000128b0       ?set_performance_file_name@Performance@@UAEXPBD@Z 100138b0 f   tlib:performance.obj
  0001:00012a80       ?check_perf@Performance@@QAEHPBDAAK@Z 10013a80 f   tlib:performance.obj
@@ -642,28 +642,28 @@
  0001:00014f60       ??4?$deque@NV?$allocator@N@std@@@std@@QAEAAV01@ABV01@@Z 10015f60 f i tlib:velotron.obj
  0001:00015120       ??0?$deque@NV?$allocator@N@std@@@std@@QAE@ABV01@@Z 10016120 f i tlib:velotron.obj
  0001:000151d0       ?erase@?$deque@NV?$allocator@N@std@@@std@@QAE?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@0@Z 100161d0 f i tlib:velotron.obj
- 0001:000153a0       ??$copy@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@0V10@@Z 100163a0 f i tlib:velotron.obj
  0001:000153a0       ??$move@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@V12@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@V10@00@Z 100163a0 f i tlib:velotron.obj
+ 0001:000153a0       ??$copy@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@0V10@@Z 100163a0 f i tlib:velotron.obj
  0001:00015440       ??$insert@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@@?$deque@NV?$allocator@N@std@@@std@@QAE?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@1@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@1@00@Z 10016440 f i tlib:velotron.obj
  0001:00015670       ??$_Construct@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@@?$deque@NV?$allocator@N@std@@@std@@QAEXV?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@1@0@Z 10016670 f i tlib:velotron.obj
  0001:000157a0       ??$move_backward@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@V12@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@V10@00@Z 100167a0 f i tlib:velotron.obj
  0001:00015830       ?push_back@?$deque@NV?$allocator@N@std@@@std@@QAEXABN@Z 10016830 f i tlib:velotron.obj
  0001:000158c0       ?push_front@?$deque@NV?$allocator@N@std@@@std@@QAEXABN@Z 100168c0 f i tlib:velotron.obj
- 0001:00015950       ??$_Copy_no_deprecate@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@0V10@@Z 10016950 f i tlib:velotron.obj
  0001:00015950       ??$_Move_no_deprecate@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@V12@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@V10@00@Z 10016950 f i tlib:velotron.obj
+ 0001:00015950       ??$_Copy_no_deprecate@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@0V10@@Z 10016950 f i tlib:velotron.obj
  0001:000159e0       ??$reverse@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@@std@@YAXV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@0@Z 100169e0 f i tlib:velotron.obj
  0001:00015a40       ??$rotate@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@V10@00@Z 10016a40 f i tlib:velotron.obj
  0001:00015b10       ??$_Move_backward1@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@0V10@Urandom_access_iterator_tag@0@2@Z 10016b10 f i tlib:velotron.obj
- 0001:00015b90       ??$_Move_no_deprecate1@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@0V10@Urandom_access_iterator_tag@0@2@Z 10016b90 f i tlib:velotron.obj
  0001:00015b90       ??$_Copy_no_deprecate1@V?$_Deque_unchecked_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@V?$_Deque_unchecked_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@0V10@Urandom_access_iterator_tag@0@2@Z 10016b90 f i tlib:velotron.obj
+ 0001:00015b90       ??$_Move_no_deprecate1@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@0V10@Urandom_access_iterator_tag@0@2@Z 10016b90 f i tlib:velotron.obj
  0001:00015c10       ??$_Reverse_unchecked@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@@std@@YAXV?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@0@Z 10016c10 f i tlib:velotron.obj
  0001:00015c90       ??$_Rotate_unchecked1@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@@std@@YA?AV?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@V10@00Urandom_access_iterator_tag@0@@Z 10016c90 f i tlib:velotron.obj
  0001:00015d00       ??$_Move_backward_unchecked1@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@V12@@std@@YA?AV?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@V10@00U_General_ptr_iterator_tag@0@@Z 10016d00 f i tlib:velotron.obj
- 0001:00015d70       ??$_Move_unchecked1@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@V12@@std@@YA?AV?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@V10@00U_General_ptr_iterator_tag@0@@Z 10016d70 f i tlib:velotron.obj
  0001:00015d70       ??$_Copy_unchecked1@V?$_Deque_unchecked_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@2@@std@@YA?AV?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@V?$_Deque_unchecked_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@0V10@U_General_ptr_iterator_tag@0@@Z 10016d70 f i tlib:velotron.obj
+ 0001:00015d70       ??$_Move_unchecked1@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@std@@V12@@std@@YA?AV?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@N@std@@@std@@@0@V10@00U_General_ptr_iterator_tag@0@@Z 10016d70 f i tlib:velotron.obj
  0001:00015de0       ??0NVRAM@@QAE@PAD@Z        10016de0 f   tlib:nvram.obj
- 0001:00015e30       ??_ENVRAM@@UAEPAXI@Z       10016e30 f i * CIL library *:* CIL module *
  0001:00015e30       ??_GNVRAM@@UAEPAXI@Z       10016e30 f i tlib:nvram.obj
+ 0001:00015e30       ??_ENVRAM@@UAEPAXI@Z       10016e30 f i * CIL library *:* CIL module *
  0001:00015e80       ??0NVRAM@@QAE@PAVSerial@@@Z 10016e80 f   tlib:nvram.obj
  0001:00015ec0       ?read@NVRAM@@QAEHXZ        10016ec0 f   tlib:nvram.obj
  0001:00015ff0       ?connect@NVRAM@@QAEXXZ     10016ff0 f   tlib:nvram.obj
@@ -711,16 +711,16 @@
  0001:0001a330       ?runkeys@computrainerDecoder@@AAEXXZ 1001b330 f   tlib:computrainer_decoder.obj
  0001:0001a4b0       ?set_watts_factor@computrainerDecoder@@UAEXM@Z 1001b4b0 f   tlib:computrainer_decoder.obj
  0001:0001a4e0       ??0simDecoder@@QAE@PAVCourse@@AAVRIDER_DATA@@@Z 1001b4e0 f   tlib:simdecoder.obj
- 0001:0001a7d0       ??_EsimDecoder@@UAEPAXI@Z  1001b7d0 f i * CIL library *:* CIL module *
  0001:0001a7d0       ??_GsimDecoder@@UAEPAXI@Z  1001b7d0 f i tlib:simdecoder.obj
+ 0001:0001a7d0       ??_EsimDecoder@@UAEPAXI@Z  1001b7d0 f i * CIL library *:* CIL module *
  0001:0001a800       ??1simDecoder@@UAE@XZ      1001b800 f   tlib:simdecoder.obj
  0001:0001a8b0       ?decode@simDecoder@@UAEHPAEK@Z 1001b8b0 f   tlib:simdecoder.obj
  0001:0001ad50       ?integrate@simDecoder@@EAEXXZ 1001bd50 f   tlib:simdecoder.obj
  0001:0001afb0       ?reset@simDecoder@@UAEXXZ  1001bfb0 f   tlib:simdecoder.obj
  0001:0001b040       ?set_manual_mph@simDecoder@@UAEXM@Z 1001c040 f   tlib:simdecoder.obj
  0001:0001b060       ??0performanceDecoder@@QAE@PAVCourse@@AAVRIDER_DATA@@@Z 1001c060 f   tlib:performance_decoder.obj
- 0001:0001b320       ??_EperformanceDecoder@@UAEPAXI@Z 1001c320 f i * CIL library *:* CIL module *
  0001:0001b320       ??_GperformanceDecoder@@UAEPAXI@Z 1001c320 f i tlib:performance_decoder.obj
+ 0001:0001b320       ??_EperformanceDecoder@@UAEPAXI@Z 1001c320 f i * CIL library *:* CIL module *
  0001:0001b350       ??1performanceDecoder@@UAE@XZ 1001c350 f   tlib:performance_decoder.obj
  0001:0001b400       ?decode@performanceDecoder@@UAEHPAEK@Z 1001c400 f   tlib:performance_decoder.obj
  0001:0001b8a0       ?integrate@performanceDecoder@@EAEXXZ 1001c8a0 f   tlib:performance_decoder.obj
@@ -730,8 +730,8 @@
  0001:0001bc20       ?get_physics_pause@velotronDecoder@@UAE_NXZ 1001cc20 f i tlib:velotron_decoder.obj
  0001:0001bc30       ?set_physics_pause@velotronDecoder@@UAEX_N@Z 1001cc30 f i tlib:velotron_decoder.obj
  0001:0001bc70       ??0velotronDecoder@@QAE@PAVCourse@@AAVRIDER_DATA@@PAVBike@@PAVPhysics@@H@Z 1001cc70 f   tlib:velotron_decoder.obj
- 0001:0001c220       ??_EvelotronDecoder@@UAEPAXI@Z 1001d220 f i * CIL library *:* CIL module *
  0001:0001c220       ??_GvelotronDecoder@@UAEPAXI@Z 1001d220 f i tlib:velotron_decoder.obj
+ 0001:0001c220       ??_EvelotronDecoder@@UAEPAXI@Z 1001d220 f i * CIL library *:* CIL module *
  0001:0001c250       ??1velotronDecoder@@UAE@XZ 1001d250 f   tlib:velotron_decoder.obj
  0001:0001c360       ?decode@velotronDecoder@@UAEHPAEK@Z 1001d360 f   tlib:velotron_decoder.obj
  0001:0001cfc0       ?runkeys@velotronDecoder@@AAEXXZ 1001dfc0 f   tlib:velotron_decoder.obj
@@ -852,8 +852,8 @@
  0001:0002cac0       ?getTC@LPFilter@@QAENXZ    1002dac0 f   glib:lpfilter.obj
  0001:0002cad0       ?setfval@LPFilter@@QAEXN@Z 1002dad0 f   glib:lpfilter.obj
  0001:0002caf0       ?reset@LPFilter@@QAEXXZ    1002daf0 f   glib:lpfilter.obj
- 0001:0002cb00       ??_GTimeout@@UAEPAXI@Z     1002db00 f i glib:timeout.obj
  0001:0002cb00       ??_ETimeout@@UAEPAXI@Z     1002db00 f i * CIL library *:* CIL module *
+ 0001:0002cb00       ??_GTimeout@@UAEPAXI@Z     1002db00 f i glib:timeout.obj
  0001:0002cb30       ??1Timeout@@UAE@XZ         1002db30 f   glib:timeout.obj
  0001:0002cb40       ?stop@Timeout@@QAEXXZ      1002db40 f   glib:timeout.obj
  0001:0002cbb0       ??_EsignalStrengthMeter@@UAEPAXI@Z 1002dbb0 f i glib:signalstrengthmeter.obj
@@ -863,21 +863,21 @@
  0001:0002cd80       ??$_Buynode@ABUpiecewise_construct_t@std@@V?$tuple@$$QAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$tuple@$$V@2@@?$_List_buy@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@2@@std@@QAEPAU?$_List_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@PAX@1@PAU21@0ABUpiecewise_construct_t@1@$$QAV?$tuple@$$QAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@1@$$QAV?$tuple@$$V@1@@Z 1002dd80 f i dll.obj
  0001:0002cdd0       ??$_Buynode@ABUpiecewise_construct_t@std@@V?$tuple@$$QAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$tuple@$$V@2@@?$_List_buy@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@2@@std@@QAEPAU?$_List_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@PAX@1@PAU21@0ABUpiecewise_construct_t@1@$$QAV?$tuple@$$QAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@1@$$QAV?$tuple@$$V@1@@Z 1002ddd0 f i dll.obj
  0001:0002ce30       ??$_Construct@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@@?$deque@UFORMULA2_PAIR@@V?$allocator@UFORMULA2_PAIR@@@std@@@std@@QAEXV?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@1@0@Z 1002de30 f i dll.obj
- 0001:0002ced0       ??$_Copy_no_deprecate@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@0V10@@Z 1002ded0 f i dll.obj
  0001:0002ced0       ??$_Move_no_deprecate@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@V12@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@V10@00@Z 1002ded0 f i dll.obj
+ 0001:0002ced0       ??$_Copy_no_deprecate@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@0V10@@Z 1002ded0 f i dll.obj
  0001:0002cf60       ??$_Insert@AAU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@2@@?$_Hash@V?$_Umap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@GV?$_Uhash_compare@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$hash@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@U?$equal_to@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@2@$0A@@std@@@std@@IAE?AU?$pair@V?$_List_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@_N@1@AAU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@1@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@1@@Z 1002df60 f i dll.obj
  0001:0002d1d0       ??$_Insert@AAU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@2@@?$_Hash@V?$_Umap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@V?$_Uhash_compare@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$hash@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@U?$equal_to@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@2@$0A@@std@@@std@@IAE?AU?$pair@V?$_List_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@_N@1@AAU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@1@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@1@@Z 1002e1d0 f i dll.obj
  0001:0002d460       ??$_Move_backward1@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@0V10@Urandom_access_iterator_tag@0@2@Z 1002e460 f i dll.obj
- 0001:0002d4d0       ??$_Copy_no_deprecate1@V?$_Deque_unchecked_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@V?$_Deque_unchecked_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@0V10@Urandom_access_iterator_tag@0@2@Z 1002e4d0 f i dll.obj
  0001:0002d4d0       ??$_Move_no_deprecate1@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@0V10@Urandom_access_iterator_tag@0@2@Z 1002e4d0 f i dll.obj
+ 0001:0002d4d0       ??$_Copy_no_deprecate1@V?$_Deque_unchecked_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@V?$_Deque_unchecked_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@0V10@Urandom_access_iterator_tag@0@2@Z 1002e4d0 f i dll.obj
  0001:0002d540       ??$_Reverse_unchecked@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@@std@@YAXV?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@0@Z 1002e540 f i dll.obj
  0001:0002d5c0       ??$_Rotate_unchecked1@V?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@@std@@YA?AV?$_Deque_unchecked_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@V10@00Urandom_access_iterator_tag@0@@Z 1002e5c0 f i dll.obj
  0001:0002d630       ??$_Uninit_alloc_fill_n1@PAV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@IU?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@@std@@@2@@std@@YAXPAV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@0@IPBV10@AAU?$_Wrap_alloc@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@@std@@@std@@@0@U?$integral_constant@_N$0A@@0@@Z 1002e630 f i dll.obj
  0001:0002d630       ??$_Uninit_alloc_fill_n1@PAV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@IU?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@@std@@@2@@std@@YAXPAV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@0@IPBV10@AAU?$_Wrap_alloc@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@@std@@@std@@@0@U?$integral_constant@_N$0A@@0@@Z 1002e630 f i dll.obj
  0001:0002d660       ??$_Uninitialized_move_al_unchecked1@PAV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@PAV12@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@@std@@@2@@std@@YAPAV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@0@PAV10@00AAU?$_Wrap_alloc@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@@std@@@std@@@0@U_General_ptr_iterator_tag@0@U_Any_tag@0@@Z 1002e660 f i dll.obj
  0001:0002d660       ??$_Uninitialized_move_al_unchecked1@PAV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@PAV12@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@@std@@@2@@std@@YAPAV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@0@PAV10@00AAU?$_Wrap_alloc@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@@std@@@std@@@0@U_General_ptr_iterator_tag@0@U_Any_tag@0@@Z 1002e660 f i dll.obj
- 0001:0002d6a0       ??$copy@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@0V10@@Z 1002e6a0 f i dll.obj
  0001:0002d6a0       ??$move@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@V12@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@V10@00@Z 1002e6a0 f i dll.obj
+ 0001:0002d6a0       ??$copy@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@V?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@2@@std@@YA?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@0@0V10@@Z 1002e6a0 f i dll.obj
  0001:0002d740       ??$emplace@ABUpiecewise_construct_t@std@@V?$tuple@$$QAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$tuple@$$V@2@@?$_Hash@V?$_Umap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@GV?$_Uhash_compare@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$hash@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@U?$equal_to@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@V?$_List_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@_N@1@ABUpiecewise_construct_t@1@$$QAV?$tuple@$$QAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@1@$$QAV?$tuple@$$V@1@@Z 1002e740 f i dll.obj
  0001:0002d7b0       ??$emplace@ABUpiecewise_construct_t@std@@V?$tuple@$$QAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$tuple@$$V@2@@?$_Hash@V?$_Umap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@V?$_Uhash_compare@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$hash@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@U?$equal_to@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@V?$_List_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@_N@1@ABUpiecewise_construct_t@1@$$QAV?$tuple@$$QAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@1@$$QAV?$tuple@$$V@1@@Z 1002e7b0 f i dll.obj
  0001:0002d820       ??$insert@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@std@@@?$deque@UFORMULA2_PAIR@@V?$allocator@UFORMULA2_PAIR@@@std@@@std@@QAE?AV?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@1@V?$_Deque_const_iterator@V?$_Deque_val@U?$_Deque_simple_types@UFORMULA2_PAIR@@@std@@@std@@@1@00@Z 1002e820 f i dll.obj
@@ -900,14 +900,14 @@
  0001:0002e460       ?_Check_size@?$_Hash@V?$_Umap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@V?$_Uhash_compare@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$hash@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@U?$equal_to@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@2@$0A@@std@@@std@@IAEXXZ 1002f460 f i dll.obj
  0001:0002e500       ?_Freenode@?$_List_buy@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@2@@std@@QAEXPAU?$_List_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@PAX@2@@Z 1002f500 f i dll.obj
  0001:0002e570       ?_Growmap@?$deque@UFORMULA2_PAIR@@V?$allocator@UFORMULA2_PAIR@@@std@@@std@@IAEXI@Z 1002f570 f i dll.obj
- 0001:0002e6c0       ?_Init@?$_Hash@V?$_Umap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@V?$_Uhash_compare@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$hash@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@U?$equal_to@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@2@$0A@@std@@@std@@IAEXI@Z 1002f6c0 f i dll.obj
  0001:0002e6c0       ?_Init@?$_Hash@V?$_Umap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@GV?$_Uhash_compare@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$hash@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@U?$equal_to@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@2@$0A@@std@@@std@@IAEXI@Z 1002f6c0 f i dll.obj
+ 0001:0002e6c0       ?_Init@?$_Hash@V?$_Umap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@V?$_Uhash_compare@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$hash@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@U?$equal_to@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@2@$0A@@std@@@std@@IAEXI@Z 1002f6c0 f i dll.obj
  0001:0002e730       ?_Insert_n@?$vector@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@@std@@@2@@std@@IAE?AV?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@@std@@@std@@@2@V?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@@std@@@std@@@2@IABV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@2@@Z 1002f730 f i dll.obj
  0001:0002e730       ?_Insert_n@?$vector@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@@std@@@2@@std@@IAE?AV?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@@std@@@std@@@2@V?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@@std@@@std@@@2@IABV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@2@@Z 1002f730 f i dll.obj
  0001:0002e990       ?_Reallocate@?$vector@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@@std@@@2@@std@@IAEXI@Z 1002f990 f i dll.obj
  0001:0002e990       ?_Reallocate@?$vector@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@@std@@@2@@std@@IAEXI@Z 1002f990 f i dll.obj
- 0001:0002ea50       ?allocate@?$allocator@PAUFORMULA2_PAIR@@@std@@QAEPAPAUFORMULA2_PAIR@@I@Z 1002fa50 f i dll.obj
  0001:0002ea50       ?allocate@?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@@std@@QAEPAV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@2@I@Z 1002fa50 f i dll.obj
+ 0001:0002ea50       ?allocate@?$allocator@PAUFORMULA2_PAIR@@@std@@QAEPAPAUFORMULA2_PAIR@@I@Z 1002fa50 f i dll.obj
  0001:0002ea50       ?allocate@?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@@std@@QAEPAV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@2@I@Z 1002fa50 f i dll.obj
  0001:0002eac0       ?clear@?$list@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@2@@std@@QAEXXZ 1002fac0 f i dll.obj
  0001:0002eb60       ?equal_range@?$_Hash@V?$_Umap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@GV?$_Uhash_compare@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$hash@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@U?$equal_to@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@V?$_List_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@V12@@2@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z 1002fb60 f i dll.obj
@@ -919,10 +919,10 @@
  0001:0002f1d0       ?getPortNumber@Ctsrv@RACERMATE@@QAEHXZ 100301d0 f i dll.obj
  0001:0002f1e0       ?get_scanning_for_devices@ANT@RACERMATE@@QAE_NXZ 100301e0 f i dll.obj
  0001:0002f1f0       ?is_listening@ANT@RACERMATE@@QAE_NXZ 100301f0 f i dll.obj
- 0001:0002f200       ?lower_bound@?$_Hash@V?$_Umap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@V?$_Uhash_compare@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$hash@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@U?$equal_to@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@2@$0A@@std@@@std@@QAE?AV?$_List_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@2@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z 10030200 f i dll.obj
  0001:0002f200       ?lower_bound@?$_Hash@V?$_Umap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@GV?$_Uhash_compare@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$hash@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@U?$equal_to@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@2@$0A@@std@@@std@@QAE?AV?$_List_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@2@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z 10030200 f i dll.obj
- 0001:0002f3c0       ??$emplace_back@ABUFORMULA2_PAIR@@@?$deque@UFORMULA2_PAIR@@V?$allocator@UFORMULA2_PAIR@@@std@@@std@@QAEXABUFORMULA2_PAIR@@@Z 100303c0 f i dll.obj
+ 0001:0002f200       ?lower_bound@?$_Hash@V?$_Umap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@V?$_Uhash_compare@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$hash@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@U?$equal_to@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@2@$0A@@std@@@std@@QAE?AV?$_List_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@2@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z 10030200 f i dll.obj
  0001:0002f3c0       ?push_back@?$deque@UFORMULA2_PAIR@@V?$allocator@UFORMULA2_PAIR@@@std@@@std@@QAEXABUFORMULA2_PAIR@@@Z 100303c0 f i dll.obj
+ 0001:0002f3c0       ??$emplace_back@ABUFORMULA2_PAIR@@@?$deque@UFORMULA2_PAIR@@V?$allocator@UFORMULA2_PAIR@@@std@@@std@@QAEXABUFORMULA2_PAIR@@@Z 100303c0 f i dll.obj
  0001:0002f460       ?push_front@?$deque@UFORMULA2_PAIR@@V?$allocator@UFORMULA2_PAIR@@@std@@@std@@QAEXABUFORMULA2_PAIR@@@Z 10030460 f i dll.obj
  0001:0002f500       ?trUtf8@ANT@RACERMATE@@SA?AVQString@@PBD0H@Z 10030500 f i dll.obj
  0001:0002f500       ?tr@ANT@RACERMATE@@SA?AVQString@@PBD0H@Z 10030500 f i dll.obj
@@ -986,19 +986,19 @@
  0001:000366e0       _stop_ant                  100376e0 f   dll.obj
  0001:00036700       _stop_server               10037700 f   dll.obj
  0001:00036720       _unassociate               10037720 f   dll.obj
- 0001:000367d0       ??$?0ABV?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@@std@@@std@@QAE@ABV?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@1@@Z 100377d0 f i dll_globals.obj
- 0001:000367d0       ??$?0ABV?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@@std@@@std@@QAE@ABV?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@1@@Z 100377d0 f i dll_globals.obj
- 0001:000367d0       ??$?0ABV?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@?$_Wrap_alloc@V?$allocator@U?$_List_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@PAX@std@@@std@@@std@@QAE@ABV?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@1@@Z 100377d0 f i dll_globals.obj
- 0001:000367d0       ??$?0AAU?$_Wrap_alloc@V?$allocator@UTCRF@@@std@@@std@@@?$_Wrap_alloc@V?$allocator@U_Container_proxy@std@@@std@@@std@@QAE@AAU?$_Wrap_alloc@V?$allocator@UTCRF@@@std@@@1@@Z 100377d0 f i rmg:crf.obj
  0001:000367d0       ??$?0ABU?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@@std@@@std@@@?$_Wrap_alloc@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@@std@@@std@@@std@@QAE@ABU?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@@std@@@1@@Z 100377d0 f i dll_globals.obj
  0001:000367d0       ??$?0ABV?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@?$_Wrap_alloc@V?$allocator@U?$_List_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@PAX@std@@@std@@@std@@QAE@ABV?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@1@@Z 100377d0 f i dll_globals.obj
+ 0001:000367d0       ??$?0ABV?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@@std@@@std@@QAE@ABV?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@1@@Z 100377d0 f i dll_globals.obj
+ 0001:000367d0       ??$?0ABV?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@?$_Wrap_alloc@V?$allocator@U?$_List_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@PAX@std@@@std@@@std@@QAE@ABV?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@1@@Z 100377d0 f i dll_globals.obj
+ 0001:000367d0       ??$?0ABV?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@@std@@@std@@QAE@ABV?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@1@@Z 100377d0 f i dll_globals.obj
  0001:000367d0       ??$?0ABU?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@@std@@@std@@@?$_Wrap_alloc@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@@std@@@std@@@std@@QAE@ABU?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@@std@@@1@@Z 100377d0 f i dll_globals.obj
+ 0001:000367d0       ??$?0AAU?$_Wrap_alloc@V?$allocator@UTCRF@@@std@@@std@@@?$_Wrap_alloc@V?$allocator@U_Container_proxy@std@@@std@@@std@@QAE@AAU?$_Wrap_alloc@V?$allocator@UTCRF@@@std@@@1@@Z 100377d0 f i rmg:crf.obj
  0001:000367e0       ??1?$list@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@2@@std@@QAE@XZ 100377e0 f i dll_globals.obj
  0001:00036800       ??1?$list@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@2@@std@@QAE@XZ 10037800 f i dll_globals.obj
- 0001:00036820       ??1?$vector@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@@std@@@2@@std@@QAE@XZ 10037820 f i dll_globals.obj
  0001:00036820       ??1?$vector@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@@std@@@2@@std@@QAE@XZ 10037820 f i dll_globals.obj
- 0001:00036860       ?setFinished@Ctsrv@RACERMATE@@QAEXPBD_N@Z 10037860 f i ctsrv:ctsrv.obj
+ 0001:00036820       ??1?$vector@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@@std@@@2@@std@@QAE@XZ 10037820 f i dll_globals.obj
  0001:00036860       ?_Destroy@?$vector@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@std@@@std@@@2@@std@@IAEXPAV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@std@@@std@@@2@0@Z 10037860 f i dll_globals.obj
+ 0001:00036860       ?setFinished@Ctsrv@RACERMATE@@QAEXPBD_N@Z 10037860 f i ctsrv:ctsrv.obj
  0001:00036860       ?setStarted@Ctsrv@RACERMATE@@QAEXPBD_N@Z 10037860 f i ctsrv:ctsrv.obj
  0001:00036860       ?_Destroy@?$vector@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@U?$_Wrap_alloc@V?$allocator@V?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@std@@@std@@@2@@std@@IAEXPAV?$_List_unchecked_iterator@V?$_List_val@U?$_List_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@G@std@@@std@@@std@@@2@0@Z 10037860 f i dll_globals.obj
  0001:00036870       ?clear@?$list@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDEVICE@@@std@@@2@@std@@QAEXXZ 10037870 f i dll_globals.obj
@@ -1074,8 +1074,8 @@
  0001:0003c160       ?reset@qtFormula@@QAEXXZ   1003d160 f   rmg:qtformula.obj
  0001:0003c1f0       ??0CRF@@QAE@_N@Z           1003d1f0 f   rmg:crf.obj
  0001:0003c210       ??1CRF@@UAE@XZ             1003d210 f   rmg:crf.obj
- 0001:0003c220       ??_ECRF@@UAEPAXI@Z         1003d220 f i rmg:crf.obj
  0001:0003c220       ??_GCRF@@UAEPAXI@Z         1003d220 f i rmg:crf.obj
+ 0001:0003c220       ??_ECRF@@UAEPAXI@Z         1003d220 f i rmg:crf.obj
  0001:0003c250       ?doo@CRF@@QAEXPAEH@Z       1003d250 f   rmg:crf.obj
  0001:0003c300       ?init@CRF@@QAEXXZ          1003d300 f   rmg:crf.obj
  0001:0003c4e0       ??0Tmr@RACERMATE@@QAE@PBD@Z 1003d4e0 f   rmg:tmr.obj
@@ -1090,8 +1090,8 @@
  0001:0003d130       ??_ECtsrv@RACERMATE@@UAEPAXI@Z 1003e130 f i ctsrv:ctsrv.obj
  0001:0003d1e0       ??_GQCoreApplication@@UAEPAXI@Z 1003e1e0 f i ctsrv:ctsrv.obj
  0001:0003d1e0       ??_EQCoreApplication@@UAEPAXI@Z 1003e1e0 f i ctsrv:ctsrv.obj
- 0001:0003d210       ??_GQThread@@UAEPAXI@Z     1003e210 f i ctsrv:ctsrv.obj
  0001:0003d210       ??_EQThread@@UAEPAXI@Z     1003e210 f i ctsrv:ctsrv.obj
+ 0001:0003d210       ??_GQThread@@UAEPAXI@Z     1003e210 f i ctsrv:ctsrv.obj
  0001:0003d240       ?GetTrainerData@Ctsrv@RACERMATE@@QAE?AUTrainerData@2@PBD@Z 1003e240 f   ctsrv:ctsrv.obj
  0001:0003d3a0       ?append@?$QList@VQString@@@@QAEXABVQString@@@Z 1003e3a0 f i ctsrv:ctsrv.obj
  0001:0003d450       ?calc_tp@Ctsrv@RACERMATE@@QAEXVQString@@M@Z 1003e450 f   ctsrv:ctsrv.obj
@@ -1168,10 +1168,10 @@
  0001:00040610       ??1Rider2@@UAE@XZ          10041610 f i ctsrv:udp_client.obj
  0001:00040630       ??1UDPClient@RACERMATE@@UAE@XZ 10041630 f   ctsrv:udp_client.obj
  0001:00040870       ??H@YA?BVQString@@ABV0@0@Z 10041870 f i ctsrv:udp_client.obj
- 0001:000408e0       ??_ERider2@@UAEPAXI@Z      100418e0 f i ctsrv:udp_client.obj
  0001:000408e0       ??_GRider2@@UAEPAXI@Z      100418e0 f i ctsrv:udp_client.obj
- 0001:00040920       ??_GUDPClient@RACERMATE@@UAEPAXI@Z 10041920 f i ctsrv:udp_client.obj
+ 0001:000408e0       ??_ERider2@@UAEPAXI@Z      100418e0 f i ctsrv:udp_client.obj
  0001:00040920       ??_EUDPClient@RACERMATE@@UAEPAXI@Z 10041920 f i ctsrv:udp_client.obj
+ 0001:00040920       ??_GUDPClient@RACERMATE@@UAEPAXI@Z 10041920 f i ctsrv:udp_client.obj
  0001:00040950       ?GetTrainerData@UDPClient@RACERMATE@@AAE?AUTrainerData@2@H@Z 10041950 f   ctsrv:udp_client.obj
  0001:000409d0       ?calc_tp@UDPClient@RACERMATE@@QAEXM@Z 100419d0 f   ctsrv:udp_client.obj
  0001:000409f0       ?decode_fast@UDPClient@RACERMATE@@AAEXHPAUNHBDATA@12@@Z 100419f0 f   ctsrv:udp_client.obj
@@ -1223,8 +1223,8 @@
  0001:000431f0       ??A?$QHash@VQString@@VIPrintDialogServices@ctsrvWorker@RACERMATE@@@@QAEAAVIPrintDialogServices@ctsrvWorker@RACERMATE@@ABVQString@@@Z 100441f0 f i ctsrv:ctsrvworker.obj
  0001:00043390       ??_GQTimer@@UAEPAXI@Z      10044390 f i ctsrv:ctsrvworker.obj
  0001:00043390       ??_EQTimer@@UAEPAXI@Z      10044390 f i ctsrv:ctsrvworker.obj
- 0001:000433c0       ??_GQUdpSocket@@UAEPAXI@Z  100443c0 f i ctsrv:ctsrvworker.obj
  0001:000433c0       ??_EQUdpSocket@@UAEPAXI@Z  100443c0 f i ctsrv:ctsrvworker.obj
+ 0001:000433c0       ??_GQUdpSocket@@UAEPAXI@Z  100443c0 f i ctsrv:ctsrvworker.obj
  0001:000433f0       ??_EctsrvWorker@RACERMATE@@UAEPAXI@Z 100443f0 f i ctsrv:ctsrvworker.obj
  0001:000433f0       ??_GctsrvWorker@RACERMATE@@UAEPAXI@Z 100443f0 f i ctsrv:ctsrvworker.obj
  0001:00043420       ?append@?$QList@VQNetworkAddressEntry@@@@QAEXABVQNetworkAddressEntry@@@Z 10044420 f i ctsrv:ctsrvworker.obj
@@ -1282,8 +1282,8 @@
  0001:00047240       ??0ANT@RACERMATE@@QAE@PAVQObject@@@Z 10048240 f   rmant:ant.obj
  0001:00047520       ??0ANTCHAN@@QAE@ABV0@@Z    10048520 f i rmant:ant.obj
  0001:000475c0       ??1?$QForeachContainer@V?$QList@I@@@@QAE@XZ 100485c0 f i rmant:ant.obj
- 0001:00047620       ??1ANTCHAN@@QAE@XZ         10048620 f i rmant:antchan.obj
  0001:00047620       ??1?$QForeachContainer@V?$QMap@GUSENSOR@@@@@@QAE@XZ 10048620 f i rmant:ant.obj
+ 0001:00047620       ??1ANTCHAN@@QAE@XZ         10048620 f i rmant:antchan.obj
  0001:000476a0       ??1?$QList@I@@QAE@XZ       100486a0 f i rmant:ant.obj
  0001:00047700       ??1?$QMap@IPAVANTDEV@@@@QAE@XZ 10048700 f i rmant:ant.obj
  0001:00047770       ??1ANT@RACERMATE@@UAE@XZ   10048770 f   rmant:ant.obj
@@ -1295,8 +1295,8 @@
  0001:00047e20       ??_EANT@RACERMATE@@UAEPAXI@Z 10048e20 f i rmant:ant.obj
  0001:00047ed0       ?append@?$QList@I@@QAEXABI@Z 10048ed0 f i rmant:ant.obj
  0001:00047f60       ?assign_sensor@ANT@RACERMATE@@QAEHHH@Z 10048f60 f   rmant:ant.obj
- 0001:000480d0       ?clear@?$QMap@IPAVANTDEV@@@@QAEXXZ 100490d0 f i rmant:ant.obj
  0001:000480d0       ?clear@?$QMap@GUSENSOR@@@@QAEXXZ 100490d0 f i rmant:antdev.obj
+ 0001:000480d0       ?clear@?$QMap@IPAVANTDEV@@@@QAEXXZ 100490d0 f i rmant:ant.obj
  0001:000481a0       ?contains@?$QMap@GUSENSOR@@@@QBE_NABG@Z 100491a0 f i rmant:ant.obj
  0001:000481e0       ?copy@?$QMapNode@GUSENSOR@@@@QBEPAU1@PAU?$QMapData@GUSENSOR@@@@@Z 100491e0 f i rmant:ant.obj
  0001:00048260       ?copy@?$QMapNode@HVANTCHAN@@@@QBEPAU1@PAU?$QMapData@HVANTCHAN@@@@@Z 10049260 f i rmant:ant.obj
@@ -1417,8 +1417,8 @@
  0001:00050903       ??3@YAXPAXI@Z              10051903 f   MSVCRT:delete_scalar_size.obj
  0001:00050911       ??_V@YAXPAXI@Z             10051911 f   MSVCRT:delete_array_size.obj
  0001:0005091f       @__security_check_cookie@4 1005191f f   MSVCRT:_secchk_.obj
- 0001:00050930       ??_Gtype_info@@UAEPAXI@Z   10051930 f i MSVCRT:std_type_info_static.obj
  0001:00050930       ??_Etype_info@@UAEPAXI@Z   10051930 f i MSVCRT:std_type_info_static.obj
+ 0001:00050930       ??_Gtype_info@@UAEPAXI@Z   10051930 f i MSVCRT:std_type_info_static.obj
  0001:00050997       ___scrt_acquire_startup_lock 10051997 f   MSVCRT:utility.obj
  0001:000509cc       ___scrt_dllmain_after_initialize_c 100519cc f   MSVCRT:utility.obj
  0001:000509f7       ___scrt_dllmain_before_initialize_c 100519f7 f   MSVCRT:utility.obj
@@ -1466,14 +1466,14 @@
  0001:000516a1       ??0bad_array_new_length@std@@QAE@ABV01@@Z 100526a1 f i MSVCRT:throw_bad_alloc.obj
  0001:000516bc       ??0bad_array_new_length@std@@QAE@XZ 100526bc f i MSVCRT:throw_bad_alloc.obj
  0001:000516d4       ??0exception@std@@QAE@ABV01@@Z 100526d4 f i MSVCRT:throw_bad_alloc.obj
- 0001:00051700       ??1bad_alloc@std@@UAE@XZ   10052700 f i MSVCRT:throw_bad_alloc.obj
  0001:00051700       ??1bad_array_new_length@std@@UAE@XZ 10052700 f i MSVCRT:throw_bad_alloc.obj
- 0001:00051711       ??_Ebad_array_new_length@std@@UAEPAXI@Z 10052711 f i MSVCRT:throw_bad_alloc.obj
- 0001:00051711       ??_Ebad_alloc@std@@UAEPAXI@Z 10052711 f i MSVCRT:throw_bad_alloc.obj
- 0001:00051711       ??_Gbad_array_new_length@std@@UAEPAXI@Z 10052711 f i MSVCRT:throw_bad_alloc.obj
+ 0001:00051700       ??1bad_alloc@std@@UAE@XZ   10052700 f i MSVCRT:throw_bad_alloc.obj
  0001:00051711       ??_Gbad_alloc@std@@UAEPAXI@Z 10052711 f i MSVCRT:throw_bad_alloc.obj
+ 0001:00051711       ??_Ebad_array_new_length@std@@UAEPAXI@Z 10052711 f i MSVCRT:throw_bad_alloc.obj
  0001:00051711       ??_Gexception@std@@UAEPAXI@Z 10052711 f i MSVCRT:throw_bad_alloc.obj
+ 0001:00051711       ??_Gbad_array_new_length@std@@UAEPAXI@Z 10052711 f i MSVCRT:throw_bad_alloc.obj
  0001:00051711       ??_Eexception@std@@UAEPAXI@Z 10052711 f i MSVCRT:throw_bad_alloc.obj
+ 0001:00051711       ??_Ebad_alloc@std@@UAEPAXI@Z 10052711 f i MSVCRT:throw_bad_alloc.obj
  0001:0005173e       ?__scrt_throw_std_bad_alloc@@YAXXZ 1005273e f   MSVCRT:throw_bad_alloc.obj
  0001:0005175b       ?__scrt_throw_std_bad_array_new_length@@YAXXZ 1005275b f   MSVCRT:throw_bad_alloc.obj
  0001:00051778       ?what@exception@std@@UBEPBDXZ 10052778 f i MSVCRT:throw_bad_alloc.obj
@@ -1586,8 +1586,8 @@
  0001:000528e0       ?dmap@@YAFNNNNPAN0@Z       100538e0 f   rmg:comutils.obj
  0001:00052950       ?map@@YAFMMMMPAM0@Z        10053950 f   rmg:comutils.obj
  0001:000529c0       ??0twoPoleFilter@@QAE@H@Z  100539c0 f   rmg:twopolefilter.obj
- 0001:000529f0       ??_EtwoPoleFilter@@UAEPAXI@Z 100539f0 f i rmg:twopolefilter.obj
  0001:000529f0       ??_GtwoPoleFilter@@UAEPAXI@Z 100539f0 f i rmg:twopolefilter.obj
+ 0001:000529f0       ??_EtwoPoleFilter@@UAEPAXI@Z 100539f0 f i rmg:twopolefilter.obj
  0001:00052a20       ?calc@twoPoleFilter@@QAENN@Z 10053a20 f   rmg:twopolefilter.obj
  0001:00052a90       ?reset@twoPoleFilter@@QAEXXZ 10053a90 f   rmg:twopolefilter.obj
  0001:00052a98       _IsProcessorFeaturePresent@4 10053a98 f   kernel32:KERNEL32.dll
@@ -1928,8 +1928,8 @@
  0002:00000528       \177api-ms-win-crt-convert-l1-1-0_NULL_THUNK_DATA 10057528     ucrt:api-ms-win-crt-convert-l1-1-0.dll
  0002:0000052c       __imp__getenv              1005752c     ucrt:api-ms-win-crt-environment-l1-1-0.dll
  0002:00000530       \177api-ms-win-crt-environment-l1-1-0_NULL_THUNK_DATA 10057530     ucrt:api-ms-win-crt-environment-l1-1-0.dll
- 0002:00000534       __imp___unlink             10057534     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
  0002:00000534       __imp__unlink              10057534     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
+ 0002:00000534       __imp___unlink             10057534     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
  0002:00000538       \177api-ms-win-crt-filesystem-l1-1-0_NULL_THUNK_DATA 10057538     ucrt:api-ms-win-crt-filesystem-l1-1-0.dll
  0002:0000053c       __imp__free                1005753c     ucrt:api-ms-win-crt-heap-l1-1-0.dll
  0002:00000540       __imp__realloc             10057540     ucrt:api-ms-win-crt-heap-l1-1-0.dll
@@ -1978,8 +1978,8 @@
  0002:000005ec       \177api-ms-win-crt-stdio-l1-1-0_NULL_THUNK_DATA 100575ec     ucrt:api-ms-win-crt-stdio-l1-1-0.dll
  0002:000005f0       __imp__strtok              100575f0     ucrt:api-ms-win-crt-string-l1-1-0.dll
  0002:000005f4       __imp__isdigit             100575f4     ucrt:api-ms-win-crt-string-l1-1-0.dll
- 0002:000005f8       __imp___strupr             100575f8     ucrt:api-ms-win-crt-string-l1-1-0.dll
  0002:000005f8       __imp__strupr              100575f8     ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0002:000005f8       __imp___strupr             100575f8     ucrt:api-ms-win-crt-string-l1-1-0.dll
  0002:000005fc       __imp__strncpy             100575fc     ucrt:api-ms-win-crt-string-l1-1-0.dll
  0002:00000600       __imp___stricmp            10057600     ucrt:api-ms-win-crt-string-l1-1-0.dll
  0002:00000604       __imp__strncmp             10057604     ucrt:api-ms-win-crt-string-l1-1-0.dll
@@ -2019,8 +2019,8 @@
  0002:00000704       ??_C@_08KIDBNBLB@slfp?5ok?6?$AA@ 10057704     dll.obj
  0002:00000710       ??_C@_0L@IOPNHENB@?$CFs?2log?4txt?$AA@ 10057710     dll.obj
  0002:0000071c       ??_C@_05EIFNHGAC@1?42?40?$AA@ 1005771c     dll.obj
- 0002:00000724       ??_C@_08LPJJFMGM@17?339?306?$AA@ 10057724     dll.obj
- 0002:00000730       ??_C@_0M@GMLHEEJN@Sep?520?52017?$AA@ 10057730     dll.obj
+ 0002:00000724       ??_C@_08ONIKCGJB@13?351?334?$AA@ 10057724     dll.obj
+ 0002:00000730       ??_C@_0M@MKMAEPCJ@Sep?521?52017?$AA@ 10057730     dll.obj
  0002:0000073c       ??_C@_03JALODAI@?$CFld?$AA@ 1005773c     dll.obj
  0002:00000740       ??_C@_05JFIIEJDE@?$CFf?5?$CFs?$AA@ 10057740     dll.obj
  0002:00000748       ??_C@_0BO@HFKFGLCC@Hardware?2DeviceMap?2SerialComm?$AA@ 10057748     dll.obj

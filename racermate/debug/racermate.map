@@ -1,6 +1,6 @@
  racermate
 
- Timestamp is 59c30668 (Wed Sep 20 17:23:04 2017)
+ Timestamp is 59c3167e (Wed Sep 20 18:31:42 2017)
 
  Preferred load address is 10000000
 
@@ -52,15 +52,15 @@
 
   Address         Publics by Value              Rva+Base       Lib:Object
 
- 0000:00000000       ___guard_iat_table         00000000     <absolute>
- 0000:00000000       ___guard_fids_count        00000000     <absolute>
- 0000:00000000       ___guard_longjmp_count     00000000     <absolute>
- 0000:00000000       ___guard_fids_table        00000000     <absolute>
- 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
- 0000:00000000       ___guard_longjmp_table     00000000     <absolute>
- 0000:00000000       ___guard_iat_count         00000000     <absolute>
  0000:00000000       ___dynamic_value_reloc_table 00000000     <absolute>
  0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0000:00000000       ___guard_fids_table        00000000     <absolute>
+ 0000:00000000       ___guard_fids_count        00000000     <absolute>
+ 0000:00000000       ___guard_longjmp_table     00000000     <absolute>
+ 0000:00000000       ___guard_iat_table         00000000     <absolute>
+ 0000:00000000       ___guard_iat_count         00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0000:00000000       ___guard_longjmp_count     00000000     <absolute>
  0000:0000002c       __tls_array                0000002c     <absolute>
  0000:00000100       ___guard_flags             00000100     <absolute>
  0000:00000000       ___ImageBase               10000000     <linker-defined>
@@ -1827,8 +1827,8 @@
  0002:00062e40       ??G?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UTCRF@@@std@@@std@@@std@@QBE?AV01@H@Z 100efe40 f i rmg:crf.obj
  0002:00062ef0       ??Y?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UTCRF@@@std@@@std@@@std@@QAEAAV01@H@Z 100efef0 f i rmg:crf.obj
  0002:00062f20       ??Z?$_Deque_iterator@V?$_Deque_val@U?$_Deque_simple_types@UTCRF@@@std@@@std@@@std@@QAEAAV01@H@Z 100eff20 f i rmg:crf.obj
- 0002:00062f50       ??_ECRF@@UAEPAXI@Z         100eff50 f i rmg:crf.obj
  0002:00062f50       ??_GCRF@@UAEPAXI@Z         100eff50 f i rmg:crf.obj
+ 0002:00062f50       ??_ECRF@@UAEPAXI@Z         100eff50 f i rmg:crf.obj
  0002:00062f90       ?_Alloc_proxy@?$_Deque_alloc@U?$_Deque_base_types@UTCRF@@V?$allocator@UTCRF@@@std@@@std@@@std@@QAEXXZ 100eff90 f i rmg:crf.obj
  0002:00063020       ?_Free_proxy@?$_Deque_alloc@U?$_Deque_base_types@UTCRF@@V?$allocator@UTCRF@@@std@@@std@@@std@@QAEXXZ 100f0020 f i rmg:crf.obj
  0002:000630a0       ?_Get_data@?$_Deque_alloc@U?$_Deque_base_types@UTCRF@@V?$allocator@UTCRF@@@std@@@std@@@std@@QAEAAV?$_Deque_val@U?$_Deque_simple_types@UTCRF@@@std@@@2@XZ 100f00a0 f i rmg:crf.obj
@@ -1977,8 +1977,8 @@
  0002:0006a250       ??_EQCoreApplication@@UAEPAXI@Z 100f7250 f i ctsrv:ctsrv.obj
  0002:0006a250       ??_GQCoreApplication@@UAEPAXI@Z 100f7250 f i ctsrv:ctsrv.obj
  0002:0006a290       ??_GQString@@QAEPAXI@Z     100f7290 f i ctsrv:ctsrv.obj
- 0002:0006a2d0       ??_EQThread@@UAEPAXI@Z     100f72d0 f i ctsrv:ctsrv.obj
  0002:0006a2d0       ??_GQThread@@UAEPAXI@Z     100f72d0 f i ctsrv:ctsrv.obj
+ 0002:0006a2d0       ??_EQThread@@UAEPAXI@Z     100f72d0 f i ctsrv:ctsrv.obj
  0002:0006a310       ??_GSDIRS@RACERMATE@@QAEPAXI@Z 100f7310 f i ctsrv:ctsrv.obj
  0002:0006a380       ?alignOfNode@?$QHash@VQString@@PAVUDPClient@RACERMATE@@@@CAHXZ 100f7380 f i ctsrv:ctsrv.obj
  0002:0006a3c0       ?append@?$QList@VQString@@@@QAEXABVQString@@@Z 100f73c0 f i ctsrv:ctsrv.obj
@@ -2103,8 +2103,8 @@
  0002:00071040       ??H@YA?BVQString@@ABV0@0@Z 100fe040 f i ctsrv:udp_client.obj
  0002:000710f0       ??_ERider2@@UAEPAXI@Z      100fe0f0 f i ctsrv:udp_client.obj
  0002:000710f0       ??_GRider2@@UAEPAXI@Z      100fe0f0 f i ctsrv:udp_client.obj
- 0002:00071130       ??_EUDPClient@RACERMATE@@UAEPAXI@Z 100fe130 f i ctsrv:udp_client.obj
  0002:00071130       ??_GUDPClient@RACERMATE@@UAEPAXI@Z 100fe130 f i ctsrv:udp_client.obj
+ 0002:00071130       ??_EUDPClient@RACERMATE@@UAEPAXI@Z 100fe130 f i ctsrv:udp_client.obj
  0002:00071170       ??_Gqt_SS@RACERMATE@@QAEPAXI@Z 100fe170 f i ctsrv:udp_client.obj
  0002:000711b0       ?_Alloc_proxy@?$_Vector_alloc@U?$_Vec_base_types@MV?$allocator@M@std@@@std@@@std@@QAEXXZ 100fe1b0 f i ctsrv:udp_client.obj
  0002:00071270       ?_Destroy@?$vector@MV?$allocator@M@std@@@std@@IAEXPAM0@Z 100fe270 f i ctsrv:udp_client.obj
@@ -2214,10 +2214,10 @@
  0002:00077bb0       ??_GQNetworkInterface@@QAEPAXI@Z 10104bb0 f i ctsrv:ctsrvworker.obj
  0002:00077bf0       ??_EQTimer@@UAEPAXI@Z      10104bf0 f i ctsrv:ctsrvworker.obj
  0002:00077bf0       ??_GQTimer@@UAEPAXI@Z      10104bf0 f i ctsrv:ctsrvworker.obj
- 0002:00077c30       ??_GQUdpSocket@@UAEPAXI@Z  10104c30 f i ctsrv:ctsrvworker.obj
  0002:00077c30       ??_EQUdpSocket@@UAEPAXI@Z  10104c30 f i ctsrv:ctsrvworker.obj
- 0002:00077c70       ??_EctsrvWorker@RACERMATE@@UAEPAXI@Z 10104c70 f i ctsrv:ctsrvworker.obj
+ 0002:00077c30       ??_GQUdpSocket@@UAEPAXI@Z  10104c30 f i ctsrv:ctsrvworker.obj
  0002:00077c70       ??_GctsrvWorker@RACERMATE@@UAEPAXI@Z 10104c70 f i ctsrv:ctsrvworker.obj
+ 0002:00077c70       ??_EctsrvWorker@RACERMATE@@UAEPAXI@Z 10104c70 f i ctsrv:ctsrvworker.obj
  0002:00077ce0       ?alignOfNode@?$QHash@VQString@@VBCINF@ctsrvWorker@RACERMATE@@@@CAHXZ 10104ce0 f i ctsrv:ctsrvworker.obj
  0002:00077d20       ?alignOfNode@?$QHash@VQString@@VIPrintDialogServices@ctsrvWorker@RACERMATE@@@@CAHXZ 10104d20 f i ctsrv:ctsrvworker.obj
  0002:00077d60       ?append@?$QList@VQNetworkAddressEntry@@@@QAEXABVQNetworkAddressEntry@@@Z 10104d60 f i ctsrv:ctsrvworker.obj
@@ -2858,8 +2858,8 @@
  0002:00091240       ?stop@antWorker@RACERMATE@@QAEXXZ 1011e240 f   rmant:antworker.obj
  0002:00091400       ?timeout_slot@antWorker@RACERMATE@@AAEXXZ 1011e400 f   rmant:antworker.obj
  0002:00091700       ??1antWorker@RACERMATE@@UAE@XZ 1011e700 f i rmant:antworker.obj
- 0002:00091740       ??_EantWorker@RACERMATE@@UAEPAXI@Z 1011e740 f i rmant:antworker.obj
  0002:00091740       ??_GantWorker@RACERMATE@@UAEPAXI@Z 1011e740 f i rmant:antworker.obj
+ 0002:00091740       ??_EantWorker@RACERMATE@@UAEPAXI@Z 1011e740 f i rmant:antworker.obj
  0002:00091780       ??0sMav@@QAE@H_N@Z         1011e780 f   rmant:smav.obj
  0002:000918a0       ??1sMav@@QAE@XZ            1011e8a0 f   rmant:smav.obj
  0002:00091910       ?compute@sMav@@QAEMM@Z     1011e910 f   rmant:smav.obj
@@ -3368,8 +3368,8 @@
  0002:000b4bb0       ??0BMP@@QAE@HHHPAEPBD@Z    10141bb0 f   glib:bmp.obj
  0002:000b5030       ??0BMP@@QAE@PAD@Z          10142030 f   glib:bmp.obj
  0002:000b5840       ??1BMP@@UAE@XZ             10142840 f   glib:bmp.obj
- 0002:000b58d0       ??_EBMP@@UAEPAXI@Z         101428d0 f i glib:bmp.obj
  0002:000b58d0       ??_GBMP@@UAEPAXI@Z         101428d0 f i glib:bmp.obj
+ 0002:000b58d0       ??_EBMP@@UAEPAXI@Z         101428d0 f i glib:bmp.obj
  0002:000b5950       ?cleanup@BMP@@AAEXXZ       10142950 f   glib:bmp.obj
  0002:000b5a70       ?getpixel@BMP@@QAEXHHPAE00@Z 10142a70 f   glib:bmp.obj
  0002:000b5ba0       ?init@BMP@@AAEXXZ          10142ba0 f   glib:bmp.obj
@@ -3470,7 +3470,7 @@
  0002:000bfce0       ?downkeydown@Bike@@QAEXXZ  1014cce0 f   tlib:bike.obj
  0002:000bfd90       ?downkeyup@Bike@@QAEHXZ    1014cd90 f   tlib:bike.obj
  0002:000bfe30       ?frontDown@Bike@@QAEXXZ    1014ce30 f   tlib:bike.obj
- 0002:000bff20       ?frontUp@Bike@@QAEXXZ      1014cf20 f   tlib:bike.obj
+ 0002:000bff30       ?frontUp@Bike@@QAEXXZ      1014cf30 f   tlib:bike.obj
  0002:000c0020       ?rearDown@Bike@@QAEXXZ     1014d020 f   tlib:bike.obj
  0002:000c0110       ?rearUp@Bike@@QAEXXZ       1014d110 f   tlib:bike.obj
  0002:000c0210       ?run@Bike@@QAEHXZ          1014d210 f   tlib:bike.obj
@@ -3526,8 +3526,8 @@
  0002:000c5230       ??0dataSource@@QAE@AAVRIDER_DATA@@PAVCourse@@PAVBike@@W4LoggingType@@@Z 10152230 f   tlib:datasource.obj
  0002:000c53c0       ??0dataSource@@QAE@XZ      101523c0 f   tlib:datasource.obj
  0002:000c54a0       ??1dataSource@@UAE@XZ      101524a0 f   tlib:datasource.obj
- 0002:000c56a0       ??_EdataSource@@UAEPAXI@Z  101526a0 f i tlib:datasource.obj
  0002:000c56a0       ??_GdataSource@@UAEPAXI@Z  101526a0 f i tlib:datasource.obj
+ 0002:000c56a0       ??_EdataSource@@UAEPAXI@Z  101526a0 f i tlib:datasource.obj
  0002:000c57b0       ?addcourse@dataSource@@UAEHPBD@Z 101527b0 f i tlib:datasource.obj
  0002:000c57f0       ?beep@dataSource@@IAEXXZ   101527f0 f   tlib:datasource.obj
  0002:000c5830       ?clear_accum_tdc@dataSource@@QAEXXZ 10152830 f   tlib:datasource.obj
@@ -3719,8 +3719,8 @@
  0002:000cfe30       ?updateHardware@Computrainer@@UAEH_N@Z 1015ce30 f   tlib:computrainer.obj
  0002:000d0750       ??0Simulator@@QAE@AAVRIDER_DATA@@_NPAVCourse@@PBD@Z 1015d750 f   tlib:simulator.obj
  0002:000d0930       ??1Simulator@@UAE@XZ       1015d930 f   tlib:simulator.obj
- 0002:000d0a10       ??_GSimulator@@UAEPAXI@Z   1015da10 f i tlib:simulator.obj
  0002:000d0a10       ??_ESimulator@@UAEPAXI@Z   1015da10 f i tlib:simulator.obj
+ 0002:000d0a10       ??_GSimulator@@UAEPAXI@Z   1015da10 f i tlib:simulator.obj
  0002:000d0b20       ?finish@Simulator@@UAEXXZ  1015db20 f   tlib:simulator.obj
  0002:000d0b60       ?getNextRecord@Simulator@@UAEHXZ 1015db60 f   tlib:simulator.obj
  0002:000d0c30       ?reset@Simulator@@UAEXXZ   1015dc30 f   tlib:simulator.obj
@@ -3826,8 +3826,8 @@
  0002:000d3b20       ??1?$vector@USEC@@V?$allocator@USEC@@@std@@@std@@QAE@XZ 10160b20 f i tlib:performance.obj
  0002:000d3bb0       ??1Performance@@UAE@XZ     10160bb0 f   tlib:performance.obj
  0002:000d3d10       ??A?$vector@USEC@@V?$allocator@USEC@@@std@@@std@@QAEAAUSEC@@I@Z 10160d10 f i tlib:performance.obj
- 0002:000d3e30       ??_GPerformance@@UAEPAXI@Z 10160e30 f i tlib:performance.obj
  0002:000d3e30       ??_EPerformance@@UAEPAXI@Z 10160e30 f i tlib:performance.obj
+ 0002:000d3e30       ??_GPerformance@@UAEPAXI@Z 10160e30 f i tlib:performance.obj
  0002:000d3eb0       ?_Alloc_proxy@?$_Vector_alloc@U?$_Vec_base_types@UFPOINT@@V?$allocator@UFPOINT@@@std@@@std@@@std@@QAEXXZ 10160eb0 f i tlib:performance.obj
  0002:000d3fb0       ?_Alloc_proxy@?$_Vector_alloc@U?$_Vec_base_types@USEC@@V?$allocator@USEC@@@std@@@std@@@std@@QAEXXZ 10160fb0 f i tlib:performance.obj
  0002:000d40b0       ?_Buy@?$vector@UFPOINT@@V?$allocator@UFPOINT@@@std@@@std@@IAE_NI@Z 101610b0 f i tlib:performance.obj
@@ -3922,8 +3922,8 @@
  0002:000d8010       ??0Velotron@@QAE@PBDAAVRIDER_DATA@@PAVCourse@@PAVBike@@W4LoggingType@@@Z 10165010 f   tlib:velotron.obj
  0002:000d81d0       ??1Velotron@@UAE@XZ        101651d0 f   tlib:velotron.obj
  0002:000d8270       ??_GHeartrate@@QAEPAXI@Z   10165270 f i tlib:velotron.obj
- 0002:000d82f0       ??_GVelotron@@UAEPAXI@Z    101652f0 f i tlib:velotron.obj
  0002:000d82f0       ??_EVelotron@@UAEPAXI@Z    101652f0 f i tlib:velotron.obj
+ 0002:000d82f0       ??_GVelotron@@UAEPAXI@Z    101652f0 f i tlib:velotron.obj
  0002:000d8490       ?destroy@Velotron@@AAEXXZ  10165490 f   tlib:velotron.obj
  0002:000d8980       ?emergencyStop@Velotron@@UAEXH@Z 10165980 f   tlib:velotron.obj
  0002:000d89d0       ?end_cal@Velotron@@UAEXE@Z 101659d0 f   tlib:velotron.obj
@@ -3974,8 +3974,8 @@
  0002:000db5a0       ??0NVRAM@@QAE@PAD@Z        101685a0 f   tlib:nvram.obj
  0002:000db670       ??0NVRAM@@QAE@PAVSerial@@@Z 10168670 f   tlib:nvram.obj
  0002:000db750       ??1NVRAM@@UAE@XZ           10168750 f   tlib:nvram.obj
- 0002:000db7e0       ??_ENVRAM@@UAEPAXI@Z       101687e0 f i tlib:nvram.obj
  0002:000db7e0       ??_GNVRAM@@UAEPAXI@Z       101687e0 f i tlib:nvram.obj
+ 0002:000db7e0       ??_ENVRAM@@UAEPAXI@Z       101687e0 f i tlib:nvram.obj
  0002:000db860       ?connect@NVRAM@@QAEXXZ     10168860 f   tlib:nvram.obj
  0002:000dba00       ?disconnect@NVRAM@@QAEXXZ  10168a00 f   tlib:nvram.obj
  0002:000dbaf0       ?read@NVRAM@@QAEHXZ        10168af0 f   tlib:nvram.obj
@@ -4043,8 +4043,8 @@
  0002:000e1510       ??1Course@@UAE@XZ          1016e510 f   tlib:course.obj
  0002:000e15e0       ??4?$vector@UFPOINT@@V?$allocator@UFPOINT@@@std@@@std@@QAEAAV01@ABV01@@Z 1016e5e0 f i tlib:course.obj
  0002:000e1960       ??A?$vector@UFPOINT@@V?$allocator@UFPOINT@@@std@@@std@@QAEAAUFPOINT@@I@Z 1016e960 f i tlib:course.obj
- 0002:000e1a80       ??_GCourse@@UAEPAXI@Z      1016ea80 f i tlib:course.obj
  0002:000e1a80       ??_ECourse@@UAEPAXI@Z      1016ea80 f i tlib:course.obj
+ 0002:000e1a80       ??_GCourse@@UAEPAXI@Z      1016ea80 f i tlib:course.obj
  0002:000e1b00       ?_Copy_alloc@?$_Vector_alloc@U?$_Vec_base_types@UFPOINT@@V?$allocator@UFPOINT@@@std@@@std@@@std@@QAEXABU?$_Wrap_alloc@V?$allocator@UFPOINT@@@std@@@2@@Z 1016eb00 f i tlib:course.obj
  0002:000e1b80       ?clear@?$vector@MV?$allocator@M@std@@@std@@QAEXXZ 1016eb80 f i tlib:course.obj
  0002:000e1c50       ?clear@?$vector@UFPOINT@@V?$allocator@UFPOINT@@@std@@@std@@QAEXXZ 1016ec50 f i tlib:course.obj
@@ -4235,8 +4235,8 @@
  0002:000f5d90       __RTC_InitBase             10182d90 f   MSVCRTD:_init_.obj
  0002:000f5dd0       __RTC_Shutdown             10182dd0 f   MSVCRTD:_init_.obj
  0002:000f5df0       ??1type_info@@UAE@XZ       10182df0 f   MSVCRTD:std_type_info_static.obj
- 0002:000f5e10       ??_Gtype_info@@UAEPAXI@Z   10182e10 f i MSVCRTD:std_type_info_static.obj
  0002:000f5e10       ??_Etype_info@@UAEPAXI@Z   10182e10 f i MSVCRTD:std_type_info_static.obj
+ 0002:000f5e10       ??_Gtype_info@@UAEPAXI@Z   10182e10 f i MSVCRTD:std_type_info_static.obj
  0002:000f5e50       ??$__crt_fast_decode_pointer@PAP6AXXZ@@YAPAP6AXXZQAP6AXXZ@Z 10182e50 f i MSVCRTD:utility.obj
  0002:000f5e80       ??$__crt_fast_encode_pointer@PAP6AXXZ@@YAPAP6AXXZQAP6AXXZ@Z 10182e80 f i MSVCRTD:utility.obj
  0002:000f5ec0       ?__crt_rotate_pointer_value@@YAIIH@Z 10182ec0 f i MSVCRTD:utility.obj
@@ -4321,12 +4321,12 @@
  0002:000f8980       ??1bad_alloc@std@@UAE@XZ   10185980 f i MSVCRTD:throw_bad_alloc.obj
  0002:000f89a0       ??1bad_array_new_length@std@@UAE@XZ 101859a0 f i MSVCRTD:throw_bad_alloc.obj
  0002:000f89c0       ??1exception@std@@UAE@XZ   101859c0 f i MSVCRTD:throw_bad_alloc.obj
- 0002:000f89f0       ??_Ebad_alloc@std@@UAEPAXI@Z 101859f0 f i MSVCRTD:throw_bad_alloc.obj
  0002:000f89f0       ??_Gbad_alloc@std@@UAEPAXI@Z 101859f0 f i MSVCRTD:throw_bad_alloc.obj
- 0002:000f8a30       ??_Ebad_array_new_length@std@@UAEPAXI@Z 10185a30 f i MSVCRTD:throw_bad_alloc.obj
+ 0002:000f89f0       ??_Ebad_alloc@std@@UAEPAXI@Z 101859f0 f i MSVCRTD:throw_bad_alloc.obj
  0002:000f8a30       ??_Gbad_array_new_length@std@@UAEPAXI@Z 10185a30 f i MSVCRTD:throw_bad_alloc.obj
- 0002:000f8a70       ??_Eexception@std@@UAEPAXI@Z 10185a70 f i MSVCRTD:throw_bad_alloc.obj
+ 0002:000f8a30       ??_Ebad_array_new_length@std@@UAEPAXI@Z 10185a30 f i MSVCRTD:throw_bad_alloc.obj
  0002:000f8a70       ??_Gexception@std@@UAEPAXI@Z 10185a70 f i MSVCRTD:throw_bad_alloc.obj
+ 0002:000f8a70       ??_Eexception@std@@UAEPAXI@Z 10185a70 f i MSVCRTD:throw_bad_alloc.obj
  0002:000f8ab0       ?__scrt_throw_std_bad_alloc@@YAXXZ 10185ab0 f   MSVCRTD:throw_bad_alloc.obj
  0002:000f8ae0       ?__scrt_throw_std_bad_array_new_length@@YAXXZ 10185ae0 f   MSVCRTD:throw_bad_alloc.obj
  0002:000f8b10       ?what@exception@std@@UBEPBDXZ 10185b10 f i MSVCRTD:throw_bad_alloc.obj
@@ -4898,8 +4898,8 @@
  0002:00116820       ?setState@twoPoleFilter@@QAEXNN@Z 101a3820 f   rmg:twopolefilter.obj
  0002:00116850       ?getState@twoPoleFilter@@QAEXPAN0@Z 101a3850 f   rmg:twopolefilter.obj
  0002:00116880       ?reset@twoPoleFilter@@QAEXXZ 101a3880 f   rmg:twopolefilter.obj
- 0002:00116900       ??_EtwoPoleFilter@@UAEPAXI@Z 101a3900 f i rmg:twopolefilter.obj
  0002:00116900       ??_GtwoPoleFilter@@UAEPAXI@Z 101a3900 f i rmg:twopolefilter.obj
+ 0002:00116900       ??_EtwoPoleFilter@@UAEPAXI@Z 101a3900 f i rmg:twopolefilter.obj
  0002:0011693a       _GetLocalTime@4            101a393a f   kernel32:KERNEL32.dll
  0002:00116940       _SetCurrentDirectoryA@4    101a3940 f   kernel32:KERNEL32.dll
  0002:00116946       _GetCurrentDirectoryA@8    101a3946 f   kernel32:KERNEL32.dll
@@ -5067,8 +5067,8 @@
  0002:00117110       ?setfval@LPFilter@@QAEXN@Z 101a4110 f   glib:lpfilter.obj
  0002:00117160       ??0Timeout@@QAE@XZ         101a4160 f   glib:timeout.obj
  0002:001171f0       ??1Timeout@@UAE@XZ         101a41f0 f   glib:timeout.obj
- 0002:00117280       ??_GTimeout@@UAEPAXI@Z     101a4280 f i glib:timeout.obj
  0002:00117280       ??_ETimeout@@UAEPAXI@Z     101a4280 f i glib:timeout.obj
+ 0002:00117280       ??_GTimeout@@UAEPAXI@Z     101a4280 f i glib:timeout.obj
  0002:001172f0       ?start@Timeout@@QAEHK@Z    101a42f0 f   glib:timeout.obj
  0002:00117410       ?stop@Timeout@@QAEXXZ      101a4410 f   glib:timeout.obj
  0002:00117530       ?thread@Timeout@@CAXPAX@Z  101a4530 f   glib:timeout.obj
@@ -5088,20 +5088,20 @@
  0002:00117e50       ___acrt_initialize         101a4e50 f   MSVCRTD:ucrt_stubs.obj
  0002:00117e50       ___vcrt_initialize         101a4e50 f   MSVCRTD:ucrt_stubs.obj
  0002:00117e50       ___scrt_stub_for_acrt_initialize 101a4e50 f   MSVCRTD:ucrt_stubs.obj
- 0002:00117e60       ___scrt_stub_for_acrt_thread_attach 101a4e60 f   MSVCRTD:ucrt_stubs.obj
- 0002:00117e60       ___acrt_thread_attach      101a4e60 f   MSVCRTD:ucrt_stubs.obj
  0002:00117e60       ___vcrt_thread_attach      101a4e60 f   MSVCRTD:ucrt_stubs.obj
- 0002:00117e70       ___scrt_stub_for_acrt_thread_detach 101a4e70 f   MSVCRTD:ucrt_stubs.obj
+ 0002:00117e60       ___acrt_thread_attach      101a4e60 f   MSVCRTD:ucrt_stubs.obj
+ 0002:00117e60       ___scrt_stub_for_acrt_thread_attach 101a4e60 f   MSVCRTD:ucrt_stubs.obj
  0002:00117e70       ___vcrt_thread_detach      101a4e70 f   MSVCRTD:ucrt_stubs.obj
+ 0002:00117e70       ___scrt_stub_for_acrt_thread_detach 101a4e70 f   MSVCRTD:ucrt_stubs.obj
  0002:00117e70       ___acrt_thread_detach      101a4e70 f   MSVCRTD:ucrt_stubs.obj
- 0002:00117e80       ___vcrt_uninitialize       101a4e80 f   MSVCRTD:ucrt_stubs.obj
- 0002:00117e80       ___scrt_stub_for_acrt_uninitialize 101a4e80 f   MSVCRTD:ucrt_stubs.obj
  0002:00117e80       ___acrt_uninitialize       101a4e80 f   MSVCRTD:ucrt_stubs.obj
- 0002:00117e90       ___vcrt_uninitialize_critical 101a4e90 f   MSVCRTD:ucrt_stubs.obj
+ 0002:00117e80       ___scrt_stub_for_acrt_uninitialize 101a4e80 f   MSVCRTD:ucrt_stubs.obj
+ 0002:00117e80       ___vcrt_uninitialize       101a4e80 f   MSVCRTD:ucrt_stubs.obj
  0002:00117e90       ___scrt_stub_for_acrt_uninitialize_critical 101a4e90 f   MSVCRTD:ucrt_stubs.obj
+ 0002:00117e90       ___vcrt_uninitialize_critical 101a4e90 f   MSVCRTD:ucrt_stubs.obj
  0002:00117e90       ___acrt_uninitialize_critical 101a4e90 f   MSVCRTD:ucrt_stubs.obj
- 0002:00117ea0       ___scrt_stub_for_is_c_termination_complete 101a4ea0 f   MSVCRTD:ucrt_stubs.obj
  0002:00117ea0       __is_c_termination_complete 101a4ea0 f   MSVCRTD:ucrt_stubs.obj
+ 0002:00117ea0       ___scrt_stub_for_is_c_termination_complete 101a4ea0 f   MSVCRTD:ucrt_stubs.obj
  0003:00000000       ___xc_a                    101b7000     MSVCRTD:initializers.obj
  0003:0000025c       ___xc_z                    101b725c     MSVCRTD:initializers.obj
  0003:00000360       ___xi_a                    101b7360     MSVCRTD:initializers.obj
@@ -5161,7 +5161,7 @@
  0003:00001340       ??_C@_08KIDBNBLB@slfp?5ok?6?$AA@ 101b8340     dll.obj
  0003:0000134c       ??_C@_0L@IOPNHENB@?$CFs?2log?4txt?$AA@ 101b834c     dll.obj
  0003:0000135c       ??_C@_05EIFNHGAC@1?42?40?$AA@ 101b835c     dll.obj
- 0003:00001364       ??_C@_08BMMFENHC@17?322?357?$AA@ 101b8364     dll.obj
+ 0003:00001364       ??_C@_08HPKCOIJL@18?331?335?$AA@ 101b8364     dll.obj
  0003:00001370       ??_C@_0M@GMLHEEJN@Sep?520?52017?$AA@ 101b8370     dll.obj
  0003:00001380       ??_C@_1DI@EKHLLAGN@?$AAz?$AA?3?$AA?2?$AAr?$AAm?$AA6?$AAd?$AAl?$AAl?$AA?2?$AAr?$AAa?$AAc?$AAe?$AAr?$AAm?$AAa?$AAt?$AAe?$AA?2?$AAd?$AAl?$AAl?$AA?4?$AAc?$AAp?$AAp?$AA?$AA@ 101b8380     dll.obj
  0003:000013c8       ??_C@_1EI@HBKOCELL@?$AAw?$AAh?$AAa?$AAt?$AA?$DO?$AA?$DN?$AA0?$AA?5?$AA?$CG?$AA?$CG?$AA?5?$AAw?$AAh?$AAa?$AAt?$AA?$DM?$AA?$DN?$AAD?$AAE?$AAV?$AAI?$AAC?$AAE?$AA_?$AAO?$AAT?$AAH?$AAE?$AAR?$AA_?$AAE?$AAR@ 101b83c8     dll.obj
@@ -6444,8 +6444,8 @@
  0003:000226dc       ??_C@_0BJ@JEBJOJFJ@SleepConditionVariableCS?$AA@ 101d96dc     MSVCRTD:thread_safe_statics.obj
  0003:000226fc       ??_C@_0BJ@PGPPEPCC@WakeAllConditionVariable?$AA@ 101d96fc     MSVCRTD:thread_safe_statics.obj
  0003:00022720       ??_C@_1HK@LKKBAJNK@?$AAf?$AA?3?$AA?2?$AAd?$AAd?$AA?2?$AAv?$AAc?$AAt?$AAo?$AAo?$AAl?$AAs?$AA?2?$AAc?$AAr?$AAt?$AA?2?$AAv?$AAc?$AAs?$AAt?$AAa?$AAr?$AAt?$AAu?$AAp?$AA?2?$AAs?$AAr?$AAc?$AA?2@ 101d9720     MSVCRTD:thread_safe_statics.obj
- 0003:000227b4       __pRawDllMain              101d97b4     MSVCRTD:dll_dllmain.obj
  0003:000227b4       __pDefaultRawDllMain       101d97b4     MSVCRTD:dll_dllmain.obj
+ 0003:000227b4       __pRawDllMain              101d97b4     MSVCRTD:dll_dllmain.obj
  0003:0002286c       ??_7exception@std@@6B@     101d986c     MSVCRTD:throw_bad_alloc.obj
  0003:00022878       ??_C@_0BC@EOODALEL@Unknown?5exception?$AA@ 101d9878     MSVCRTD:throw_bad_alloc.obj
  0003:00022894       ??_7bad_alloc@std@@6B@     101d9894     MSVCRTD:throw_bad_alloc.obj
@@ -7383,8 +7383,8 @@
  0005:00000a60       \177WS2_32_NULL_THUNK_DATA 10203a60     Ws2_32:WS2_32.dll
  0005:00000a98       __imp__CoInitialize@4      10203a98     ole32:ole32.dll
  0005:00000a9c       \177ole32_NULL_THUNK_DATA  10203a9c     ole32:ole32.dll
- 0005:00000ac8       __imp__getch               10203ac8     ucrtd:ucrtbased.dll
  0005:00000ac8       __imp___getch              10203ac8     ucrtd:ucrtbased.dll
+ 0005:00000ac8       __imp__getch               10203ac8     ucrtd:ucrtbased.dll
  0005:00000acc       __imp__unlink              10203acc     ucrtd:ucrtbased.dll
  0005:00000acc       __imp___unlink             10203acc     ucrtd:ucrtbased.dll
  0005:00000ad0       __imp___strupr             10203ad0     ucrtd:ucrtbased.dll
@@ -7421,8 +7421,8 @@
  0005:00000b48       __imp__isxdigit            10203b48     ucrtd:ucrtbased.dll
  0005:00000b4c       __imp__rename              10203b4c     ucrtd:ucrtbased.dll
  0005:00000b50       __imp__putc                10203b50     ucrtd:ucrtbased.dll
- 0005:00000b54       __imp___kbhit              10203b54     ucrtd:ucrtbased.dll
  0005:00000b54       __imp__kbhit               10203b54     ucrtd:ucrtbased.dll
+ 0005:00000b54       __imp___kbhit              10203b54     ucrtd:ucrtbased.dll
  0005:00000b58       __imp__fwrite              10203b58     ucrtd:ucrtbased.dll
  0005:00000b5c       __imp__ftell               10203b5c     ucrtd:ucrtbased.dll
  0005:00000b60       __imp__fseek               10203b60     ucrtd:ucrtbased.dll

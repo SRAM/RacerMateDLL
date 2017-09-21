@@ -1,7 +1,7 @@
 Microsoft (R) Build Engine version 14.0.25420.1
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 9/20/2017 5:37:44 PM.
+Build started 9/21/2017 1:50:00 PM.
      1>Project "Z:\rm6dll\racermate\dll_2015.sln" on node 1 (rebuild target(s)).
      1>ValidateSolutionConfiguration:
          Building solution configuration "Release|Win32".
@@ -51,23 +51,8 @@ Build started 9/20/2017 5:37:44 PM.
        ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I../freetype/include /I../freetype/include/freetype2 /I../pcre/include /I..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\inc /I..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\serial /I..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\system /I..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\USB\devices /I..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\USB\device_handles /I..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\USB /I../common /I. /Z7 /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _LIB /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\glib.pdb" /Gd /TP /analyze- /errorReport:queue ..\common\comglobs.cpp ..\common\smav.cpp ..\common\twopolefilter.cpp amplifier.cpp averagetimer.cpp axis.cpp bmp.cpp button.cpp clientsocket.cpp crc.cpp cregexp.cpp csv.cpp dir.cpp earth.cpp editbox.cpp err.cpp fasttimer.cpp fatalerror.cpp fileselector.cpp file_rotator.cpp float2d.cpp globals.cpp ini.cpp inputdlg.cpp intel.cpp listbox.cpp logger.cpp lpfilter.cpp md5.cpp modaldialog.cpp modallistbox.cpp mru.cpp png.cpp scaler.cpp oldsdirs.cpp serial.cpp signalstrengthmeter.cpp splash.cpp statictext.cpp statusdlg.cpp tga.cpp timeout.cpp tinystr.cpp tinyxml.cpp tinyxmlerror.cpp tinyxmlparser.cpp utils.cpp utilsclass.cpp wcon.cpp win_utils.cpp windower.cpp xml.cpp
          comglobs.cpp
-     9>Project "Z:\rm6dll\tlib\trainer_lib.vcxproj" (9) is building "Z:\rm6dll\tinythread++\tinythread++.vcxproj" (7:3) on node 2 (default targets).
-     7>InitializeBuildStatus:
-         Creating "Release\tinythread++.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
-       ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I../../../tinythread++ /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _LIB /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\tinythread++.pdb" /Gd /TP /analyze- /errorReport:queue tinythread.cpp
-         tinythread.cpp
-     8>ClCompile:
          smav.cpp
          twopolefilter.cpp
-     7>Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\Lib.exe /OUT:"Z:\rm6dll\racermate\Release\tinythread++.lib" /NOLOGO /LTCG Release\tinythread.obj
-         tinythread++.vcxproj -> Z:\rm6dll\racermate\Release\tinythread++.lib
-       FinalizeBuildStatus:
-         Deleting file "Release\tinythread++.tlog\unsuccessfulbuild".
-         Touching "Release\tinythread++.tlog\tinythread++.lastbuildstate".
-     7>Done Building Project "Z:\rm6dll\tinythread++\tinythread++.vcxproj" (default targets).
-     8>ClCompile:
          amplifier.cpp
          averagetimer.cpp
          axis.cpp
@@ -178,6 +163,19 @@ Build started 9/20/2017 5:37:44 PM.
          Touching "Release\glib.tlog\glib.lastbuildstate".
      8>Done Building Project "Z:\rm6dll\glib\gen_lib.vcxproj" (Rebuild target(s)).
      3>Done Building Project "Z:\rm6dll\racermate\..\glib\gen_lib.vcxproj.metaproj" (Rebuild target(s)).
+     9>Project "Z:\rm6dll\tlib\trainer_lib.vcxproj" (9) is building "Z:\rm6dll\tinythread++\tinythread++.vcxproj" (7:3) on node 2 (default targets).
+     7>InitializeBuildStatus:
+         Creating "Release\tinythread++.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I../../../tinythread++ /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _LIB /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\tinythread++.pdb" /Gd /TP /analyze- /errorReport:queue tinythread.cpp
+         tinythread.cpp
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\Lib.exe /OUT:"Z:\rm6dll\racermate\Release\tinythread++.lib" /NOLOGO /LTCG Release\tinythread.obj
+         tinythread++.vcxproj -> Z:\rm6dll\racermate\Release\tinythread++.lib
+       FinalizeBuildStatus:
+         Deleting file "Release\tinythread++.tlog\unsuccessfulbuild".
+         Touching "Release\tinythread++.tlog\tinythread++.lastbuildstate".
+     7>Done Building Project "Z:\rm6dll\tinythread++\tinythread++.vcxproj" (default targets).
      9>InitializeBuildStatus:
          Creating "Release\tlib.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
@@ -292,8 +290,8 @@ Build started 9/20/2017 5:37:44 PM.
        FinalizeBuildStatus:
          Deleting file "Release\racermate.tlog\unsuccessfulbuild".
          Touching "Release\racermate.tlog\racermate.lastbuildstate".
-     6>Done Building Project "Z:\rm6dll\racermate\dll.vcxproj" (Rebuild target(s)).
      2>Done Building Project "Z:\rm6dll\racermate\dll.vcxproj.metaproj" (Rebuild target(s)).
+     6>Done Building Project "Z:\rm6dll\racermate\dll.vcxproj" (Rebuild target(s)).
      1>Done Building Project "Z:\rm6dll\racermate\dll_2015.sln" (rebuild target(s)).
 
 Build succeeded.
@@ -307,4 +305,4 @@ Build succeeded.
     1 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:01:37.04
+Time Elapsed 00:01:50.75
