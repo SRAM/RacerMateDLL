@@ -1,0 +1,369 @@
+Files ./2016-05-13.zip and /home/norm/_fssss/racermate/2016-05-13.zip are identical
+Files ./backup.php and /home/norm/_fssss/racermate/backup.php are identical
+Files ./bdiffs and /home/norm/_fssss/racermate/bdiffs are identical
+Files ./build4.log and /home/norm/_fssss/racermate/build4.log are identical
+Files ./build.log and /home/norm/_fssss/racermate/build.log are identical
+Common subdirectories: ./cannondale and /home/norm/_fssss/racermate/cannondale
+Files ./c_excludes.txt and /home/norm/_fssss/racermate/c_excludes.txt are identical
+Common subdirectories: ./cpp_tester and /home/norm/_fssss/racermate/cpp_tester
+Common subdirectories: ./cpp_tester_save and /home/norm/_fssss/racermate/cpp_tester_save
+Files ./cpp_tester.tags and /home/norm/_fssss/racermate/cpp_tester.tags are identical
+Files ./cpp_tester.workspace and /home/norm/_fssss/racermate/cpp_tester.workspace are identical
+Files ./cpp_tester.workspace.session and /home/norm/_fssss/racermate/cpp_tester.workspace.session are identical
+Files ./.cproject and /home/norm/_fssss/racermate/.cproject are identical
+Common subdirectories: ./debug and /home/norm/_fssss/racermate/debug
+Files ./dll1.cpp and /home/norm/_fssss/racermate/dll1.cpp are identical
+Files ./dll1.h and /home/norm/_fssss/racermate/dll1.h are identical
+Files ./dll_2008.sln and /home/norm/_fssss/racermate/dll_2008.sln are identical
+Files ./dll_2008.suo and /home/norm/_fssss/racermate/dll_2008.suo are identical
+Files ./dll_2010.sln and /home/norm/_fssss/racermate/dll_2010.sln are identical
+Files ./dll_2010.suo and /home/norm/_fssss/racermate/dll_2010.suo are identical
+Files ./dll_2010.v11.suo and /home/norm/_fssss/racermate/dll_2010.v11.suo are identical
+Files ./dll_2012.sln and /home/norm/_fssss/racermate/dll_2012.sln are identical
+Files ./dll_2012.suo and /home/norm/_fssss/racermate/dll_2012.suo are identical
+Files ./dll_2012.v11.suo and /home/norm/_fssss/racermate/dll_2012.v11.suo are identical
+Files ./dll_2015.sln and /home/norm/_fssss/racermate/dll_2015.sln are identical
+Files ./dll_2015.VC.db and /home/norm/_fssss/racermate/dll_2015.VC.db are identical
+Files ./dll2.cpp and /home/norm/_fssss/racermate/dll2.cpp are identical
+diff -bBEwu -s ./dll.cpp /home/norm/_fssss/racermate/dll.cpp
+--- ./dll.cpp	2017-08-30 07:18:43.374535600 -0700
++++ /home/norm/_fssss/racermate/dll.cpp	2017-09-08 15:47:27.397337600 -0700
+@@ -1366,7 +1366,18 @@
+ 		RACERMATE::TrainerData td;
+ 		RACERMATE::TrainerData *ptd;
+ 
++#ifdef LOGDLL
++		logstream = fopen(DLL_LOGFILE, "a+t");
++			fprintf(logstream,"enter gettrainerdata() _id:%s  fw:%d\n", _id, fw);
++			fclose(logstream);
++#endif
++
+ 		if(devices[_id].commtype == TRAINER_IS_CLIENT) {
++#ifdef LOGDLL
++		logstream = fopen(DLL_LOGFILE, "a+t");
++			fprintf(logstream,"trainer_is_client Huh?\n");
++			fclose(logstream);
++#endif
+ 			DEVICE *d;
+ 			ADJCODE status;
+ 
+@@ -1411,7 +1422,21 @@
+ 
+ 
+ 	#ifdef _DEBUG
++
++		#ifdef LOGDLL
++		logstream = fopen(DLL_LOGFILE, "a+t");
++		fprintf(logstream,"N0\n");
++		fclose(logstream);
++		#endif
++
+ 		if (devices[_id].ev==NULL)  {
++
++		#ifdef LOGDLL
++		logstream = fopen(DLL_LOGFILE, "a+t");
++		fprintf(logstream,"N1\n");
++		fclose(logstream);
++		#endif
++
+ 			memset(&td, 0, sizeof(td));
+ 			return td;
+ 		}
+@@ -1419,32 +1444,101 @@
+ 		EnumDeviceType what;
+ 		what = devices[_id].ev->getwhat();
+ 
++		#ifdef LOGDLL
++		logstream = fopen(DLL_LOGFILE, "a+t");
++		fprintf(logstream,"N2 what:%d\n", what);
++		fclose(logstream);
++		#endif
++
+ 		if (what==DEVICE_VELOTRON)  {
++
++		#ifdef LOGDLL
++		logstream = fopen(DLL_LOGFILE, "a+t");
++		fprintf(logstream,"N3\n");
++		fclose(logstream);
++		#endif
++
+ 			if (fw != 190)  {
+-				throw(fatalError(__FILE__, __LINE__));
++
++		#ifdef LOGDLL
++		logstream = fopen(DLL_LOGFILE, "a+t");
++		fprintf(logstream,"N4 fw = %d, fatal\n", fw);
++		fclose(logstream);
++		#endif
++
++		//		throw(fatalError(__FILE__, __LINE__));
+ 			}
+ 		}
+-	#endif
++	#endif	// ifdef _DEBUG
+ 
+ 		if (devices[_id].ev)  {
++
++		#ifdef LOGDLL
++		logstream = fopen(DLL_LOGFILE, "a+t");
++		fprintf(logstream,"N5\n");
++		fclose(logstream);
++		#endif
++
+ 			if (calibrating)  {
++
++		#ifdef LOGDLL
++		logstream = fopen(DLL_LOGFILE, "a+t");
++		fprintf(logstream,"N6\n");
++		fclose(logstream);
++		#endif
++
+ 				ptd = devices[_id].ev->fastread();
+ 			}
+ 			else  {
++
++		#ifdef LOGDLL
++		logstream = fopen(DLL_LOGFILE, "a+t");
++		fprintf(logstream,"N7\n");
++		fclose(logstream);
++		#endif
++
+ 				ptd = devices[_id].ev->myread();
+ 			}
+ 			memcpy(&td, ptd, sizeof(RACERMATE::TrainerData));
+ 
++
++		#ifdef LOGDLL
++		logstream = fopen(DLL_LOGFILE, "a+t");
++		fprintf(logstream,"N8\n");
++		fclose(logstream);
++		#endif
++
+ 			//std::unordered_map<std::string, unsigned short>::const_iterator assgot;
+ 			assgot = associations.find(_id);
++
++		#ifdef LOGDLL
++		logstream = fopen(DLL_LOGFILE, "a+t");
++		fprintf(logstream,"N9\n");
++		fclose(logstream);
++		#endif
++
+ 			if(assgot != associations.end()) {
+ 				unsigned short sn = associations[_id];
++
++		#ifdef LOGDLL
++		logstream = fopen(DLL_LOGFILE, "a+t");
++		fprintf(logstream,"N10\n");
++		fclose(logstream);
++		#endif
++
+ 				unsigned char hr = get_ant_hr(sn);
+ 				td.HR = (float)hr;
+ 			}
+ 
+ 		}
+ 		else  {
++
++		#ifdef LOGDLL
++		logstream = fopen(DLL_LOGFILE, "a+t");
++		fprintf(logstream,"N11\n");
++		fclose(logstream);
++		#endif
++
+ 			memset(&td, 0, sizeof(td));
+ 		}
+ 
+@@ -1565,7 +1659,14 @@
+ 			what = devices[_id].ev->getwhat();
+ 			if (what==DEVICE_VELOTRON)  {
+ 				if (fw != 190)  {
+-					throw(fatalError(__FILE__, __LINE__));
++
++		#ifdef LOGDLL
++		logstream = fopen(DLL_LOGFILE, "a+t");
++		fprintf(logstream,"get_ss_data: fw = %d, fatal\n", fw);
++		fclose(logstream);
++		#endif
++
++				//	throw(fatalError(__FILE__, __LINE__));
+ 				}
+ 			}
+ 		}
+@@ -1627,7 +1728,7 @@
+ 
+ 	#ifdef LOGDLL
+ 	logstream = fopen(DLL_LOGFILE, "a+t");
+-	fprintf(logstream, "setPause(%s, %s)\n", _id, _paused?"true":"false");
++	//fprintf(logstream, "setPause(%s, %s)\n", _id, _paused?"true":"false");
+ 	fclose(logstream);
+ 	#endif
+ 
+@@ -1868,7 +1969,7 @@
+ 
+ 
+ 
+-
++/*
+ 	#ifdef _DEBUG
+ 		if (what==DEVICE_COMPUTRAINER)  {
+ 			switch(fw)  {
+@@ -1882,11 +1983,18 @@
+ 		}
+ 		else if (what==DEVICE_VELOTRON)  {
+ 			if (fw != 190)  {
++
++		#ifdef LOGDLL
++		logstream = fopen(DLL_LOGFILE, "a+t");
++		fprintf(logstream,"gethbbuttons: fw = %d, fatal\n", fw);
++		fclose(logstream);
++		#endif
++
+ 				return BAD_FIRMWARE_VERSION;
+ 			}
+ 		}
+ 	#endif
+-
++*/
+ 		keys = devices[_id].ev->get_keys();							// get the ACCUMULATED keys since last called
+ 
+ 		if (what==DEVICE_COMPUTRAINER)  {
+@@ -2630,7 +2738,14 @@
+ 		}
+ 		else if (what==DEVICE_VELOTRON)  {
+ 			if (fw != 190)  {
+-				throw(fatalError(__FILE__, __LINE__));
++
++		#ifdef LOGDLL
++		logstream = fopen(DLL_LOGFILE, "a+t");
++		fprintf(logstream,"getcurrentVTgear: fw = %d, fatal\n", fw);
++		fclose(logstream);
++		#endif
++
++//				throw(fatalError(__FILE__, __LINE__));
+ 			}
+ 		}
+ 	#endif
+Files ./dll.cpp~ and /home/norm/_fssss/racermate/dll.cpp~ are identical
+diff -bBEwu -s ./dlldefs.h /home/norm/_fssss/racermate/dlldefs.h
+--- ./dlldefs.h	2016-10-28 09:57:18.246277163 -0700
++++ /home/norm/_fssss/racermate/dlldefs.h	2017-09-07 08:26:19.660453790 -0700
+@@ -15,7 +15,7 @@
+ 
+ 
+ #ifdef _DEBUG
+-	//#define LOGDLL
++	#define LOGDLL
+ 	//#define LOGEV
+ #else
+ 	//#define LOGDLL
+Files ./dlldefs.h~ and /home/norm/_fssss/racermate/dlldefs.h~ are identical
+Files ./dll_globals.cpp and /home/norm/_fssss/racermate/dll_globals.cpp are identical
+Files ./dll_globals.h and /home/norm/_fssss/racermate/dll_globals.h are identical
+Files ./dll.h and /home/norm/_fssss/racermate/dll.h are identical
+Files ./dll.h~ and /home/norm/_fssss/racermate/dll.h~ are identical
+Files ./dll.txt and /home/norm/_fssss/racermate/dll.txt are identical
+Files ./dll.vcxproj and /home/norm/_fssss/racermate/dll.vcxproj are identical
+Files ./dll.vcxproj.filters and /home/norm/_fssss/racermate/dll.vcxproj.filters are identical
+Files ./dll.vcxproj.user and /home/norm/_fssss/racermate/dll.vcxproj.user are identical
+Files ./dll.x and /home/norm/_fssss/racermate/dll.x are identical
+Files ./dll.zip and /home/norm/_fssss/racermate/dll.zip are identical
+Files ./dod.bat and /home/norm/_fssss/racermate/dod.bat are identical
+Files ./dod.bat~ and /home/norm/_fssss/racermate/dod.bat~ are identical
+Files ./dod.log and /home/norm/_fssss/racermate/dod.log are identical
+diff -bBEwu -s ./dor.bat /home/norm/_fssss/racermate/dor.bat
+--- ./dor.bat	2016-10-26 08:13:36.835612758 -0700
++++ /home/norm/_fssss/racermate/dor.bat	2017-04-20 15:28:33.996748501 -0700
+@@ -10,7 +10,8 @@
+ ::"C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcvarsall.bat" x86
+ @del x.x
+ ::MSBuild tlib_2015.sln /t:rebuild /p:Configuration=Release
+-MSBuild dll_2015.sln /m /t:rebuild /p:Configuration=Release | tee x.x
++::MSBuild dll_2015.sln /m /t:rebuild /p:Configuration=Release | tee x.x
++MSBuild dll_2015.sln /m /t:rebuild /p:Configuration=Release
+ 
+-touch ..\rm2\racermateone\rm1.cs
++::touch ..\rm2\racermateone\rm1.cs
+ 
+Files ./dor.bat~ and /home/norm/_fssss/racermate/dor.bat~ are identical
+Files ./dor.log and /home/norm/_fssss/racermate/dor.log are identical
+Common subdirectories: ./ergvideo and /home/norm/_fssss/racermate/ergvideo
+Files ./errors.cpp and /home/norm/_fssss/racermate/errors.cpp are identical
+Files ./errors.h and /home/norm/_fssss/racermate/errors.h are identical
+Files ./errors.h~ and /home/norm/_fssss/racermate/errors.h~ are identical
+Files ./ev1.cpp and /home/norm/_fssss/racermate/ev1.cpp are identical
+Files ./ev1.h and /home/norm/_fssss/racermate/ev1.h are identical
+diff -bBEwu -s ./ev.cpp /home/norm/_fssss/racermate/ev.cpp
+--- ./ev.cpp	2016-09-20 13:52:44.586514535 -0700
++++ /home/norm/_fssss/racermate/ev.cpp	2017-09-08 15:37:30.152842208 -0700
+@@ -814,8 +814,8 @@
+     // cadence
+     //------------------------------------
+ 
+-    if ( (ds->decoder->meta.rpmflags & RPM_VALID) != RPM_VALID )  {
+         if (what==DEVICE_COMPUTRAINER)  {
++		if ( (ds->decoder->meta.rpmflags & RPM_VALID) != RPM_VALID )  {
+ #ifdef DO_ANT
+             if (asi)  {
+                 if (cad.decoding_data)  {
+@@ -833,9 +833,9 @@
+ #endif
+ 
+         }
+-        else  {
+-            td.cadence = 0.0f;							// velotron, no cadence sensor plugged in
+-        }
++        //else  {
++         ////   td.cadence = 123.0f;  //0.0f;							// velotron, no cadence sensor plugged in
++        ////}
+     }
+     else  {
+         if (ds->decoder->meta.pedalrpm<=.00001f)  {
+Files ./ev.cpp~ and /home/norm/_fssss/racermate/ev.cpp~ are identical
+Files ./ev.h and /home/norm/_fssss/racermate/ev.h are identical
+Only in .: fs-diffs
+Files ./internal1.cpp and /home/norm/_fssss/racermate/internal1.cpp are identical
+Files ./internal1.h and /home/norm/_fssss/racermate/internal1.h are identical
+Files ./internal2.cpp and /home/norm/_fssss/racermate/internal2.cpp are identical
+Files ./internal2.h and /home/norm/_fssss/racermate/internal2.h are identical
+Files ./internal3.cpp and /home/norm/_fssss/racermate/internal3.cpp are identical
+Files ./internal.cpp and /home/norm/_fssss/racermate/internal.cpp are identical
+Files ./internal.cpp~ and /home/norm/_fssss/racermate/internal.cpp~ are identical
+Files ./internal.h and /home/norm/_fssss/racermate/internal.h are identical
+Files ./internal.h~ and /home/norm/_fssss/racermate/internal.h~ are identical
+Files ./levels.h and /home/norm/_fssss/racermate/levels.h are identical
+Files ./Makefile-dll.mk and /home/norm/_fssss/racermate/Makefile-dll.mk are identical
+Files ./Makefile.linux64 and /home/norm/_fssss/racermate/Makefile.linux64 are identical
+Common subdirectories: ./.metadata and /home/norm/_fssss/racermate/.metadata
+Common subdirectories: ./obfuscate and /home/norm/_fssss/racermate/obfuscate
+Files ./postd.bat and /home/norm/_fssss/racermate/postd.bat are identical
+Files ./.project and /home/norm/_fssss/racermate/.project are identical
+Common subdirectories: ./pub and /home/norm/_fssss/racermate/pub
+Files ./pub.tgz and /home/norm/_fssss/racermate/pub.tgz are identical
+Files ./racermate_2012.suo and /home/norm/_fssss/racermate/racermate_2012.suo are identical
+Files ./racermate_2012.v11.suo and /home/norm/_fssss/racermate/racermate_2012.v11.suo are identical
+Files ./racermate.config and /home/norm/_fssss/racermate/racermate.config are identical
+Files ./racermate.creator and /home/norm/_fssss/racermate/racermate.creator are identical
+Files ./racermate.creator.user and /home/norm/_fssss/racermate/racermate.creator.user are identical
+Files ./racermate.files and /home/norm/_fssss/racermate/racermate.files are identical
+Files ./racermate.includes and /home/norm/_fssss/racermate/racermate.includes are identical
+Files ./racermate.map and /home/norm/_fssss/racermate/racermate.map are identical
+Files ./racermate.sln and /home/norm/_fssss/racermate/racermate.sln are identical
+Files ./racermate.suo and /home/norm/_fssss/racermate/racermate.suo are identical
+Files ./racermate.vcproj and /home/norm/_fssss/racermate/racermate.vcproj are identical
+Files ./racermate.vcproj.vaio_win7.larry.user and /home/norm/_fssss/racermate/racermate.vcproj.vaio_win7.larry.user are identical
+Files ./racermate.vcxproj and /home/norm/_fssss/racermate/racermate.vcxproj are identical
+Common subdirectories: ./release and /home/norm/_fssss/racermate/release
+Files ./rmbuild.x and /home/norm/_fssss/racermate/rmbuild.x are identical
+Files ./rm.zip and /home/norm/_fssss/racermate/rm.zip are identical
+Files ./s.bat and /home/norm/_fssss/racermate/s.bat are identical
+Common subdirectories: ./.settings and /home/norm/_fssss/racermate/.settings
+Files ./spec.h and /home/norm/_fssss/racermate/spec.h are identical
+Common subdirectories: ./Template and /home/norm/_fssss/racermate/Template
+Common subdirectories: ./tmp and /home/norm/_fssss/racermate/tmp
+Common subdirectories: ./trinerd and /home/norm/_fssss/racermate/trinerd
+Files ./trinerd-executable and /home/norm/_fssss/racermate/trinerd-executable are identical
+Files ./trinerds.txt and /home/norm/_fssss/racermate/trinerds.txt are identical
+Files ./versions.h and /home/norm/_fssss/racermate/versions.h are identical
+Files ./versions.h~ and /home/norm/_fssss/racermate/versions.h~ are identical
+Common subdirectories: ./.vs and /home/norm/_fssss/racermate/.vs
+Files ./x.zip and /home/norm/_fssss/racermate/x.zip are identical

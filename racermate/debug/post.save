@@ -1,0 +1,23 @@
+
+@echo **********************************  this is dll's post.bat in ./debug ***************************************
+
+cd debug
+::@copy		racermate.dll		..\cpp_tester
+::@copy		racermate.dll		..\..\rm1\RacerMateOne_Source\RacerMateOne\bin\Debug
+::@copy		racermate.lib		..\..\rm1\RacerMateOne_Source\RacerMateOne\bin\Debug
+::@copy		racermate.pdb		..\..\rm1\RacerMateOne_Source\RacerMateOne\bin\Debug
+::@copy		racermate.dll		..\..\apps\acceleration\debug
+::@copy		racermate.dll		..\..\apps\templates\win_trainer\debug
+
+::@copy		racermate.dll		..\..\apps\physics_tester
+::@copy		racermate.dll		..\..\apps\metabolic
+::@copy		racermate.dll		..\..\apps\tts
+::@copy		racermate.dll		"..\..\apps\tts\ct tts"
+::@copy		racermate.dll		..\..\apps\slip
+::@copy		racermate.dll		..\..\apps\trainer_template
+::@copy		racermate.dll		..\..\apps\norm_logger
+::@copy		racermate.dll		..\..\apps\motion_sensor
+::@copy		racermate.dll		..\..\apps\multi\racermate.dll
+
+@echo ************************************** end of dll's post.bat *****************************************************************
+

@@ -1,0 +1,87 @@
+# to dump symbols:
+#		nm -D glib.a
+#		nm --defined-only glib.a
+
+
+SRCS = \
+	test.cpp
+
+TARGET = main
+
+#-----------------------------------------------------------------
+
+INCLUDE_PATH = \
+		-I/usr/include \
+		-I../../tinythread++ \
+		-I../../glib \
+		-I../../tlib \
+		-I../ \
+		-I.
+
+#A = /Users/larry/pcre/.libs/libpcre.a ../glib/glib.a ../tlib/tlib.a
+#		../../pcre/lib/libpcre.dll.a \
+
+LIBS = \
+		../libracermate.so \
+		../../tlib/libtlib.a \
+		../../glib/libglib.a
+
+CXX = g++
+# -O0 is for valgrind extra debugging:
+#CXXFLAGS = -fPIC -O0 -c -g -DGNU -D_THREAD_SAFE
+#CXXFLAGS = -c -fPIC -O0 -g -DGNU -D_THREAD_SAFE -D__STDC_CONSTANT_MACROS
+
+
+#CXXFLAGS = -std=gnu++0x -c -fPIC -O0 -g -D_DEBUG -DGNU -D_THREAD_SAFE -D__STDC_CONSTANT_MACROS -Wno-fpermissive
+CXXFLAGS = -std=gnu++0x -c -fPIC -O0 -g -D_DEBUG -DGNU -D_THREAD_SAFE -D__STDC_CONSTANT_MACROS
+
+
+LD = g++
+LDFLAGS = 
+OBJDIR = ./
+DEPDIR = ./
+
+OBJS = $(addprefix $(OBJDIR),$(SRCS:.cpp=.o))
+DEPS = $(addprefix $(DEPDIR),$(SRCS:.cpp=.d))
+
+.PHONY : all	
+all:
+	$(MAKE) all -C ../../glib
+	$(MAKE) all -C ../../tlib
+	$(MAKE) all -C ../
+	$(MAKE) $(TARGET)
+	ls -al $(TARGET)
+
+####$(TARGET): $(OBJS) Makefile.linux64 ../../glib/glib.a ../../tlib/tlib.a ../libracermate.so
+$(TARGET): $(OBJS) $(LIBS) Makefile Makefile.linux64
+	$(CXX) -o $@ $(OBJS) $(LIBS)
+
+%.o:%.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDE_PATH) $< -o $@
+
+# automatically generate dependencies based on all .cpp files:
+$(DEPDIR)%.d: %.cpp
+	$(CXX) -MM $(CXXFLAGS) $(INCLUDE_PATH) $< \
+		| sed 's/$*\.o/$(OBJDIR:/=\/)$*.o/g' \
+		| sed 's/$*\.o/& $(subst /,\/,$@)/g' > $@
+
+.PHONY : clean
+clean:
+	$(MAKE) clean -C ../../glib
+	$(MAKE) clean -C ../../tlib
+	$(MAKE) clean -C ../
+#	rm -f $(DEPDIR)*.d >/dev/null
+	rm -f ./*.o
+	rm -f ./*.d
+	rm -f ./libracermate.so
+	rm -f $(TARGET)
+	
+$warning(objs = $(OBJS))
+
+# include the listed cpp files' dependencies:
+
+ifneq ($MAKECMDGOALS), clean)
+include $(addprefix $(DEPDIR),$(SRCS:.cpp=.d))
+endif
+
+

@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="amplifier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="aunt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="averagetimer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="axis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bmp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clientsocket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="crc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cregexp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="crf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="csv.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dir.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="earth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="editbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="err.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fasttimer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fatalerror.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fileselector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="float2d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="globals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ini.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="inputdlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="listbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="logger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lpfilter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="md5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="modaldialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mru.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="person.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="png.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="scaler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sdirs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="serial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="signalstrengthmeter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="smav.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="statictext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="statusdlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tga.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="timeout.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tinystr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxmlerror.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxmlparser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="twopolefilter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utilsclass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="win_utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="windower.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xml.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="file_rotator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="intel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="modallistbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="splash.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wcon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="amplifier.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aunt.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="averagetimer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="axis.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="beep2.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="beepsound.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bmp.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="button.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clientsocket.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="console.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="crc.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cregexp.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="crf.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="csv.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="defines.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dir.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="earth.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="editbox.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="err.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fasttimer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fatalerror.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fileselector.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="float2d.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gentypes.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="globals.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ini.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="inputdlg.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="listbox.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="logger.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lpfilter.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="md5.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="minmax.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="modaldialog.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="model.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mru.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="person.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="png.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ref.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rider.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="round.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scaler.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sdirs.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="seh.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="serial.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="signalstrengthmeter.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="smav.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="statictext.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="statusdlg.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tga.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="timeout.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tinystr.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="twopolefilter.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utilsclass.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="win_fasttimer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="win_serial.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="win_utils.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="windower.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xml.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="file_rotator.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="intel.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glib_defines.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glib_types.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="modallistbox.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="splash.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wcon.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

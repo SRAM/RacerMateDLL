@@ -1,0 +1,8 @@
+./ctsrv/tmp/ctsrv1.cpp:struct TrainerData Ctsrv::GetTrainerData(int _ix, int _fw)  {
+./ctsrv/tmp/ctsrv1.cpp:		td = udpclients[ix]->GetTrainerData(_fw);
+./ctsrv/ctsrv1.cpp:struct TrainerData Ctsrv::GetTrainerData(int _ix, int _fw)  {
+./ctsrv/ctsrv1.cpp:		td = udpclients[ix]->GetTrainerData(_fw);
+./racermate/window/mainwindow.cpp:        td = rm.GetTrainerData(ix, fw);
+./racermate/racermate.cpp:struct TrainerData Racermate::GetTrainerData(int ix, int fw)  {
+./racermate/racermate.cpp:        fprintf(logstream, "GetTrainerData()\n");
+./racermate/racermate.cpp:}											// GetTrainerData()

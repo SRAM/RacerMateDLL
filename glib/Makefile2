@@ -1,0 +1,194 @@
+SIZE = 64
+
+# objdump -T -C glib.so
+# objdump -t -C glib.a
+# nm -g -C glib.a
+
+
+#			windower.cpp \
+#			inputdlg.cpp \
+#			modaldialog.cpp
+
+
+SRCS = \
+			tinystr.cpp \
+			tinyxml.cpp \
+			tinyxmlerror.cpp \
+			tinyxmlparser.cpp \
+			amplifier.cpp \
+			averagetimer.cpp \
+			bmp.cpp \
+			crc.cpp \
+			crf.cpp \
+			dir.cpp \
+			earth.cpp \
+			err.cpp \
+			fasttimer.cpp \
+			fatalerror.cpp \
+			fileselector.cpp \
+			float2d.cpp \
+			globals.cpp \
+			ini.cpp \
+			iobase.cpp \
+			linux_ogl.cpp \
+			linux_serial.cpp \
+			linux_utils.cpp \
+			lpfilter.cpp \
+			md5.cpp \
+			ogl.cpp \
+			person.cpp \
+			progressbar.cpp \
+			scaler.cpp \
+			signalstrengthmeter.cpp \
+			smav.cpp \
+			timer.cpp \
+			twopolefilter.cpp \
+			utilsclass.cpp \
+			utils.cpp \
+			logger.cpp \
+			tga.cpp \
+			png.cpp \
+			font.cpp \
+			freetype_font.cpp \
+			chan.cpp \
+			glavi.cpp \
+			plotter.cpp \
+			windower.cpp \
+			leak.cpp \
+			xml.cpp \
+			sdirs.cpp \
+			boxgrid.cpp \
+			pcre2.cpp
+
+
+
+
+
+
+
+LIB = glib
+#					-I/usr/include/gtk-2.0/gdk-pixbuf \
+#/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf.h
+#-I/usr/lib/glib-2.0/include \
+
+#-----------------------------------------------------------------
+
+ifeq ($(SIZE), 32)
+
+INCLUDE_PATH = -I/usr/include \
+					-I/usr/lib/jvm/java-6-sun/include/linux \
+					-I/usr/lib/jvm/java-6-sun/include \
+					-I/usr/include/atk-1.0 \
+					-I/usr/include/gdk-pixbuf-2.0 \
+					-I/usr/lib/gtk-2.0/include \
+					-I/usr/include/gtk-3.0 \
+					-I/usr/lib/x86_64-linux-gnu/glib-2.0/include \
+					-I/usr/lib/glib-2.0/include \
+					-I/usr/include/pango-1.0 \
+					-I/usr/include/cairo \
+					-I/usr/include/glib-2.0 \
+					-I/usr/include/gtk-2.0 \
+					-I../freetype/include/freetype2 \
+					-I.
+else
+INCLUDE_PATH = -I/usr/include \
+					-I/usr/lib/jvm/java-6-sun/include/linux \
+					-I/usr/lib/jvm/java-6-sun/include \
+					-I/usr/include/atk-1.0 \
+					-I/usr/include/gdk-pixbuf-2.0 \
+					-I/usr/lib/gtk-2.0/include \
+					-I/usr/include/gtk-3.0 \
+					-I/usr/lib/x86_64-linux-gnu/glib-2.0/include \
+					-I/usr/lib/glib-2.0/include \
+					-I/usr/include/pango-1.0 \
+					-I/usr/include/cairo \
+					-I/usr/include/glib-2.0 \
+					-I/usr/include/gtk-2.0 \
+					-I../freetype/include/freetype2 \
+\
+					-I/usr/include/libavcodec \
+\
+					-I.
+endif
+
+#/usr/include/libavcodec/avcodec.h
+#					-I../ffmpeg_linux/libavcodec \
+#					-I../ffmpeg_linux/libavformat \
+#					-I../ffmpeg_linux/libswscale \
+#					-I../ffmpeg_linux/libavutil \
+#not used
+
+#LIBS = \
+#		../ffmpeg_linux/libswscale/libswscale.a \
+#		../ffmpeg_linux/libavutil/libavutil.a
+
+
+AR = ar
+RANLIB = ranlib
+CXX = g++
+# -O0 is for valgrind extra debugging:
+
+ifeq ($(SIZE), 32)
+CXXFLAGS = -fPIC -c -m32 -O0 -g -DGNU -D_THREAD_SAFE -D__STDC_CONSTANT_MACROS -Wall -pedantic
+CXXFLAGS = $(CXXFLAGS) -std=gnu++0x
+else
+#CXXFLAGS = -fPIC -c -O0 -g -DGNU -D_THREAD_SAFE -D__STDC_CONSTANT_MACROS -Wall -pedantic
+CXXFLAGS = -std=gnu++0x -fPIC -c -O0 -g -DGNU -D_THREAD_SAFE -D__STDC_CONSTANT_MACROS -Wall -pedantic
+#CXXFLAGS = $(CXXFLAGS) -std=gnu++0x
+
+endif
+
+# need libc6-dev-i386 for -m32:
+#CXXFLAGS = -fPIC -O0 -g -DGNU -D_THREAD_SAFE -m32
+LD = g++
+LDFLAGS = -shared -fPIC -pthread -lpthread
+DEPDIR = ./
+OBJDIR = ./
+
+OBJS = $(addprefix $(OBJDIR),$(SRCS:.cpp=.o))
+DEPS = $(addprefix $(DEPDIR),$(SRCS:.cpp=.d))
+
+.PHONY: all	
+all: $(LIB).a $(LIB).so
+	ls -al $(LIB).a $(LIB).so
+
+# $@ is $(LIB).so here:
+
+$(LIB).so: $(OBJS) Makefile
+	$(CXX) $(LDFLAGS) $(OBJS) -o $@
+
+# $@ is $(LIB).a here:
+
+$(LIB).a: $(OBJS) Makefile
+	rm -f $@
+	$(AR) rcu $@ $(OBJS)
+	$(RANLIB) $@
+
+# $< = the .cpp file	here:
+# $@ = the .o file here:
+
+%.o:%.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCLUDE_PATH) $< -o $@
+
+
+# automatically generate dependencies based on all .cpp files:
+$(DEPDIR)%.d: %.cpp
+	$(CXX) -MM $(CXXFLAGS) $(INCLUDE_PATH) $< \
+		| sed 's/$*\.o/$(OBJDIR:/=\/)$*.o/g' \
+		| sed 's/$*\.o/& $(subst /,\/,$@)/g' > $@
+
+
+clean:
+	rm -f $(DEPDIR)*.d
+	rm -f $(OBJDIR)*.o
+	rm -f $(LIB).so
+	rm -f $(LIB).a
+
+
+# include the listed cpp files' dependencies:
+include $(addprefix $(DEPDIR),$(SRCS:.cpp=.d))
+
+#$(warning OBJS is $(OBJS))
+
+
+

@@ -1,0 +1,5 @@
+#!/bin/bash
+make
+cp ../libracermate.dylib .
+ls -al libracermate.dylib
+

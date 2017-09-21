@@ -1,0 +1,133 @@
+# to dump symbols:
+#		nm -D libglib.a
+#		nm --defined-only libglib.a
+
+#			pcre2.cpp \
+#			timer.cpp \
+#			iobase.cpp \
+
+SRCS = \
+			amplifier.cpp \
+			averagetimer.cpp \
+			bmp.cpp \
+			boxgrid.cpp \
+			crc.cpp \
+			crf.cpp \
+			dir.cpp \
+			earth.cpp \
+			err.cpp \
+			fasttimer.cpp \
+			fatalerror.cpp \
+			float2d.cpp \
+			globals.cpp \
+			ini.cpp \
+			leak.cpp \
+			linux_utils.cpp \
+			logger.cpp \
+			lpfilter.cpp \
+			md5.cpp \
+			person.cpp \
+			png.cpp \
+			scaler.cpp \
+			sdirs.cpp \
+			signalstrengthmeter.cpp \
+			smav.cpp \
+			tinystr.cpp \
+			tinyxml.cpp \
+			tinyxmlerror.cpp \
+			tinyxmlparser.cpp \
+			twopolefilter.cpp \
+			ucon.cpp \
+			unix_serial.cpp \
+			utilsclass.cpp \
+			utils.cpp \
+			windower.cpp \
+			xml.cpp
+
+
+
+
+
+LIB = libglib
+
+INCLUDE_PATH = -I/usr/include \
+					-I/usr/lib/jvm/java-6-sun/include/linux \
+					-I/usr/lib/jvm/java-6-sun/include \
+					-I/usr/include/atk-1.0 \
+					-I/usr/include/gdk-pixbuf-2.0 \
+					-I/usr/lib/gtk-2.0/include \
+					-I/usr/include/gtk-3.0 \
+					-I/usr/lib/x86_64-linux-gnu/glib-2.0/include \
+					-I/usr/lib/glib-2.0/include \
+					-I/usr/include/pango-1.0 \
+					-I/usr/include/cairo \
+					-I/usr/include/glib-2.0 \
+					-I/usr/include/gtk-2.0 \
+					-I../freetype/include/freetype2 \
+\
+					-I/usr/include/libavcodec \
+\
+					-I.
+
+
+
+AR = ar
+RANLIB = ranlib
+CXX = g++
+
+# -O0 is for valgrind extra debugging:
+#CXXFLAGS = -fPIC -c -O0 -g -DGNU -D_THREAD_SAFE -D__STDC_CONSTANT_MACROS -Wall -pedantic
+CXXFLAGS = -std=gnu++0x -fPIC -c -O0 -g -DGNU -D_DEBUG -D_THREAD_SAFE -D__STDC_CONSTANT_MACROS -Wall -pedantic -Wno-unused-but-set-variable -Wno-unused-variable -Wno-write-strings
+#CXXFLAGS = $(CXXFLAGS) -std=gnu++0x
+
+
+# need libc6-dev-i386 for -m32:
+#CXXFLAGS = -fPIC -O0 -g -DGNU -D_THREAD_SAFE -m32
+LD = g++
+#LDFLAGS = -shared -fPIC -lpthread -static
+LDFLAGS = -shared -fPIC -static
+DEPDIR = ./
+OBJDIR = ./
+
+OBJS = $(addprefix $(OBJDIR),$(SRCS:.cpp=.o))
+DEPS = $(addprefix $(DEPDIR),$(SRCS:.cpp=.d))
+
+.PHONY: all	
+all: $(LIB).a
+	ls -al $(LIB).a
+
+# $@ is $(LIB).a here:
+
+$(LIB).a: $(OBJS) Makefile.linux64
+	rm -f $@
+	$(AR) rcu $@ $(OBJS)
+	$(RANLIB) $@
+
+# $< = the .cpp file	here:
+# $@ = the .o file here:
+
+%.o:%.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCLUDE_PATH) $< -o $@
+
+
+# automatically generate dependencies based on all .cpp files:
+$(DEPDIR)%.d: %.cpp
+	$(CXX) -MM $(CXXFLAGS) $(INCLUDE_PATH) $< \
+		| sed 's#$*\.o#$(OBJDIR:/=\/)$*.o#g' \
+		| sed 's#$*\.o#& $(subst /,\/,$@)#g' > $@
+
+
+clean:
+	rm -f $(DEPDIR)*.d 2> /dev/null
+	rm -f $(OBJDIR)*.o
+	rm -f $(LIB).a
+
+
+# include the listed cpp files' dependencies:
+ifneq ($MAKECMDGOALS), clean)
+include $(addprefix $(DEPDIR),$(SRCS:.cpp=.d))
+endif
+
+
+#$(warning OBJS is $(OBJS))
+

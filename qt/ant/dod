@@ -1,0 +1,66 @@
+#!/bin/bash
+
+#Usage: ./qmake [mode] [options] [files]
+#
+#QMake has two modes, one mode for generating project files based on
+#some heuristics, and the other for generating makefiles. Normally you
+#shouldn't need to specify a mode, as makefile generation is the default
+#mode for qmake, but you may use this to test qmake on an existing project
+#
+#Mode:
+#  -project       Put qmake into project file generation mode
+#                 In this mode qmake interprets files as files to
+#                 be built,
+#                 defaults to *; *; *; *.ts; *.xlf; *.qrc
+#                 Note: The created .pro file probably will 
+#                 need to be edited. For example add the QT variable to 
+#                 specify what modules are required.
+#  -makefile      Put qmake into makefile generation mode (default)
+#                 In this mode qmake interprets files as project files to
+#                 be processed, if skipped qmake will try to find a project
+#                 file in your current working directory
+#
+#Warnings Options:
+#  -Wnone         Turn off all warnings; specific ones may be re-enabled by
+#                 later -W options
+#  -Wall          Turn on all warnings
+#  -Wparser       Turn on parser warnings
+#  -Wlogic        Turn on logic warnings (on by default)
+#  -Wdeprecated   Turn on deprecation warnings (on by default)
+#
+#Options:
+#   * You can place any variable assignment in options and it will be     *
+#   * processed as if it was in [files]. These assignments will be parsed *
+#   * before [files].                                                     *
+#  -o file        Write output to file
+#  -d             Increase debug level
+#  -t templ       Overrides TEMPLATE as templ
+#  -tp prefix     Overrides TEMPLATE so that prefix is prefixed into the value
+#  -help          This help
+#  -v             Version information
+#  -after         All variable assignments after this will be
+#                 parsed after [files]
+#  -norecursive   Don't do a recursive search
+#  -recursive     Do a recursive search
+#  -set <prop> <value> Set persistent property
+#  -unset <prop>  Unset persistent property
+#  -query <prop>  Query persistent property. Show all if <prop> is empty.
+#  -cache file    Use file as cache           [makefile mode only]
+#  -spec spec     Use spec as QMAKESPEC       [makefile mode only]
+#  -nocache       Don't use a cache file      [makefile mode only]
+#  -nodepend      Don't generate dependencies [makefile mode only]
+#  -nomoc         Don't generate moc targets  [makefile mode only]
+#  -nopwd         Don't look for files in pwd [project mode only]
+
+
+if [ ! -d Desktop_Qt_5_6_1_GCC_64bit-Debug ]; then
+ mkdir Desktop_Qt_5_6_1_GCC_64bit-Debug
+fi
+
+
+cd Desktop_Qt_5_6_1_GCC_64bit-Debug
+$HOME/Qt/5.6/gcc_64/bin/qmake ../ant.pro -r -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
+make clean
+make | tee x.x
+
+

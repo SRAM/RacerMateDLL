@@ -1,0 +1,369 @@
+#ifndef _X_UDPCLIENT2_H_X_
+#define _X_UDPCLIENT2_H_X_
+
+#include <stdio.h>
+#include <QtCore>
+#include <QUdpSocket>
+
+#include <sdirs.h>
+#include <qt_ss.h>
+
+#include <rider2.h>
+#include <coursefile.h>
+
+#include <qt_data.h>
+
+#include <metadata.h>
+#include <rmdefs.h>
+#include <rmconst.h>
+#include <trainerdata.h>
+#include <ssdata.h>
+#include <qtformula.h>
+
+#include <tmr.h>
+
+namespace RACERMATE  {
+
+	class UDPClient : public QObject  {
+			Q_OBJECT
+
+			friend class Ctsrv;
+			friend class ctsrvWorker;
+
+		public:
+			struct COMSTATS  {
+				unsigned long ubermsgs = 0L;
+				unsigned long gooddevnums = 0L;
+				unsigned short indiff = 0;
+				unsigned long seqnum = 0L;							// received sequence number
+				unsigned long xseqnum = 0L;						// xmit pkt sequence #
+			};
+			explicit UDPClient(QString _key, int _debug_level = 1, QObject *parent = 0);
+
+			~UDPClient();
+
+#ifndef NBARS
+			static const int NBARS = 24;
+#endif
+
+			enum LoggingType {
+				NO_LOGGING,
+				RAW_PERF_LOGGING,
+				THREE_D_PERF_LOGGING,
+				RM1_PERF_LOGGING
+			};
+
+			void close_log_file(void);
+			void process(void);
+			//FILE *rxstream;
+			//FILE *txstream;
+			unsigned long outpackets;
+			unsigned long bytes_out;
+
+			RACERMATE::qt_SS *ss;                          // todo: make private
+			// move definitions to common area +++
+			METADATA meta;
+			// move definitions to common area ---
+
+			float get_watts_factor(void);
+			int end_cal(void);
+			float *get_average_bars(void);
+			float *get_bars(void);
+			//qt_SS::BARINFO *get_barinfo(int i);
+			void calc_tp(float _watts);
+
+			float get_ftp(void);
+			int get_handlebar_buttons(void);
+			bool is_connected(void) { return connected_to_trainer;  }
+			bool is_paused(void);
+			int reset_stats(void);
+			int reset(void);
+			int rx(unsigned char *_buf, int _buflen);
+			int set_ergo_mode(int _fw, unsigned short _rrc, float _manwatts);
+			void set_export(const char *);
+			void set_file_mode(bool _mode);
+			void set_ftp(float _ftp);
+			int set_hr_bounds(int _minhr, int _maxhr, bool _beepEnabled);
+			void set_paused(bool _paused);
+			int start_cal(void);
+			void set_lbs(float _person_lbs, float _bike_lbs);
+			void set_kgs(float _person_kgs, float _bike_kgs);
+			float get_cal(void);
+			unsigned short get_fw(void);
+			int get_status_bits(void);
+
+		private:
+#define MSGLEN 256
+
+#define	E_CSM		-1
+#define	E_LEN		-2
+#define	E_CLEN	-3
+
+			typedef struct {
+				unsigned long time;
+				unsigned char buf[6];
+			} RAW_COMPUTRAINER_LOGPACKET;
+
+			// used for both directions
+
+			enum {
+				STAT_MPH,
+				STAT_HR,
+				STAT_WATTS,
+				STAT_RPM,
+				NSTATS
+			};
+
+			struct CTDATA {							// stuff that is sent to the computrainer
+					unsigned short hbdevnum;		// target hb devnum, must match this hb
+					unsigned char control_byte;
+					short grade;						// signed grade percent * 10
+					char wind;							// signed wind mph
+					unsigned short weight;			// unsigned lbs
+					unsigned short manwatts;		// unsigned watts
+					unsigned short minhr;			// minimum hr limit, 40 to 254, 0 disables it
+					unsigned short maxhr;			// max hr limit, min+1 to 255, 0 disables
+					unsigned short adrag;			// aero drag, lbs@30mph * 256
+					unsigned short tdrag;			// tire drag, lbs * 256
+			};
+			struct CTDATA ctdata;
+
+			typedef struct  {							// stuff that is set by the app, app level control
+					int	hbdevnum;
+					unsigned char control_byte;
+					unsigned char last_control_byte;
+					//bool paused;
+					float	f_grade;
+					float	f_wind_mph;
+					float f_draft_wind_mph;
+					float	f_weight;
+					int	minhr;
+					int	maxhr;
+					int	hrenable;
+					float	f_aerodrag;
+					float	f_tdrag;
+					float	f_manwatts;
+			} FROMAPP;
+
+			FROMAPP fromapp;									// data coming in from rm1, cppt, etc.
+
+			struct NHBDATA {
+					unsigned short version;
+
+					unsigned short devnum;
+					unsigned short pktnum;
+					unsigned char keys;
+					unsigned char keypress;
+					float f_mph;
+					unsigned short watts;
+					unsigned char hrflags;
+					unsigned char hrate;
+					unsigned char rpmflags;
+					unsigned char rpm;
+					unsigned char minhr;
+					unsigned char maxhr;
+					float f_rdrag;
+					int rd_measured;
+					unsigned short slip;
+					int stat;                  // 32 bits of status3 .. 0
+
+					//spinscan stuff
+					unsigned short prevturns;  // crank turn count, storage for increase
+					unsigned short prevtime;   // time of last turn, 10ms steps
+					int turns;                 // increase in turn count
+					int deltat;                // time difference, 10 ms steps
+					float f_peak;              // load at peak bar==200, lbs * 256
+					unsigned char bars[24];    // bars, 0 - 200
+			};							// struct NHBDATA
+			struct NHBDATA nhbd;
+
+			COMSTATS comstats;
+
+			qtFormula *formula = NULL;
+			float ftp = 0.0f;
+
+			// id things
+			unsigned short lastdevnum;
+			//unsigned short devnum;
+			QString key;
+			QString appkey;
+			int comport;                     // 201-216
+			char ipstr[128];
+
+			int reconnects;
+			QHostAddress saved_peeraddr;
+			QHostAddress peeraddr;
+			quint16 saved_peerport;
+			quint16 peerport;
+
+			// comstats:
+			unsigned long ubermsgs;
+			unsigned long gooddevnums;
+			unsigned short indiff;
+			unsigned long seqnum;							// received sequence number
+			unsigned long xseqnum;						// xmit pkt sequence #
+
+			int set_grade(float _bike_kgs, float _person_kgs, float _drag_factor, int _igradex10);		// sets windload mode
+
+			void set_wind(float _wind_kph);
+			void set_draft_wind(float _draft_wind_kph);
+			qint64 lastlogtime;
+			qint64 lastminutetime;
+			//QFile file;
+			FILE *logstream = NULL;
+			char logname[256] = {0};
+			Qt::HANDLE tid;
+			qint64 startms;
+
+#ifndef RXQLEN
+			const static int RXQLEN = 2048;
+#endif
+			QString timestr;
+#define TIMEFORMAT "yyyy-MM-dd hh:mm:ss.zzz"						// 2016-02-15 01:23:45.678
+
+			struct TrainerData GetTrainerData(int _fw=0);
+			TrainerData td;
+
+//			QString program_dir;
+//			QString personal_dir;
+//			QString settings_dir;
+//			QString debug_dir;
+			SDIRS *sdirs=NULL;
+
+			int debug_level;
+			bool connected_to_trainer;
+			char xprtname[256];
+			FILE *export_stream=NULL;
+			bool filemode;
+			bool BeepEnabled;
+
+			int SETVAL(int min, int max, int num);
+			int send_ctlmsg(int msgtype);
+			int gen_devnum( unsigned char * buf, int ix);
+			int gen_hbctl( unsigned char * buf, int ix);
+			unsigned short pcdevnum;
+			RACERMATE::Tmr *at;
+			int get_devnum(int len);
+			int decode_ss(int ix);
+			void  decode_slow(int ix, struct NHBDATA* d);
+			void  decode_fast(int ix, struct NHBDATA* d);
+#define XORVAL 0xff
+#define RPM_VALID 0x08
+			int msgcnt;
+			int msgversion;
+			int hbdevnum;
+			int hbversion;
+			bool finished;
+			bool finishEdge;
+			bool hrbeep_enabled;
+			bool hrvalid;
+			bool registered;
+			bool slipflag;
+			bool started;
+			QT_DATA data;
+			double aerodrag;
+			double mps;
+			DWORD lastidletime;
+			DWORD packets;
+			//FILE *outstream;
+			float accum_hr;
+			float accum_kph;
+			float accum_rpm;
+			float accum_watts;
+			//float draft_wind;
+			float grade;                             // sent float grade, controlled by course or manually
+			float igradex10;
+			float last_export_grade;
+			float manwts;
+			float pedalrpm;
+			float raw_rpm;
+			float rawspeed;
+			float tiredrag;
+			float wind;
+			int accum_hr_count;              // used for ergvid
+			int accum_kph_count;             // used for ergvid
+			int accum_rpm_count;             // used for ergvid
+			int accum_tdc;
+			int accum_watts_count;           // used for ergvid
+			int bp;
+			int ilbs;                        // rd.kgs converted to in lbs for transmitter
+			int packetIndex;
+			int parity_errors;               // keys byte parity bit
+			int rxinptr;
+			int rxoutptr;
+			int serialport;                                          // associated serial port for this client
+			int sscount;
+			int tick;
+			int txinptr;
+			int txoutptr;
+			LoggingType logging_type;
+			PerfPoint pp;
+			QAbstractSocket::SocketState socket_state;
+			qint64 lastbeeptime;
+			qint64 last_good_data_time;
+			qint64 lastWriteTime;
+			RAW_COMPUTRAINER_LOGPACKET lp;
+			Rider2 rider;
+			std::vector<float> calories;
+			std::vector<float> winds;
+			unsigned char accum_keys;
+			unsigned char idle_packet[7];
+			unsigned char is_signed;
+			unsigned char keydown;
+			unsigned char keys;                             // the 6 hb keys + the polar heartrate bit
+			unsigned char keyup;
+			unsigned char last_nhbd_keys;
+			unsigned char newmask[6];
+			unsigned char packet[16 + 1];
+			unsigned char pkt_mask[6];
+			unsigned char rawpacket[6];
+			unsigned char rpmValid;
+			unsigned char rxq[RXQLEN];
+			unsigned char txbuf[6];                         // used in updateHardware()
+			unsigned char tx_select;
+			unsigned long bytes_in;
+			unsigned long incomplete;
+			unsigned long inpackets;
+			unsigned long ptime;
+			unsigned long recordsOut;
+			unsigned short hbstatus;
+			unsigned short rpmflags;
+			unsigned short slip;
+			unsigned short version;
+			int datagrams;
+			void beep(void);
+			int init(void);
+			int updateHardware(void);
+
+#ifdef _DEBUG
+			void hexdump(unsigned char *buf, int len, QString pre = "", QString post = "");
+			COMSTATS *get_comstats(void);
+#endif
+
+			SSDATA old_ss_data;
+			SSDATA get_ss_data(int _fw);
+
+			unsigned char datagram[MSGLEN];    // extracted complete udp packet
+			int mstate;                   // pkt finder state machine
+			int minptr;                   //
+			int bad_msg;                  // bad pkt counter
+			int csum;
+			int msglen;
+			int datalen;
+			int get_ubermsg(void);
+
+		private slots:
+
+		signals:
+			void connected_to_trainer_signal(QString, bool);
+			void ctlmsg_signal(QString, unsigned char *, int);
+			void data_signal(QString, QT_DATA *);
+			void ss_signal(QString, qt_SS::SSD *);									// emit this every 100 ms
+			int rescale_signal(QString, int);
+	};                            // class CLIENT
+}											// namespace
+
+
+#endif                        // #ifndef _X_CLIENT_H_X_
+
+

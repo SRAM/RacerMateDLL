@@ -1,0 +1,1608 @@
+#include <QHostAddress>
+#include <memory.h>
+
+//#ifdef WIN32
+//	#include <shlobj.h>
+//#endif
+
+
+#include <rmdefs.h>
+#include <computrainer.h>
+#include "udp_client.h"
+
+namespace RACERMATE  {
+
+/**********************************************************************
+	id starts at 0
+**********************************************************************/
+
+UDPClient::UDPClient(QString _key, int _debug_level, QObject *parent) : QObject(parent) {
+	key = _key;
+
+	debug_level = _debug_level;
+	init();
+	return;
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+UDPClient::~UDPClient() {
+
+	DEL(ss);
+	DEL(at);
+	//close_log_file();
+
+	if (debug_level > 1)  {
+		fprintf(logstream, "client %s done\n", key.toUtf8().constData());
+		fflush(logstream);
+	}
+
+	DEL(formula);
+
+	if (debug_level > 1)  {
+		fprintf(logstream, "done x\n");
+		fflush(logstream);
+	}
+
+#ifdef _DEBUG
+	QString s;
+	s = sdirs->get_debug_dir() + "udp.log";
+	bool b = QFile::copy(logname, s);				// src, dest
+	Q_UNUSED(b);
+#endif
+
+	DEL(sdirs);
+	FCLOSE(logstream);
+	return;
+}							// destructor
+
+/**********************************************************************
+
+**********************************************************************/
+
+int UDPClient::init(void) {
+
+	ftp = 0.0f;
+	formula = new qtFormula(ftp);
+	reconnects = 0;
+	ubermsgs = 0L;
+	gooddevnums = 0L;
+	indiff = 0L;
+
+	lastdevnum = 0;
+	peeraddr = "";
+	peerport = 0;
+	saved_peeraddr.clear();
+	saved_peerport = 0;
+
+	//debug_level = 2;
+	// 0 = no logging, no log file created
+	// 1 = minimal debugging, logs things that shouldn't happen
+	// 2 = more verbose
+
+	sdirs = new SDIRS(debug_level, "rmserver");
+
+	if (debug_level > 0) {
+		QString s;
+
+//		QString s = sdirs->get_debug_dir() + "worker.log";
+//		strncpy(logname, s.toUtf8().constData(), sizeof(logname)-1);
+//		logstream = fopen(logname, "wt");
+
+//#ifndef _DEBUG
+	//QString s;
+	s = sdirs->get_debug_dir() + "udp" + key + ".log";
+	//bool b = QFile::copy(logname, s);				// src, dest
+	//Q_UNUSED(b);
+//#endif
+
+
+		//s = sdirs->get_debug_dir() + "udp.log";
+		//s = sdirs->get_debug_dir() + "udp" + key + ".log";
+		//s.replace(" ", "_");
+		strncpy(logname, s.toUtf8().constData(), sizeof(logname)-1);
+		logstream = fopen(logname, "wt");
+		QDateTime dt = QDateTime::currentDateTime();
+		s = dt.toString("yyyy-MM-dd-hh-mm-ss");
+		fprintf(logstream, "%s starting at %s, debug_level = %d\n\n",
+				  logname, s.toUtf8().constData(), debug_level);
+		fflush(logstream);
+	}           // if (debug_level > 0)
+
+
+	memset(&nhbd, 0, sizeof(nhbd));
+
+	connected_to_trainer = false;
+	xseqnum = 0;                  // xmit pkt sequence #
+	pcdevnum = 12345;
+
+	seqnum = -1;                     // received sequence number
+	tid = QThread::currentThreadId();
+
+#ifdef _DEBUG
+	//qDebug() << "         UDPClient(): tid = " << QThread::currentThreadId();
+#endif
+
+	startms = QDateTime::currentMSecsSinceEpoch();     // qint64
+	lastlogtime = startms;
+#ifdef WIN32
+	lastminutetime = 0;
+#endif
+
+	// these will be copied to ctdata in updateHardware
+
+	fromapp.hbdevnum = 12345;
+	fromapp.control_byte = 0;           // default to invalid
+	fromapp.f_grade = 0.0f;
+	fromapp.f_wind_mph = 0.0f;
+	fromapp.f_draft_wind_mph = 0.0f;
+	fromapp.f_weight = 0.0f;               // 180.0f;
+	fromapp.minhr = 0;
+	fromapp.maxhr = 0;
+	fromapp.hrenable = 0;
+	fromapp.f_aerodrag = 8.0f;
+	fromapp.f_tdrag = 0.0f;                      // 180.0f*0.006f;
+	fromapp.f_manwatts = 0.0f;
+
+	char str[32];
+	sprintf(str, "udpc-%s", key.toUtf8().constData());
+
+	at = new Tmr(str);
+
+	datagrams = 0;
+	mstate = 0;                   // pkt finder state machine
+	minptr = 0;                   //
+	bad_msg = 0;                  // bad pkt counter
+
+	msgversion = 0;
+	hbdevnum = 0;
+	hbversion = 0;
+	msgcnt = 0;
+//	rxstream = NULL;
+//	txstream = NULL;
+
+	outpackets = 0;
+	bytes_out = 0;
+
+	if (debug_level > 1)  {
+		fprintf(logstream, "ok1\n");
+		fflush(logstream);
+	}
+
+	comport = 0;                  // 201-216
+	memset(ipstr, 0, sizeof(ipstr));
+	ss = NULL;
+	ss = new qt_SS();
+
+	memset(idle_packet, 0, sizeof(idle_packet));
+	idle_packet[6] = 0x80;
+	memset(ipstr, 0, sizeof(ipstr));
+	memset(rxq, 0, sizeof(rxq));
+	memset(rawpacket, 0, sizeof(rawpacket));
+
+	finished = false;
+	finishEdge = false;
+	hrbeep_enabled = false;
+	hrvalid = false;
+	registered = true;
+	slipflag = false;
+	started = false;
+
+	if (debug_level > 1)  {
+		fprintf(logstream, "ok2\n");
+		fflush(logstream);
+	}
+
+	data.reset();
+
+	aerodrag = 8.0;
+	tiredrag = .006f;
+
+	lastidletime = 0L;
+	packets = 0L;
+//	outstream = NULL;
+	accum_hr = 0.0f;
+	accum_kph = 0.0f;
+	accum_rpm = 0.0f;
+	accum_watts = 0.0f;
+
+	igradex10 = 0;
+	grade = (float)igradex10 / 10.0f;
+
+	last_export_grade = 0.0f;
+	manwts = 0.0f;
+	pedalrpm = 0.0f;
+	raw_rpm = 0.0f;
+	rawspeed = 0.0f;
+	tiredrag = 0.0f;
+	wind = 0.0f;
+	accum_hr_count = 0;                 // used for ergvid
+	accum_kph_count = 0;                // used for ergvid
+	accum_rpm_count = 0;                // used for ergvid
+	accum_tdc = 0;
+	accum_watts_count = 0;              // used for ergvid
+	bp = 0;
+	ilbs = 0;                           // rd.kgs converted to in lbs for transmitter
+	packetIndex = 0;
+	parity_errors = 0;                  // keys byte parity bit
+	rxinptr = 0;
+	rxoutptr = 0;
+	serialport = 0;                                             // associated serial port for this client
+	sscount = 0;
+	tick = 0;
+	txinptr = 0;
+	txoutptr = 0;
+	logging_type = NO_LOGGING;
+	socket_state = QAbstractSocket::ConnectedState;          // assume connectedstate for now
+	lastbeeptime = 0;
+	last_good_data_time = 0;
+	lastWriteTime = 0;
+	lp.time = 0;
+	memset(lp.buf, 0, sizeof(lp.buf));
+
+	accum_keys = 0;
+	is_signed = 0;
+	keydown = 0;
+	keyup = 0;
+	last_nhbd_keys = 0;
+	newmask[0] = KEY1;
+	newmask[1] = KEY4;
+	newmask[2] = KEY5;
+	newmask[3] = KEY3;
+	newmask[4] = KEY2;
+	newmask[5] = KEY6;
+
+	memset(pkt_mask, 0, sizeof(pkt_mask));
+
+	pkt_mask[0] = 0x60;
+	pkt_mask[1] = 0x50;
+	pkt_mask[2] = 0x48;
+	pkt_mask[3] = 0x44;
+	pkt_mask[4] = 0x42;
+	pkt_mask[5] = 0x41;
+
+	rpmValid = 0;
+	tx_select = 0;
+	bytes_in = 0;
+	incomplete = 0;
+	inpackets = 0;
+	ptime = 0;
+	recordsOut = 0;
+	hbstatus = 0;
+	rpmflags = 0;
+	slip = 0;
+	version = 0;
+	mps = 0.0;
+
+	if (debug_level > 1)  {
+		fprintf(logstream, "ok3\n");
+		fflush(logstream);
+	}
+
+	memset(&ctdata, 0, sizeof(ctdata));
+//	if (debug_level > 0 && file.isOpen()) {
+//		QTextStream stream(&file);
+//		QDateTime dt = QDateTime::currentDateTime();
+//		timestr = dt.toString(TIMEFORMAT);
+//		stream << timestr;
+//		stream << ", UDPClient:::init() done";
+//		stream << endl;
+//		stream.flush();
+//		file.flush();
+//	}
+
+	if (debug_level > 1)  {
+		fprintf(logstream, "client %s created\n", key.toUtf8().constData());
+		fflush(logstream);
+	}
+
+	return 0;
+}                          // CLIENT::init()
+
+/**********************************************************************
+
+**********************************************************************/
+
+int UDPClient::SETVAL(int min, int max, int num) {
+	return (num < min ? min : num > max ? max : num) & 0xffff;
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+int UDPClient::send_ctlmsg(int msgtype) {
+
+	unsigned char obuf[256] = { 'R', 'M', 'P', 'C' };
+
+	int i, start;
+	int j = 4;        // obuf index starting after RMPC
+	int csm;          //, cs;
+
+	if ( msgtype == 0) {
+		return 0;
+	}
+	xseqnum++;
+	xseqnum &= 0xffff;
+
+	start = j++;         // save payload start ix for overall length, leave room for it
+	j++;                 // space for ~start
+
+	j = gen_devnum(obuf, j);
+
+	if (msgtype & 0x02) {
+		j = gen_hbctl(obuf, j);
+	}
+
+	obuf[j++] = 0;                   // put section = 0 for end of data
+
+	obuf[start] = j - start;         // put payload size to overall byte count
+	obuf[start + 1] = ~obuf[start];  // put complement of payload size to overall byte count
+
+	csm = 0;
+	for ( i = 0; i < j; i++) {
+		csm += obuf[i];      // checksum from start to sect 0
+	}
+
+	obuf[j++] = -csm  & 0xff;  // should add up to zero
+
+	emit ctlmsg_signal(key, obuf, j);
+
+	return 0;
+}                             // send_ctlmsg()
+
+/*******************************************************************************
+	make the devnum secton
+*******************************************************************************/
+
+int UDPClient::gen_devnum( unsigned char * buf, int ix) {
+	int j = ix;
+
+	int secstart = j++;     // uber-header start, save space
+
+	buf[j++] = SECT_DEVNUM;
+
+	buf[j++] = (pcdevnum >> 8) & 0xff;
+	buf[j++] = pcdevnum & 0xff;
+
+
+	buf[j++] = (xseqnum >> 8) & 0xff;
+	buf[j++] = xseqnum & 0xff;
+
+	buf[secstart] = j - secstart; // put uber-header data size
+
+	return j;
+}                                      // gen_devnum()
+
+/**********************************************************************
+	make the hb control secton
+**********************************************************************/
+
+int UDPClient::gen_hbctl( unsigned char * buf, int ix) {
+	int j = ix;
+
+	int secstart = j++;     // uber-header start, reserve space
+
+	buf[j++] = SECT_HBCTL;
+
+	buf[j++] = (ctdata.hbdevnum >> 8) & 0xff;
+	buf[j++] = ctdata.hbdevnum & 0xff;
+
+	buf[j++] = ctdata.control_byte & 0xff;
+
+	buf[j++] = (ctdata.grade >> 8) & 0xff;
+	buf[j++] = ctdata.grade & 0xff;
+
+	buf[j++] = ctdata.wind & 0xff;
+
+	buf[j++] = (ctdata.weight >> 8) & 0xff;
+	buf[j++] = ctdata.weight & 0xff;
+
+	buf[j++] = (ctdata.manwatts >> 8) & 0xff;
+	buf[j++] = ctdata.manwatts & 0xff;
+
+	buf[j++] = ctdata.minhr & 0xff;
+
+	buf[j++] = ctdata.maxhr & 0xff;
+
+	buf[j++] = (ctdata.adrag >> 8) & 0xff;
+	buf[j++] = ctdata.adrag & 0xff;
+
+	buf[j++] = (ctdata.tdrag >> 8) & 0xff;
+	buf[j++] = ctdata.tdrag & 0xff;
+
+	buf[secstart] = j - secstart; // put uber-header data size
+
+	return j;
+}                                // gen_hbctl()
+
+
+/**********************************************************************
+
+**********************************************************************/
+
+int UDPClient::updateHardware(void) {
+
+	ctdata.hbdevnum = fromapp.hbdevnum & 0xffff;
+	ctdata.control_byte = fromapp.control_byte & 0xff;
+	ctdata.grade = SETVAL(-150, 150, (int)(fromapp.f_grade * 10.0f));
+
+	ctdata.wind = SETVAL(-50, 50, (int)(fromapp.f_wind_mph + fromapp.f_draft_wind_mph));
+	ctdata.weight = SETVAL(0, 500, (int)fromapp.f_weight);
+
+#ifdef _DEBUG
+	if (fromapp.f_wind_mph > .5f) {
+		bp = 1;
+	}
+#endif
+
+	ctdata.manwatts = SETVAL(0, 2000, (int)fromapp.f_manwatts);
+	ctdata.minhr = fromapp.hrenable ?  SETVAL(0, 198, fromapp.minhr) : 0;
+	ctdata.maxhr = fromapp.hrenable ?  SETVAL(0, 198, fromapp.maxhr) : 0;
+	ctdata.adrag = SETVAL(0, 4095, (int)(fromapp.f_aerodrag * 256.0f));
+	ctdata.tdrag = SETVAL(0, 4095, (int)(fromapp.f_tdrag * 256.0f));
+
+	int status = send_ctlmsg(3);
+
+	if (status == -1) {
+		return -1;
+	}
+
+	return 0;
+}                          // updateHardware()
+
+
+/**********************************************************************************************
+
+**********************************************************************************************/
+
+void UDPClient::beep(void) {
+	//QApplication :: beep();
+	return;
+}
+
+
+#ifdef _DEBUG
+/*********************************************************************************************************************************
+
+*********************************************************************************************************************************/
+
+void UDPClient::hexdump(unsigned char *buf, int len, QString pre, QString post) {
+	QString s;
+	int i;
+
+	s = pre;
+
+	for (i = 0; i < len - 1; i++) {
+		s += QString::number(buf[i], 16);
+		s += " ";
+	}
+	s += QString::number(buf[i], 16);
+	s += post;
+
+	qDebug() << s;
+	return;
+}
+#endif
+
+
+/*********************************************************************************************************************************
+	called every 10 ms from ctsrv worker thread timeout
+*********************************************************************************************************************************/
+
+void UDPClient::process(void) {
+	int n;
+
+#ifdef _DEBUG
+	//if (id==0)  {
+	//at->update();								// 10.00 ms
+	//}
+#endif
+	qint64 now;
+	now = QDateTime::currentMSecsSinceEpoch();
+
+//	if (last_good_data_time==0)  {
+//		last_good_data_time = now;
+//	}
+
+	// could put in a while loop, but we'll be back here int 10 ms
+
+	n = get_ubermsg();
+	//at->update();												// 10 ms
+
+	if (n == 0) {                                       // rxq is empty, might as well exit while
+#ifdef _DEBUG
+		bp = 7;
+#endif
+	}
+	else if (n < 0 )
+	{
+//		if (debug_level > 0 && file.isOpen()) {
+//			QTextStream stream(&file);
+//			QDateTime dt = QDateTime::currentDateTime();
+//			timestr = dt.toString(TIMEFORMAT);
+//			stream << timestr;
+//			stream << ", error: get_ubermsg error = " << n;
+//			stream << endl;
+//			stream.flush();
+//			file.flush();
+//		}
+	}
+	else  {                                            // n > 0
+		// n > 0 here, got a good RMCT wrapper
+
+		// new error checking+++
+
+#ifdef _DEBUG
+		if (n != 20) {
+			bp = 8;
+		}
+#endif
+
+		if (datagram[0] == 0) {
+//			QTextStream stream(&file);
+//			QDateTime dt = QDateTime::currentDateTime();
+//			timestr = dt.toString(TIMEFORMAT);
+//			stream << timestr;
+//			stream << ", error: No sections in datagram";
+//			stream << endl;
+//			stream.flush();
+//			file.flush();
+			//retval = E_NSECT;
+		}
+
+		// verify the section chain
+		int i;
+
+		for (i = datagram[0]; i < n; i += datagram[i]) {
+			if (datagram[i] == 0) {
+				break;
+			}
+		}
+		if (i != (n - 1)) {
+//			QTextStream stream(&file);
+//			QDateTime dt = QDateTime::currentDateTime();
+//			timestr = dt.toString(TIMEFORMAT);
+//			stream << timestr;
+//			stream << ", error: Bad chain: i = " << QString::number(i) << " n = " << n;
+//			stream << endl;
+//			stream.flush();
+//			file.flush();
+			//retval = E_WALK;
+		}
+		// new error checking---
+
+		int ix;
+		unsigned short stat;
+
+		ubermsgs++;
+		//at->update();											// 166.4 ms
+
+		nhbd.devnum = get_devnum(n);   // test the sect chain and get devnum	xxz
+
+#ifdef _DEBUG
+		QString s;
+		if (nhbd.devnum != 0) {
+			bp = 1;
+		}
+#endif
+
+		seqnum = datagram[4] << 8 | datagram[5];
+		stat = nhbd.stat >> 16;
+		Q_UNUSED(stat);
+
+		indiff = ((seqnum & 0x0000ffff) - (ubermsgs & 0x0000ffff)) & 0x0000ffff;
+
+		now = QDateTime::currentMSecsSinceEpoch();
+
+//		if (debug_level > 1 && file.isOpen()) {
+//			if ((now - lastlogtime) >= 1000) {
+//				lastlogtime = now;
+//				QTextStream stream(&file);
+//				QDateTime dt = QDateTime::currentDateTime();
+//				timestr = dt.toString(TIMEFORMAT);
+//				stream << timestr;
+//				stream << QString("   st: %1").arg(stat, 5, 10, QChar(' '));
+//				stream << QString(" idif: %1").arg(indiff, 5, 10, QChar(' '));
+//				stream << QString(" iseq: %1").arg(seqnum, 5, 10, QChar(' '));
+//				stream << QString(" oseq: %1").arg(xseqnum, 5, 10, QChar(' '));
+//				stream << QString(" bi: %1").arg(bytes_in, 5, 10, QChar(' '));
+//				stream << QString(" bo: %1").arg(bytes_out, 5, 10, QChar(' '));
+//				stream << endl;
+//				stream.flush();
+//				file.flush();
+//			}
+//		}
+
+		if (nhbd.devnum > 0) {                   // -1 or 0? is badness
+			gooddevnums++;
+			//devnum = nhbd.devnum;						// extra copy
+			//xxx
+			last_good_data_time = now;
+
+			if (!connected_to_trainer) {
+//				if (debug_level > 1 && file.isOpen()) {
+//					QTextStream stream(&file);
+//					QDateTime dt = QDateTime::currentDateTime();
+//					timestr = dt.toString(TIMEFORMAT);
+//					stream << timestr;
+//					stream << "   connected to trainer, n = " << n << endl;
+//					file.flush();
+//				}
+				connected_to_trainer = true;
+
+				appkey = QString::asprintf("UDP-%d", nhbd.devnum);
+
+				emit connected_to_trainer_signal(key, true);
+			}
+			ix = datagram[0];            // skip over devnum section
+
+			while ( ix < n && datagram[ix] != 0) {
+
+				switch (datagram[ix + 1]) {                  // section types
+					case  SECT_FAST:
+						//at->update();								// 250.2 ms
+						decode_fast(ix + 2, &nhbd);
+
+						if (nhbd.keys != 0) {
+//							if (debug_level > 0 && file.isOpen()) {
+//								QTextStream stream(&file);
+//								QString s2;
+//								QDateTime dt = QDateTime::currentDateTime();
+//								timestr = dt.toString(TIMEFORMAT);
+//								stream << timestr;
+
+//								stream << "   keys = " << QString("%1 hex").arg(nhbd.keys, 2, 16, QLatin1Char( '0' )) << endl;
+//								stream.flush();
+//								file.flush();
+//							}
+						}
+
+
+
+						//nhbd.keys, nhbd.f_mph, nhbd.watts, nhbd.rpm
+#ifdef _DEBUG
+						s += " fast";
+#endif
+						break;
+					case  SECT_SLOW:
+						//at->update();								// 553.6 ms
+						decode_slow(ix + 2, &nhbd);
+#ifdef _DEBUG
+						s += " slow";
+#endif
+						break;
+					case  SECT_SS:
+						//at->update();								// 456.9 ms
+						decode_ss(ix + 2);
+#ifdef _DEBUG
+						s += " ss";
+#endif
+						break;
+
+					case  SECT_HERE:
+						//at->update();								// 0 ms, not called if I'm transmitting
+						//qDebug() <<"got HERE: decoded RealSoonNow";
+						break;
+					case  SECT_EMPTY:
+						//at->update();									// 1000 ms, not called if I'm transmitting
+						//qDebug() << "empty";
+						break;
+
+					case  SECT_RANDOM:
+					case  SECT_RANDOM + 1:
+					case  SECT_RANDOM + 2:
+					case  SECT_RANDOM + 3:
+					case  SECT_RANDOM + 4:
+					case  SECT_RANDOM + 5:
+					case  SECT_RANDOM + 6:
+					case  SECT_RANDOM + 7:
+						//qDebug() << "random: " << datagram[ix+1];
+						//at->update();										// 1000 ms, not called if transmitting
+						break;
+					default:
+						//throw("oops");
+						break;
+				}              // switch
+#ifdef _DEBUG
+				//qDebug() << s;
+#endif
+				ix += datagram[ix];  // skip to next section
+			}                       // while()
+		}                          // if (nhbd.devnum > 0)
+		else {
+			// devnum <= 0
+			#ifdef _DEBUG
+			qDebug() << "bad datagram, n = " << nhbd.devnum;
+			#endif
+
+//			if (debug_level > 0 && file.isOpen()) {
+//				QTextStream stream(&file);
+//				QDateTime dt = QDateTime::currentDateTime();
+//				timestr = dt.toString(TIMEFORMAT);
+//				stream << timestr;
+//				stream << "   " << ((QDateTime::currentMSecsSinceEpoch() - startms) / 1000.0) << "  bad datagram, devnum = " << nhbd.devnum << endl;
+//				stream.flush();
+//				file.flush();
+//			}
+		}                    // if (nhbd.devnum > 0)
+	}                       // else		// n > 0
+
+
+	if (bytes_in > 0) {
+		if (last_good_data_time == 0) {
+			// data is coming in but there may not yet be a full packet to set last_good_data_time, so seed it here
+			last_good_data_time = now;
+		}
+	}
+
+	//-------------------------------------
+	// continue main loop here
+	//-------------------------------------
+
+#ifdef _DEBUG
+	if ((now - last_good_data_time) > 6000) {
+#else
+	if ((now - last_good_data_time) > 6000) {
+#endif
+
+		// no data has come in for 6 seconds
+
+		last_good_data_time = now;                               // in case no more good data ever comes in
+		keys |= 0x40;
+//		if (debug_level > 0 && file.isOpen()) {
+//			QTextStream stream(&file);
+//			QDateTime dt = QDateTime::currentDateTime();
+//			timestr = dt.toString(TIMEFORMAT);
+//			stream << timestr;
+//			stream << "   NOT connected to trainer" << endl;
+//			stream.flush();
+//			file.flush();
+//		}
+
+		//xxx
+		connected_to_trainer = false;
+		lastdevnum = 0;                     // so worker can edge detect
+
+#ifdef _DEBUG
+		//qDebug() << "udp_client emitting connected to trainer (false) signal to worker";
+#endif
+
+		emit connected_to_trainer_signal(key, false);
+		return;
+	}
+
+
+	if ( (now - lastWriteTime) >= 300) {
+
+#ifdef _DEBUG
+		if (!connected_to_trainer) {
+			bp = 1;
+		}
+#endif
+		updateHardware();
+		lastWriteTime = now;
+	}
+
+	now = QDateTime::currentMSecsSinceEpoch();
+
+	tick++;                       // 0-99 10ms ticks == 1/sec.
+
+	if (tick >= 10) {
+		//at->update();				// 100 ms
+		tick = 0;
+		Q_ASSERT(ss);
+
+		if (ss) {
+			ss->do_ten_hz_filter();
+
+			data.lata = ss->getlata();
+			data.rata = ss->getrata();
+			data.ss = ss->getss();
+			data.lss = ss->getlss();
+			data.rss = ss->getrss();
+			data.lwatts = ss->getlwatts();
+			data.rwatts = ss->getrwatts();
+			data.avgss = ss->getavgss();
+			data.avglss = ss->getavglss();
+			data.avgrss = ss->getavgrss();
+
+			data.mph = nhbd.f_mph;
+			data.watts = nhbd.watts;
+			data.rpm = nhbd.rpm;
+			data.hr = nhbd.hrate;
+			data.hrflags = nhbd.hrflags;
+			data.devnum = nhbd.devnum;
+			data.key = key;
+			emit(data_signal(key, &data));
+			emit(ss_signal(key, ss->getdata()));
+			if (ss->getRescale()) {
+				emit(rescale_signal(key, qRound(ss->get_max_force())));
+			}
+		}
+	}           // if (tick >= 10), every 100 ms
+
+	return;
+}                                // process()
+
+
+
+/*********************************************************************************************************************************
+	decode section SECT_FAST, fast hb data.
+	enter with ix -> keys
+*********************************************************************************************************************************/
+
+void UDPClient::decode_fast(int ix, struct NHBDATA* d) {
+	//int i;
+	int j;
+	unsigned short in;
+
+	j = ix;
+
+	d->keys = datagram[j++];            // keys
+	d->keypress = datagram[j++];        // new key presses
+
+	in = datagram[j++] << 8;            // int mph*256
+	in |= datagram[j++];
+	d->f_mph = (float)in / 256.0F;
+
+	in = datagram[j++] << 8;            // watts
+	in |= datagram[j++];
+	d->watts = in;
+
+	d->hrflags = datagram[j++];
+	d->hrate = datagram[j++];
+
+	d->rpmflags = datagram[j++];
+	d->rpm = datagram[j++];
+
+}                       // decode_fast()
+
+
+
+/*************************************************************************************************
+
+	1. make parameter passed global and call it 'datagram'
+	2. make indicated list of local vars global
+
+	from nreadudp.c feb 13, 2016
+
+	read from rxq[], look for RMCT<len><~len><bytes..><csm>
+
+	returns:
+		0 if rxq empty and no complete msg yet.
+		-1 if csm bad
+		-2 if length bad
+		-3 if ~len not match
+
+		returns section(s) in &d
+		ret value is length of &d
+		&d starts at first section length byte
+
+*************************************************************************************************/
+
+int UDPClient::get_ubermsg(void) {
+	const unsigned char *header = (const unsigned char*)"RMCT";
+	unsigned char c;
+
+	while (rxoutptr != rxinptr) {
+		bytes_in++;
+
+		c = rxq[rxoutptr];
+		rxoutptr = (rxoutptr + 1) % RXQLEN;
+
+		csum += c;                    // add every byte to checksum
+
+		switch (mstate) {
+
+			case  0:                         // looking for "RMCT"
+				csum = c;                     // init checksum to first char
+			case  1:
+			case  2:
+			case  3:
+				if (c != header[mstate++]) {
+					mstate = 0;             // no match, start again
+				}
+				break;
+
+			case  4:
+				msglen = c;          // byte 4 is uberlength from here upto checksum
+				mstate++;
+
+				if (msglen < 2 || msglen >= (int)((sizeof(datagram) - 1))) {
+					mstate = 0;             // go back to looking for RMCT
+					return E_LEN;
+				}
+				break;
+
+			case  5:          // byte 4 is ~uberlength, must match len
+				if ((c ^ msglen) != 0xff) {
+					mstate = 0; // go back to looking for RMCT
+					return E_CLEN;
+					break;
+				}
+
+				minptr = 0;             // start buffer on first section size byte
+				datalen = msglen - 2;   // starting after msglen, ~msglen
+				mstate++;
+				break;
+
+			case  6:                         // reading msglen chars into buf
+				datagram[minptr++] = c;
+				if (minptr >= datalen) {
+					mstate++;            // adv state after last data, next char will be csm
+				}
+				break;
+
+			case  7:          // csm byte came in
+				mstate = 0;
+				if (csum & 0xff) {
+					return E_CSM;     // return -1 on bad csm
+				}
+				return minptr;       // return size of dgm, may be 1
+
+			default:
+				mstate = 0;
+				break;
+
+		}  //switch
+
+	}     // while
+
+	return 0;
+}                                            // get_ubermsg()
+
+
+/*********************************************************************************************************************************
+	walk datagram checking for the sections, stop at len
+	return device# if walk is ok, and first sect is
+	SECT_DEVNUM else -1
+*********************************************************************************************************************************/
+
+int UDPClient::get_devnum(int len) {
+	int i;
+	int devnum = -1;
+
+	i = datagram[0];
+
+	for ( i = datagram[0]; i <= len; i += datagram[i]) {
+		if ( datagram[i] == 0) {
+			break;
+		}
+	}
+	if (datagram[1] == SECT_DEVNUM) {
+		devnum = datagram[2] << 8 | datagram[3];
+	}
+	return devnum;
+}
+
+
+/*********************************************************************************************************************************
+	section SECT_SLOW, enter with ix at minhr
+*********************************************************************************************************************************/
+
+void UDPClient::decode_slow(int ix, struct NHBDATA* d) {
+	int in, j;
+
+	j = ix;
+
+	d->minhr =  datagram[j++];
+	d->maxhr =  datagram[j++];
+
+	in = datagram[j++] << 8;                                 // rdrag * 256
+	in |= datagram[j++];
+	d->rd_measured =  (in & 0x8000) ? in &= 0x7fff, 1 : 0;   // bool flag indicating whether calibrated or uncalibrated
+	d->f_rdrag = (float)in / 256.0F;                         // 2.66f, eg
+
+
+	in = datagram[j++] << 8;            // slip count
+	in |= datagram[j++];
+	d->slip = in;
+
+	in = datagram[j++] << 8;            // version*100
+	in |= datagram[j++];
+	d->version = in;
+
+
+	in = datagram[j++] << 24;           // status ms byte
+	in |= datagram[j++] << 16;
+	in |= datagram[j++] << 8;
+	in |= datagram[j++];          // status ls byte
+	d->stat = in;
+
+}                       // decode_slow()
+
+/*********************************************************************************************************************************
+	decode spinscan into struct nhbdata
+	entry ix -> turn hby
+	returns the # of new crank events, 0 is no new ones
+	if ss isnt NULL load ss[24] with thrust in lbs
+*********************************************************************************************************************************/
+
+int UDPClient::decode_ss(int ix) {
+	unsigned short turns, time, peak;
+	float f_peak;
+	int i, j;
+
+	j = ix;
+	turns = datagram[j++] << 8;
+	turns |= datagram[j++];
+
+	time = datagram[j++] << 8;
+	time |= datagram[j++];
+
+	peak = datagram[j++] << 8;                   //highest bar is 200. peak is lbs*256 at bar==200
+	peak |= datagram[j++];
+	f_peak = (float)peak / ( 200.0F * 256.0F);   // bar[]*f_peak -> lbs thrust
+	nhbd.f_peak = f_peak;
+
+	for (i = 0; i < 24; i++) {
+		nhbd.bars[i] = datagram[j++];
+		ss->setraw(i, nhbd.f_peak * nhbd.bars[i]);
+	}
+
+	nhbd.deltat = (time - nhbd.prevtime) & 0xffff;
+
+	if ((nhbd.turns = (turns - nhbd.prevturns)) & 0xffff) {
+		nhbd.prevturns = turns;
+		nhbd.prevtime = time;
+	}
+
+	return nhbd.turns;
+}                                      // decode_ss()
+
+/**********************************************************************
+
+**********************************************************************/
+
+float UDPClient::get_watts_factor(void) {
+	float f;
+
+	f = 100.0f * fromapp.f_aerodrag / 8.0f;
+	return f;
+}
+
+
+/**********************************************************************
+
+**********************************************************************/
+
+int UDPClient::end_cal(void) {
+	fromapp.control_byte = fromapp.last_control_byte;
+	return 0;
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+float *UDPClient::get_bars(void) {
+	float *f = NULL;
+
+	if (ss) {
+		if (ss->ssd) {
+			f = ss->ssd->val;
+		}
+	}
+
+	return f;
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+float UDPClient::get_ftp(void) {
+	/*
+		if (formula) {
+		float f = formula->get_ftp();
+		return f;
+		}
+	 */
+	return 0.0f;
+
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+int UDPClient::get_handlebar_buttons(void) {
+
+	unsigned char mask;
+
+	keys = 0;
+	// map computrainer keys to ergvid keys:
+
+	/*
+		int ctmask[6] =				{	0x01, 0x02, 0x08, 0x10, 0x04, 0x20 };
+		unsigned char newmask[6] = {	0x02, 0x10, 0x20, 0x08, 0x04, 0x40 };
+		unsigned char newmask[6] = {	0x01, 0x02, 0x08, 0x10, 0x04, 0x20 };
+		"Reset",
+		"F1",
+		"F2",
+		"F3",
+		"+",
+		"-"
+
+		Reset	0x01	->	0x01
+		F2		0x10	->	0x04
+	 +		0x08	->	0x10
+		F1		0x02	->	0x02
+		F3		0x04	->	0x08
+		-		0x20	->	0x20
+
+		0x40		not connected
+	 */
+
+	unsigned char nm[6] = { 0x01, 0x02, 0x08, 0x10, 0x04, 0x20 };
+	mask = 0x01;
+
+#ifdef _DEBUG
+	if (nhbd.keys != 0) {
+		bp = 1;
+	}
+#endif
+
+	for (int i = 0; i < 6; i++) {
+		if (mask & nhbd.keys) {
+			keys |= nm[i];
+		}
+		mask <<= 1;
+	}
+
+#ifdef _DEBUG
+	bp = 2;
+#endif
+
+	if (!connected_to_trainer) {
+		keys |= 0x40;
+	}
+
+	return keys;
+
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+int UDPClient::reset_stats(void) {
+	return 0;
+
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+int UDPClient::reset(void) {
+	reset_stats();
+	return 0;
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+int UDPClient::rx(unsigned char *_buf, int _buflen) {
+	Q_UNUSED(_buf);
+	Q_UNUSED(_buflen);
+	return 0;
+}
+
+
+/**********************************************************************
+
+**********************************************************************/
+
+void UDPClient::set_export(const char *_dbgfname) {
+	sprintf(xprtname, "%s\\slope_%s.txt", _dbgfname, key.toStdString().c_str());
+	export_stream = fopen(xprtname, "wt");
+	return;
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+void UDPClient::set_file_mode(bool _mode) {
+	filemode = _mode;
+	return;
+
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+void UDPClient::set_ftp(float _ftp) {
+	Q_UNUSED(_ftp);
+//	if (formula)  {
+//		formula->set_ftp(_ftp);
+//	}
+	return;
+
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+int UDPClient::set_hr_bounds(int _minhr, int _maxhr, bool _beepEnabled) {
+	BeepEnabled = _beepEnabled;
+
+	fromapp.minhr = _minhr;
+	fromapp.maxhr = _maxhr;
+	fromapp.hrenable = _beepEnabled;
+
+	return 0;
+
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+bool UDPClient::is_paused(void) {
+	switch (fromapp.control_byte) {
+		case CT_MODE_WIND_PAUSE:            // 0x28
+		case CT_MODE_ERGO_PAUSE:            //	0x10
+			return true;
+
+		case CT_MODE_WIND:                  // 0x2c
+		case CT_MODE_RFTEST:                // 0x1C
+		case CT_MODE_ERGO:                  // 0x14
+			return false;
+		default:
+			return false;
+	}
+
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+void UDPClient::set_paused(bool _paused) {
+
+#ifdef _DEBUG
+	//qDebug() << "   udpclient, set_paused(" << _paused << ")";
+#endif
+
+	switch (fromapp.control_byte) {
+		case CT_MODE_ERGO:
+			if (_paused) {
+				fromapp.control_byte = CT_MODE_ERGO_PAUSE;
+			}
+			break;
+		case CT_MODE_WIND:                                 // 44, 0x2c
+			if (_paused) {
+				fromapp.control_byte = CT_MODE_WIND_PAUSE;
+			}
+			break;
+		case CT_MODE_ERGO_PAUSE:
+			if (!_paused) {
+				fromapp.control_byte = CT_MODE_ERGO;
+			}
+			break;
+		case CT_MODE_WIND_PAUSE:
+			if (!_paused) {
+				fromapp.control_byte = CT_MODE_WIND;
+			}
+			break;
+		case CT_MODE_RFTEST:       // can't pause in cal mode
+			break;
+		default:
+			break;
+	}        // switch()
+
+	return;
+
+}
+
+
+/**********************************************************************
+
+**********************************************************************/
+
+int UDPClient::start_cal(void) {
+	fromapp.last_control_byte = fromapp.control_byte;
+	fromapp.control_byte = MODE_RFTEST;
+	return fromapp.last_control_byte;
+
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+struct TrainerData UDPClient::GetTrainerData(int _fw) {
+	Q_UNUSED(_fw);
+	td.cadence = nhbd.rpm;
+	td.HR = nhbd.hrate;
+	td.kph = TOKPH * nhbd.f_mph;
+	td.Power = nhbd.watts;
+	return td;
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+float *UDPClient::get_average_bars(void) {
+	//return ss->ssd->avgval;
+	float *f = NULL;
+
+	if (ss) {
+		if (ss->ssd) {
+			f = ss->ssd->avgval;
+		}
+	}
+
+	return f;
+
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+SSDATA UDPClient::get_ss_data(int _fw) {
+	Q_UNUSED(_fw);
+
+	if (ss && ss->ssd) {
+		old_ss_data.ss = ss->ssd->ss;
+		old_ss_data.lss = ss->ssd->lss;
+		old_ss_data.rss = ss->ssd->rss;
+		old_ss_data.lsplit = ss->ssd->lwatts;
+		old_ss_data.rsplit = ss->ssd->rwatts;
+	}
+	else  {
+		memset(&old_ss_data, 0, sizeof(old_ss_data));
+	}
+	return old_ss_data;
+}
+
+/**********************************************************************
+	sets windload mode, weight, grade, drag factor
+**********************************************************************/
+
+int UDPClient::set_grade(float _bike_kgs, float _person_kgs, float _drag_factor, int _igradex10) {
+	Q_UNUSED(_drag_factor);
+
+	fromapp.f_weight = (float)(TOPOUNDS * (_bike_kgs + _person_kgs));
+	fromapp.f_grade = _igradex10 / 10.0f;
+	fromapp.f_aerodrag = 8.0f * _drag_factor / 100.0f;
+	fromapp.f_tdrag = fromapp.f_weight * 0.006f;
+
+	switch (fromapp.control_byte) {
+		case MODE_WIND:                  // 0x2c
+			break;
+		case MODE_WIND_PAUSE:            // 0x28
+			break;
+		case MODE_RFTEST:                // 0x1c
+			break;
+		case MODE_ERGO:                  // 0x14
+			fromapp.control_byte = MODE_WIND;
+			break;
+		case MODE_ERGO_PAUSE:            // 0x10
+			fromapp.control_byte = MODE_WIND_PAUSE;
+			break;
+
+		default:
+			fromapp.control_byte = MODE_WIND;         // for when set_grade is first called
+			break;
+	}
+
+	return 0;
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+void UDPClient::set_wind(float _wind_kph) {
+	float f;
+
+	f = (float)(TOMPH * _wind_kph);
+
+	fromapp.f_wind_mph = f;
+
+#ifdef _DEBUG
+	//qDebug() << "udpclient wind = " << f;
+#endif
+	return;
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+void UDPClient::set_draft_wind(float _draft_wind_kph) {
+	fromapp.f_draft_wind_mph = (float)(TOMPH * _draft_wind_kph);
+	return;
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+void UDPClient::set_lbs(float _person_lbs, float _bike_lbs) {
+	fromapp.f_weight = _person_lbs + _bike_lbs;
+	fromapp.f_tdrag = fromapp.f_weight * 0.006f;
+	return;
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+void UDPClient::set_kgs(float _person_kgs, float _bike_kgs) {
+	fromapp.f_weight = TOPOUNDS * _person_kgs + TOPOUNDS * _bike_kgs;
+	fromapp.f_tdrag = fromapp.f_weight * 0.006f;
+	return;
+}
+
+/**********************************************************************
+  #define MODE_WIND               0x2c
+  #define MODE_WIND_PAUSE         0x28
+  #define MODE_RFTEST             0x1c
+  #define MODE_ERGO               0x14
+  #define MODE_ERGO_PAUSE         0x10
+
+**********************************************************************/
+
+int UDPClient::set_ergo_mode(int _fw, unsigned short _rrc, float _manwatts) {
+	Q_UNUSED(_fw);
+
+	switch (fromapp.control_byte) {
+		case MODE_WIND:                  // 0x2c
+			fromapp.control_byte = MODE_ERGO;
+			break;
+		case MODE_WIND_PAUSE:            // 0x28
+			fromapp.control_byte = MODE_ERGO_PAUSE;
+			break;
+
+		case MODE_RFTEST:                // 0x1c
+			break;
+
+		case MODE_ERGO:                  // 0x14
+		case MODE_ERGO_PAUSE:            // 0x10
+		default:
+			break;
+	}
+
+	fromapp.f_manwatts = _manwatts;
+	fromapp.f_tdrag = _rrc;
+	return 0;
+
+}
+
+/**********************************************************************
+	from decode_slow()
+		nhbd.rd_measured =  (in & 0x8000) ? in &= 0x7fff, 1 : 0;		bool flag indicating whether calibrated or uncalibrated
+		nhbd.f_rdrag = (float)in / 256.0F;									2.0f, eg
+**********************************************************************/
+
+float UDPClient::get_cal(void) {
+	return nhbd.f_rdrag;                // 2.66f
+}
+
+/**********************************************************************
+	from decode_slow()
+		nhbd.version
+**********************************************************************/
+
+unsigned short UDPClient::get_fw(void) {
+#ifdef _DEBUG
+//	if (nhbd.version != 0)  {
+//		bp = 3;
+//	}
+#endif
+
+	return nhbd.version;
+
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+void UDPClient::close_log_file(void) {
+//	if (!file.isOpen()) {
+//		return;
+//	}
+
+//	QString dest;
+//	QString src = file.fileName();
+
+//	if (debug_level > 1 && file.isOpen()) {
+//		qint64 size = file.size();
+//		file.seek(size);
+//		QTextStream stream(&file);
+
+//		QDateTime dt = QDateTime::currentDateTime();
+//		QString s2 = dt.toString("yyyy-MM-dd-hh-mm-ss");
+//		stream << endl << endl << "closing log file at " << s2 <<  " and copying file" << endl << endl;
+//		stream.flush();
+//	}
+//	file.flush();
+//	file.close();
+
+#ifdef _DEBUG
+//	if (file.isOpen()) {
+//		bp = 1;
+//	}
+#endif
+
+//	QDateTime dt = QDateTime::currentDateTime();
+//	QString timestr = dt.toString("yyyy-MM-dd-hh-mm-ss");
+
+//	dest = debug_dir + "/udp" + key + "-" + timestr + ".log";
+
+#ifdef _DEBUG
+	///qDebug() << "copying from " << src << "to " << dest;
+#endif
+
+
+#ifdef _DEBUG
+	/*
+		bool b = QFile::copy(src, dest);				// src, dest
+		if (b)  {
+		//qDebug() << "    copy ok";
+		}
+		else  {
+		//qDebug() << "    copy failed";
+		}
+	 */
+#else
+	//QFile::copy(src, dest);             // src, dest
+#endif
+
+	return;
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+int UDPClient::get_status_bits(void) {
+	return nhbd.stat;
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+void UDPClient::calc_tp(float _watts) {
+	if(formula) {
+		formula->calc(_watts);
+	}
+	return;
+}
+
+#ifdef _DEBUG
+/**********************************************************************
+
+**********************************************************************/
+
+RACERMATE::UDPClient::COMSTATS *UDPClient::get_comstats(void)  {
+
+	comstats.ubermsgs = ubermsgs;
+	comstats.gooddevnums = gooddevnums;
+	comstats.indiff = indiff;
+	comstats.seqnum = seqnum;							// received sequence number
+	comstats.xseqnum = xseqnum;						// xmit pkt sequence #
+
+	return &comstats;
+}
+#endif
+
+
+
+}              // namespace
+
+

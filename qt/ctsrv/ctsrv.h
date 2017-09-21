@@ -1,0 +1,147 @@
+#ifndef CTSRV_H
+#define CTSRV_H
+
+#include <rmdefs.h>
+
+#include <QHostAddress>
+#include <QUdpSocket>
+
+
+#include <sdirs.h>
+#include <tmr.h>
+//#include <testdata.h>
+#include <trainerdata.h>
+#include <ssdata.h>
+
+//#include <qt_data.h>
+//#include <qt_ss.h>
+
+#include "ctsrvworker.h"
+
+/***************************************************************************************
+
+***************************************************************************************/
+
+
+namespace RACERMATE  {
+
+/**************************************************************************************
+
+
+************************************************************************************/
+
+class Q_DECL_EXPORT Ctsrv : public QObject {
+		Q_OBJECT
+
+	private:
+		static Ctsrv* m_instance;
+		QCoreApplication* m_application;
+		SDIRS *sdirs;
+		char logname[256] = {0};
+		Tmr *tmr = NULL;
+
+		ctsrvWorker* worker;
+		QThread* workerthread;
+		QMutex m_accessMutex;
+
+		QObject *parent;
+		int debug_level;
+
+		bool log_to_console;
+		int bp;
+		int init(void);
+		void logg(const char *format, ...);
+		FILE *logstream;
+		TrainerData td;
+		char client_names[256] = {0};
+		char gstr[256] = {0};
+
+	public:
+		explicit Ctsrv(int _listen_port, int _broadcast_port, const char *_myip, int _debug_level, QObject *_parent = 0);
+		~Ctsrv(void);
+
+		static Ctsrv* instance();
+		void doSomeOtherStuff(int value);
+		const char *get_devnums(void);
+		const char *get_udpkey_from_devnum(const char *_devnum);               // get the real key corresponding to "devnum"
+		const char *get_udpkey_from_appkey(QString _appkey);
+		const char *get_udpclient_names(void);
+#ifdef _DEBUG
+		const UDPClient::COMSTATS *get_comstats(QString _key);
+#endif
+		qt_SS::BARINFO *get_barinfo(QString _key, int i);
+
+		int getPortNumber(void) {
+			return 201;
+		}
+		int send(int _ix, const unsigned char *_str, int _len, bool _flush=false);			// puts stuff in the txq
+		bool client_is_running(int _ix);
+
+		int get_nclients(void);
+		QList<QString> get_keys(void);
+		QList<QString> keys;
+		int get_devnum(QString _key);
+		bool have(const char *_devid);
+		void calc_tp(QString _key, float _watts);
+
+		SSDATA get_ss_data(QString _key, int _fw);
+		int check_udp_keys(void);
+		int setPaused(QString _key, bool _paused);
+		struct TrainerData GetTrainerData(const char *_key);
+		int reset_client(const char * _key);
+		int set_ergo_mode(QString _key, int _fw, int _rrc, float _manwatts);
+		void set_export(QString _key, const char *_dbgfname);
+		int set_file_mode(QString _key, bool _mode);
+		float *get_average_bars(QString _key);
+		float *get_bars(QString _key);
+		float get_ftp(QString _key);
+		int get_handlebar_buttons(QString _key);
+		bool is_client_connected(QString _key);
+		bool is_paused(QString _key);
+		int reset_averages(QString _key);
+		int set_ftp(QString _key, float _ftp);
+		int set_hr_bounds(QString _key, int _LowBound, int _HighBound, bool _BeepEnabled);
+		int set_paused(QString _key, bool _paused);
+		int set_grade(QString _key, float _bike_kgs, float _person_kgs, float _drag_factor, int _igradex10);				// sets windload mode
+		int set_slope(QString _key, float bike_kgs, float person_kgs, int drag_factor, float grade);			// float, int, float
+		int start_cal(QString _key);
+		int end_cal(QString _key);
+		float get_watts_factor(QString _key);
+		void setwind(QString _udpkey, float _wind_kph);
+		void set_draftwind(QString _key, float _draftwind_kph);
+		void setlbs(QString _key, float _person_lbs, float _bike_lbs);
+		void setkgs(QString _key, float _person_kgs, float _bike_kgs);
+		int get_cal(QString _udpkey);
+		unsigned short get_fw(const char *_udpkey);
+		//unsigned short get_fw(int _ix);
+		void setStarted(const char * _key, bool _value);
+		void setFinished(const char * _key, bool _value);
+		int get_status_bits(QString _key);
+
+		SSDATA ssd;
+
+		QString get_appkey(QString _udpkey);
+
+	signals:
+
+		void ss_signal(QString, RACERMATE::qt_SS::SSD *);
+		void data_signal(QString, RACERMATE::QT_DATA *);
+		void rescale_signal(QString, int);
+		void connected_to_trainer_signal(QString, bool);
+
+	private slots:
+		void handleResults(const QString &s);
+
+		// signals from UDPClient
+
+		void connected_to_trainer_slot(QString _udpkey, bool);
+		void data_slot(QString _key, QT_DATA *_data);
+		void ss_slot(QString _key, qt_SS::SSD *_ssd);
+		void rescale_slot(QString _key, int _maxforce);
+	};
+
+}				// namespace RACERMATE
+
+
+#endif // CTSRV_H
+

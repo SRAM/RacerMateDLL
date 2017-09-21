@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;connected&apos; in &apos;mythread&apos; to &apos;socket_connected&apos;&#x0D;&#x0A;- Original project: &apos;client&apos;&#x0D;&#x0A;- Original element: &apos;mythread.connected&apos;&#x0D;&#x0A;- Renamed element: &apos;mythread.socket_connected&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;connected&apos;" flags="589826" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/&lt;{mythread.java[mythread^connected" name="socket_connected" references="true" setter="false" stamp="1424429237378" textual="false" version="1.0"/>
+</session>

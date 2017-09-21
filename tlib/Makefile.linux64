@@ -1,0 +1,148 @@
+# to dump symbols:
+#		nm -D tlib.a
+#		nm --defined-only tlib.a
+
+SIZE = 64
+
+# opengl
+#			bars.cpp \
+#			courseviewer.cpp
+
+
+# windows GDI:
+#			calibrator.cpp \
+#			mbox.cpp \
+
+
+# misc:
+
+#			commtest.cpp
+#			compudemo.cpp
+#			demodecoder.cpp
+#			demosource.cpp
+#			lode.cpp
+#			polar.cpp
+#			regularcourse.cpp
+#			rider.cpp
+#			rpt.cpp
+#			ssv.cpp
+#			velotronmfd.cpp
+#			vidcourse.cpp
+#			viddecoder.cpp
+#			vidperf.cpp
+#			vutils.cpp
+
+# gtk:
+
+#			rmp.cpp \
+
+#			perfdata.cpp \
+
+SRCS = \
+			simulator.cpp \
+			heartrate.cpp \
+			formula.cpp \
+			\
+			decoder.cpp \
+			computrainer_decoder.cpp \
+			velotron_decoder.cpp \
+			simdecoder.cpp \
+			performance_decoder.cpp \
+			\
+			datasource.cpp \
+			computrainer.cpp \
+			velotron.cpp \
+			performance.cpp \
+			\
+			rtd.cpp \
+			\
+			course.cpp \
+			ss.cpp \
+			tglobs.cpp \
+			user.cpp \
+			physics.cpp \
+			bike.cpp \
+			monarch.cpp \
+			nvram.cpp \
+			server.cpp \
+			client.cpp \
+			client2.cpp \
+			../tinythread++/tinythread.cpp
+
+LIB = libtlib
+
+#-----------------------------------------------------------------
+
+INCLUDE_PATH = -I. \
+					-I/usr/include \
+					-I/usr/include/malloc \
+					-I/System/Library/Frameworks/OpenGL.framework/Headers \
+					-I/System/Library/Frameworks/Tk.framework/Headers \
+					-I../tinythread++ \
+					-I../glib
+
+
+#dependent libraries:
+A = ../glib/libglib.a
+#A = ../pcre8.36/libpcre.a ../glib/libglib.a
+
+AR = ar
+RANLIB = ranlib
+CXX = g++
+# -O0 is for valgrind extra debugging:
+CXXFLAGS = -std=gnu++0x -fPIC -c -O0 -g -D_DEBUG -DGNU -D_THREAD_SAFE -D__STDC_CONSTANT_MACROS -Wall -pedantic -Wno-unused-variable -Wno-unused-private-field -Wno-sometimes-uninitialized -Wno-unused-function -Wno-overloaded-virtual
+
+LD = g++
+LDFLAGS = -v -shared -fPIC -static
+DEPDIR = ./
+OBJDIR = ./
+
+OBJS = $(addprefix $(OBJDIR),$(SRCS:.cpp=.o))
+DEPS = $(addprefix $(DEPDIR),$(SRCS:.cpp=.d))
+
+
+.PHONY: all	
+all:
+	$(MAKE) all -C ../glib
+	$(MAKE) $(LIB).a
+	ls -al $(LIB).a
+
+# $@ is $(LIB).a here:
+
+$(LIB).a: $(OBJS) $(A) Makefile Makefile.linux64
+	rm -f $@
+	$(AR) rcu $@ $(OBJS)
+	$(RANLIB) $@
+
+# $< = the .cpp file	here:
+# $@ = the .o file here:
+
+%.o:%.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCLUDE_PATH) $< -o $@
+
+
+# automatically generate dependencies based on all .cpp files:
+$(DEPDIR)%.d: %.cpp
+	$(CXX) -MM $(CXXFLAGS) $(INCLUDE_PATH) $< \
+		| sed 's#$*\.o#/$(OBJDIR:/=\/)$*.o#g' \
+		| sed 's#$*\.o#& $(subst /,\/,$@)#g' > $@
+
+
+clean:
+	$(MAKE) clean -C ../glib
+	rm -f $(DEPDIR)*.d 2> /dev/null
+	rm -f ../tinythread++/*.d
+	rm -f $(OBJDIR)*.o
+	rm -f $(LIB).a
+
+
+# include the listed cpp files' dependencies:
+ifneq ($MAKECMDGOALS), clean)
+include $(addprefix $(DEPDIR),$(SRCS:.cpp=.d))
+endif
+
+
+#$(warning OBJS is $(OBJS))
+
+
+

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+hd \
+	../../../common/comdefs.h \
+	../../common/consolereader.h \
+	../../common/tmr.h \
+	../../common/sdirs.h \
+	mainclass.h \
+	../../common/tmr.cpp \
+	../../common/sdirs.cpp \
+	../../common/consolereader.cpp \
+	mainclass.cpp \
+	main.cpp \
+	../antdev.cpp \
+	../page_sensor.cpp \
+	../antchan.cpp \
+	../sc.cpp \
+	../hr.cpp \
+	../cad.cpp \
+	../../../common/smav.cpp \
+	../../../common/median.cpp \
+	../../common/utils.cpp \
+	../antworker.cpp \
+	../ant.cpp \
+	../sensor.cpp
+	../../../common/smav.h \
+	../../../common/median.h \
+	../../common/utils.h \
+	../sl_global.h \
+	../antdefs.h \
+	../antchan.h \
+	../antdev.h \
+	../page_sensor.h \
+	../anterrs.h \
+	../cad.h \
+	../sc.h \
+	../hr.h \
+	../antworker.h \
+	../ant.h \
+	../sensor.h

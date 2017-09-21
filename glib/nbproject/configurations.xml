@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="80">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df name="glib" root=".">
+      <df name="debug">
+      </df>
+      <df name="glib___Win32_Debug">
+      </df>
+      <df name="release">
+      </df>
+      <in>amplifier.cpp</in>
+      <in>amplifier.h</in>
+      <in>averagetimer.cpp</in>
+      <in>averagetimer.h</in>
+      <in>avi.cpp</in>
+      <in>avi.h</in>
+      <in>axis.cpp</in>
+      <in>axis.h</in>
+      <in>beep2.h</in>
+      <in>beepsound.h</in>
+      <in>bitmap_font.cpp</in>
+      <in>bitmap_font.h</in>
+      <in>bmp.cpp</in>
+      <in>bmp.h</in>
+      <in>boxgrid.cpp</in>
+      <in>boxgrid.h</in>
+      <in>button.cpp</in>
+      <in>button.h</in>
+      <in>camera.h</in>
+      <in>chan.cpp</in>
+      <in>chan.h</in>
+      <in>clientsocket.cpp</in>
+      <in>clientsocket.h</in>
+      <in>console.cpp</in>
+      <in>console.h</in>
+      <in>crc.cpp</in>
+      <in>crc.h</in>
+      <in>cregexp.cpp</in>
+      <in>cregexp.h</in>
+      <in>crf.cpp</in>
+      <in>crf.h</in>
+      <in>csv.cpp</in>
+      <in>csv.h</in>
+      <in>defines.h</in>
+      <in>dir.cpp</in>
+      <in>dir.h</in>
+      <in>earth.cpp</in>
+      <in>earth.h</in>
+      <in>editbox.cpp</in>
+      <in>editbox.h</in>
+      <in>err.cpp</in>
+      <in>err.h</in>
+      <in>fasttimer.cpp</in>
+      <in>fasttimer.h</in>
+      <in>fatalerror.cpp</in>
+      <in>fatalerror.h</in>
+      <in>file_rotator.cpp</in>
+      <in>file_rotator.h</in>
+      <in>files.i</in>
+      <in>fileselector.cpp</in>
+      <in>fileselector.h</in>
+      <in>float2d.cpp</in>
+      <in>float2d.h</in>
+      <in>font.cpp</in>
+      <in>font.h</in>
+      <in>freetype_font.cpp</in>
+      <in>freetype_font.h</in>
+      <in>gentypes.h</in>
+      <in>glavi.cpp</in>
+      <in>glavi.h</in>
+      <in>globals.cpp</in>
+      <in>globals.h</in>
+      <in>ini.cpp</in>
+      <in>ini.h</in>
+      <in>inputdlg.cpp</in>
+      <in>inputdlg.h</in>
+      <in>iobase.cpp</in>
+      <in>iobase.h</in>
+      <in>leak.cpp</in>
+      <in>leak.h</in>
+      <in>linux_fasttimer.h</in>
+      <in>linux_ogl.cpp</in>
+      <in>linux_ogl.h</in>
+      <in>linux_ogl1.cpp</in>
+      <in>linux_serial.cpp</in>
+      <in>linux_serial.h</in>
+      <in>linux_utils.cpp</in>
+      <in>linux_utils.h</in>
+      <in>listbox.cpp</in>
+      <in>listbox.h</in>
+      <in>logger.cpp</in>
+      <in>logger.h</in>
+      <in>lpfilter.cpp</in>
+      <in>lpfilter.h</in>
+      <in>md5.cpp</in>
+      <in>md5.h</in>
+      <in>mfd.cpp</in>
+      <in>mfd.h</in>
+      <in>minmax.h</in>
+      <in>modaldialog.cpp</in>
+      <in>modaldialog.h</in>
+      <in>modallistbox.cpp</in>
+      <in>modallistbox.h</in>
+      <in>model.h</in>
+      <in>mru.cpp</in>
+      <in>mru.h</in>
+      <in>mycurl.cpp</in>
+      <in>mycurl.h</in>
+      <in>ogl.cpp</in>
+      <in>ogl.h</in>
+      <in>pcre2.cpp</in>
+      <in>pcre2.h</in>
+      <in>person.cpp</in>
+      <in>person.h</in>
+      <in>plotter.cpp</in>
+      <in>plotter.h</in>
+      <in>plotter2.cpp</in>
+      <in>plotter2.h</in>
+      <in>png.cpp</in>
+      <in>png.h</in>
+      <in>progressbar.cpp</in>
+      <in>progressbar.h</in>
+      <in>ref.h</in>
+      <in>round.h</in>
+      <in>scaler.cpp</in>
+      <in>scaler.h</in>
+      <in>seh.h</in>
+      <in>serial.cpp</in>
+      <in>serial.h</in>
+      <in>signalstrengthmeter.cpp</in>
+      <in>signalstrengthmeter.h</in>
+      <in>smav.cpp</in>
+      <in>smav.h</in>
+      <in>splash.cpp</in>
+      <in>splash.h</in>
+      <in>standard_dirs.cpp</in>
+      <in>standard_dirs.h</in>
+      <in>statictext.cpp</in>
+      <in>statictext.h</in>
+      <in>statusdlg.cpp</in>
+      <in>statusdlg.h</in>
+      <in>sysinfo.cpp</in>
+      <in>sysinfo.h</in>
+      <in>tga.cpp</in>
+      <in>tga.h</in>
+      <in>timeout.cpp</in>
+      <in>timeout.h</in>
+      <in>timer.cpp</in>
+      <in>timer.h</in>
+      <in>tinystr.cpp</in>
+      <in>tinystr.h</in>
+      <in>tinyxml.cpp</in>
+      <in>tinyxml.h</in>
+      <in>tinyxmlerror.cpp</in>
+      <in>tinyxmlparser.cpp</in>
+      <in>twopolefilter.cpp</in>
+      <in>twopolefilter.h</in>
+      <in>types.h</in>
+      <in>utils.cpp</in>
+      <in>utils.h</in>
+      <in>utilsclass.cpp</in>
+      <in>utilsclass.h</in>
+      <in>vector.h</in>
+      <in>win_fasttimer.h</in>
+      <in>win_freetype.cpp</in>
+      <in>win_freetype.h</in>
+      <in>win_ogl.cpp</in>
+      <in>win_ogl.h</in>
+      <in>win_serial.h</in>
+      <in>win_utils.cpp</in>
+      <in>win_utils.h</in>
+      <in>windower.cpp</in>
+      <in>windower.h</in>
+      <in>x.cpp</in>
+      <in>xml.cpp</in>
+      <in>xml.h</in>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false">
+      <itemPath>Makefile</itemPath>
+      <itemPath>Makefile-glib.mk</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile-glib.mk</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>GNU|GNU</compilerSet>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+          <ccTool>
+            <incDir>
+              <pElem>/usr/include</pElem>
+              <pElem>../tinyxml</pElem>
+              <pElem>.</pElem>
+            </incDir>
+          </ccTool>
+        </makeTool>
+      </makefileType>
+      <item path="amplifier.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="averagetimer.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="axis.cpp" ex="true" tool="1" flavor="0">
+      </item>
+      <item path="axis.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="beep2.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="beepsound.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="bitmap_font.cpp" ex="true" tool="1" flavor="0">
+      </item>
+      <item path="bmp.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="button.cpp" ex="true" tool="1" flavor="0">
+      </item>
+      <item path="button.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="camera.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="crc.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="cregexp.cpp" ex="true" tool="1" flavor="0">
+      </item>
+      <item path="cregexp.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="crf.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="dir.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="err.cpp" ex="true" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="fasttimer.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="fatalerror.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="files.i" ex="true" tool="0" flavor="0">
+      </item>
+      <item path="fileselector.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>/usr/lib/glib-2.0/include</pElem>
+            <pElem>/usr/include/gtk-2.0/gdk</pElem>
+            <pElem>/usr/include/pango-1.0/pango</pElem>
+            <pElem>/usr/include/gtk-2.0/gtk</pElem>
+            <pElem>/usr/include/gtk-2.0</pElem>
+            <pElem>/usr/include/glib-2.0</pElem>
+            <pElem>/usr/include/glib-2.0/gobject</pElem>
+            <pElem>/usr/include/cairo</pElem>
+            <pElem>/usr/include/glib-2.0/glib</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="float2d.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="font.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="freetype_font.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>../freetype/include/freetype2</pElem>
+            <pElem>../freetype/include/freetype2/freetype</pElem>
+            <pElem>/usr/include/GL</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="gentypes.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="globals.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="ini.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="iobase.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="linux_ogl.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>/usr/include/X11</pElem>
+            <pElem>/usr/include/X11/extensions</pElem>
+            <pElem>/usr/include/GL</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="linux_serial.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>/usr/include/gtk-2.0/gdk</pElem>
+            <pElem>/usr/include/glib-2.0</pElem>
+            <pElem>/usr/include/glib-2.0/gobject</pElem>
+            <pElem>/usr/include/glib-2.0/glib</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="linux_utils.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>/usr/lib/glib-2.0/include</pElem>
+            <pElem>/usr/include/gtk-2.0/gdk</pElem>
+            <pElem>/usr/include/pango-1.0/pango</pElem>
+            <pElem>/usr/include/gtk-2.0/gtk</pElem>
+            <pElem>/usr/include/gtk-2.0</pElem>
+            <pElem>/usr/include/glib-2.0</pElem>
+            <pElem>/usr/include/glib-2.0/gobject</pElem>
+            <pElem>/usr/include/cairo</pElem>
+            <pElem>/usr/include/glib-2.0/glib</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="logger.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>/usr/include/gtk-2.0/gdk</pElem>
+            <pElem>/usr/include/glib-2.0</pElem>
+            <pElem>/usr/include/glib-2.0/gobject</pElem>
+            <pElem>/usr/include/glib-2.0/glib</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="lpfilter.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="md5.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="mfd.cpp" ex="true" tool="1" flavor="0">
+      </item>
+      <item path="mfd.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="modaldialog.cpp" ex="true" tool="1" flavor="0">
+      </item>
+      <item path="modaldialog.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="modallistbox.cpp" ex="true" tool="1" flavor="0">
+      </item>
+      <item path="modallistbox.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="model.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="mru.cpp" ex="true" tool="1" flavor="0">
+      </item>
+      <item path="mru.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="ogl.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>/usr/include/GL</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="person.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="png.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="progressbar.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <incDir>
+            <pElem>/usr/lib/glib-2.0/include</pElem>
+            <pElem>/usr/include/gtk-2.0/gdk</pElem>
+            <pElem>/usr/include/pango-1.0/pango</pElem>
+            <pElem>/usr/include/gtk-2.0/gtk</pElem>
+            <pElem>/usr/include/gtk-2.0</pElem>
+            <pElem>/usr/include/glib-2.0</pElem>
+            <pElem>/usr/include/glib-2.0/gobject</pElem>
+            <pElem>/usr/include/cairo</pElem>
+            <pElem>/usr/include/glib-2.0/glib</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="ref.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="round.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="scaler.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="seh.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="serial.cpp" ex="true" tool="1" flavor="0">
+      </item>
+      <item path="signalstrengthmeter.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="smav.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="statictext.cpp" ex="true" tool="1" flavor="0">
+      </item>
+      <item path="statictext.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="statusdlg.cpp" ex="true" tool="1" flavor="0">
+      </item>
+      <item path="statusdlg.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="sysinfo.cpp" ex="true" tool="1" flavor="0">
+      </item>
+      <item path="sysinfo.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="tga.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="timer.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="tinystr.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="tinyxml.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="tinyxmlerror.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="tinyxmlparser.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="twopolefilter.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="types.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="utils.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="utilsclass.cpp" ex="false" tool="1" flavor="0">
+        <ccTool>
+          <preprocessorList>
+            <Elem>GNU</Elem>
+            <Elem>_THREAD_SAFE</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="vector.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="win_fasttimer.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="win_freetype.cpp" ex="true" tool="1" flavor="0">
+      </item>
+      <item path="win_freetype.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="win_ogl.cpp" ex="true" tool="1" flavor="0">
+      </item>
+      <item path="win_ogl.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="win_serial.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="win_utils.cpp" ex="true" tool="1" flavor="0">
+      </item>
+      <item path="win_utils.h" ex="true" tool="3" flavor="0">
+      </item>
+      <item path="xml.cpp" ex="true" tool="1" flavor="0">
+      </item>
+      <item path="xml.h" ex="true" tool="3" flavor="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

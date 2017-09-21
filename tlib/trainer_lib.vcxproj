@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="debug_without_ant|Win32">
+      <Configuration>debug_without_ant</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>tlib</ProjectName>
+    <ProjectGuid>{2E2E2DF9-866B-47AC-A9C8-B08C3F615E0B}</ProjectGuid>
+    <RootNamespace>trainer_lib</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug_without_ant|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='debug_without_ant|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='debug_without_ant|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\temp\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='debug_without_ant|Win32'">$(HOMEDRIVE)$(HOMEPATH)\tmp\tlib\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Qt\5.6\msvc2015\include;C:\Qt\5.6\msvc2015\include\QtCore;C:\Qt\5.6\msvc2015\include\QtNetwork;..\freetype\include;..\freetype\include\freetype2;..\tinythread++;..\glib;..\common;..\rm_common;..\qt\rmg;..\qt\ctsrv;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/ignore:4221</AdditionalOptions>
+    </Lib>
+    <PreBuildEvent>
+      <Command>.\debug\pre.bat</Command>
+      <Message>******** tlib prebuild event *********</Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug_without_ant|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\glib;..\freetype\include;..\freetype\include\freetype2;..\pcre\include;..\ant_2010\ANT_Windows_Library_Package_v3.0\ANT_LIB\inc;..\ant_2010\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\serial;..\ant_2010\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\system;..\ant_2010\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\USB\devices;..\ant_2010\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\USB\device_handles;..\ant_2010\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\USB;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <AdditionalLibraryDirectories>../ant_2010/ANT_Windows_Library_Package_v3.0/ANT_LIB/Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>../pcre/lib/pcre.lib;ant_lib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>c:\Qt\5.6\msvc2015\include;C:\Qt\5.6\msvc2015\include\QtCore;c:\Qt\5.6\msvc2015\include\QtNetwork;..\freetype\include;..\freetype\include\freetype2;..\pcre\include;..\tinythread++;..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\inc;..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\serial;..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\system;..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\USB\devices;..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\USB\device_handles;..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\USB;..\common;..\glib;..\rm_common;..\qt\common;..\qt\ctsrv;..\qt\rmg;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <BrowseInformation>
+      </BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib />
+    <Lib>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>../ant_2010/ANT_Windows_Library_Package_v3.0/ANT_LIB/Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="bike.cpp" />
+    <ClCompile Include="client.cpp" />
+    <ClCompile Include="client2.cpp" />
+    <ClCompile Include="computrainer.cpp" />
+    <ClCompile Include="computrainer_decoder.cpp" />
+    <ClCompile Include="course.cpp" />
+    <ClCompile Include="data.cpp" />
+    <ClCompile Include="datasource.cpp" />
+    <ClCompile Include="decoder.cpp" />
+    <ClCompile Include="formula.cpp" />
+    <ClCompile Include="heartrate.cpp" />
+    <ClCompile Include="monarch.cpp" />
+    <ClCompile Include="nvram.cpp" />
+    <ClCompile Include="perfdata.cpp" />
+    <ClCompile Include="performance.cpp" />
+    <ClCompile Include="performance_decoder.cpp" />
+    <ClCompile Include="physics.cpp" />
+    <ClCompile Include="rtd.cpp" />
+    <ClCompile Include="simdecoder.cpp" />
+    <ClCompile Include="simulator.cpp" />
+    <ClCompile Include="ss.cpp" />
+    <ClCompile Include="stat.cpp" />
+    <ClCompile Include="user.cpp" />
+    <ClCompile Include="velotron.cpp" />
+    <ClCompile Include="velotron_decoder.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\rm_common\coursefile.h" />
+    <ClInclude Include="..\rm_common\enums.h" />
+    <ClInclude Include="..\rm_common\metadata.h" />
+    <ClInclude Include="..\rm_common\nv.h" />
+    <ClInclude Include="..\rm_common\public.h" />
+    <ClInclude Include="..\rm_common\rider2.h" />
+    <ClInclude Include="..\rm_common\rider_data.h" />
+    <ClInclude Include="..\rm_common\rmconst.h" />
+    <ClInclude Include="..\rm_common\rmdefs.h" />
+    <ClInclude Include="..\rm_common\ssdata.h" />
+    <ClInclude Include="..\rm_common\trainerdata.h" />
+    <ClInclude Include="bike.h" />
+    <ClInclude Include="bikeapp.h" />
+    <ClInclude Include="client.h" />
+    <ClInclude Include="client2.h" />
+    <ClInclude Include="computrainer.h" />
+    <ClInclude Include="computrainer_decoder.h" />
+    <ClInclude Include="course.h" />
+    <ClInclude Include="data.h" />
+    <ClInclude Include="datasource.h" />
+    <ClInclude Include="decoder.h" />
+    <ClInclude Include="defines.h" />
+    <ClInclude Include="device.h" />
+    <ClInclude Include="formula.h" />
+    <ClInclude Include="heartrate.h" />
+    <ClInclude Include="monarch.h" />
+    <ClInclude Include="nvram.h" />
+    <ClInclude Include="perfdata.h" />
+    <ClInclude Include="performance.h" />
+    <ClInclude Include="performance_decoder.h" />
+    <ClInclude Include="physics.h" />
+    <ClInclude Include="round.h" />
+    <ClInclude Include="rtd.h" />
+    <ClInclude Include="simdecoder.h" />
+    <ClInclude Include="simulator.h" />
+    <ClInclude Include="ss.h" />
+    <ClInclude Include="stat.h" />
+    <ClInclude Include="tdefs.h" />
+    <ClInclude Include="trainer.h" />
+    <ClInclude Include="user.h" />
+    <ClInclude Include="velotron.h" />
+    <ClInclude Include="velotron_decoder.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\glib\gen_lib.vcxproj">
+      <Project>{83488ce8-95f5-4fe4-accd-d294ea3d02fc}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\tinythread++\tinythread++.vcxproj">
+      <Project>{263c423b-c59f-4ee1-8a1b-166375c79338}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

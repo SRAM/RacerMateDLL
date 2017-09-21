@@ -1,0 +1,123 @@
+#ifndef _INTERNAL_H_
+#define _INTERNAL_H_
+
+#define WIN32_LEAN_AND_MEAN
+
+#include <serial.h>
+#include <device.h>
+
+#include "levels.h"
+//#include "udp_client.h"
+
+//#include "dll_common.h"
+
+//---------------------------------------------------
+// used internally, so no dll or JNI interface:
+//---------------------------------------------------
+
+enum ADJCODE {
+	ADJ_OK,
+	ADJ_NOSERVER,
+	ADJ_UDPKEY_RESET,
+	ADJ_NO_DEVICES,
+	ADJ_HAVE_UDPKEY_BUT_NQTCLIENTS_NOT_EQUAL_TO_NDEVICES,
+	ADJ_GET_UDPKEY_FROM_DEVNUM_RETURNED_NULL
+};
+
+void CALLBACK TimerProc(UINT uID, UINT uMsg, DWORD dwUser, DWORD dw1, DWORD dw2);
+
+#ifdef WIN32
+    EnumDeviceType check_for_windows_rs232_velotron(const char * _ix);
+	 EnumDeviceType check_for_windows_server_computrainer(const char * _ix);
+    EnumDeviceType check_for_windows_rs232_computrainer(const char * _ix);
+#else
+    EnumDeviceType check_for_unix_rs232_computrainer(const char * _ix);
+    EnumDeviceType check_for_linux_computrainer_server(const char * _ix);						// try to connect to the computrainer handlebar server
+#endif
+
+#ifdef MAP
+	EnumDeviceType check_for_trainers(const char *_ix);
+#else
+EnumDeviceType check_for_trainers(int _ix, int _dummy);
+#endif
+
+const char *get_errstr2(int err);							// duplicated in the exported dll functions
+EnumDeviceType GetRacerMateDeviceID2(int ix);				// duplicated in the exported dll functions
+EnumDeviceType check_for_trainers2(int _ix, int _dummy);			// duplicated in the exported dll functions
+
+DLLSPEC unsigned char get_ant_hr(unsigned short _sn);
+DLLSPEC int scan_for_ant_devices(void);
+
+int endCal(int ix, int fw);
+int startCal(int ix, int fw);
+int get_calibration(int ix);
+
+#ifdef DO_PI
+#ifdef LOGDLL
+	void dump_maps(void);
+#endif
+#endif
+
+#ifdef _DEBUG
+	DLLSPEC int check_maps(const char *_caller);
+#endif
+
+	void init_udp_device(const char *_id);
+
+#ifdef MAP
+	bool iscal(EnumDeviceType, const char *);
+	const char *get_computrainer_firmware(const char *);
+	const char *get_velotron_firmware(const char *);
+	const char *get_computrainer_cal(const char *);
+	const char *get_velotron_cal(const char *);
+#else
+	bool iscal(EnumDeviceType, int);
+	const char *get_computrainer_firmware(int);					// starts at 1
+	const char *get_velotron_firmware(int);						// starts at 1
+	const char *get_computrainer_cal(int);						// starts at 1
+	const char *get_velotron_cal(int);								// starts at 1
+#endif
+
+
+void check_dirs(const char *);
+void setup_standard_dirs(const char *_x=NULL);
+bool isVelotron(Serial *, unsigned long );
+bool velotron_exists(int);
+int get_computrainer_nv(DEVICE *);
+int read_computrainer(int, Serial *);
+ADJCODE sync(const char *_appkey, const char *_udpkey);
+
+#ifdef WIN32
+	int read_server_computrainer(int _ix);
+	void flush(int _ix, Logger *logg, RACERMATE::Ctsrv *,DWORD timeout, BOOL echo);
+	//void flush(int _ix, Logger *logg, Server *,DWORD timeout, BOOL echo);
+#endif
+
+#ifdef WIN32
+//    void flush(Logger *logg, Client *,DWORD timeout, BOOL echo);
+#endif
+
+
+const char *get_computrainer_cal_from_thread(const char *, int);
+const char *get_velotron_cal_from_thread(const char *, int);
+int read_velotron(Serial *);
+#ifdef MAP
+bool haveDevice(EnumDeviceType, const char *);					// xxx
+#else
+bool haveDevice(EnumDeviceType, int);					// xxx
+#endif
+
+
+#ifdef LOGDLL
+    void dump_bike_params(int);
+    void dump_dirs(void);
+#endif
+
+#ifdef DO_EXPORT
+    bool export_flag_file(void);
+    //const char * export_flag_file(void);
+#endif
+
+#endif						// sentry
+
+

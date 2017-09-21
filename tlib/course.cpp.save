@@ -1,0 +1,1415 @@
+
+#ifdef WIN32
+	//#define STRICT
+#pragma warning(disable:4996 4005)					// for vista strncpy_s
+	//#include <warnings.h>
+	#include <windows.h>
+	#include <windowsx.h>
+#endif
+
+//#include <stdio.h>
+#include <assert.h>
+//#include <float.h>
+//#include <math.h>
+
+#include <globals.h>
+
+#ifdef WIN32
+	#include <err.h>
+#endif
+
+//#include <config.h>
+#include <tdefs.h>
+#include <utils.h>
+#include <utilsclass.h>
+#include <defines.h>
+#include <fatalerror.h>
+#include <crc.h>
+
+#include <course.h>
+#include <tglobs.h>
+
+#ifdef TOPO_APP
+	#include RESOURCE_PATH
+#else
+	#ifdef WIN32
+		//#include RESOURCE_PATH
+	#endif
+#endif
+
+std::vector<GLdouble *> course_combine_vertices;
+
+/**********************************************************************
+
+**********************************************************************/
+/*
+Course::Course(void)  {
+	init();
+	bp = 0;
+}
+*/
+
+
+/**********************************************************************
+
+**********************************************************************/
+
+Course::Course(const char *_fname)  {
+
+	init();
+
+	if (_fname)  {
+		strncpy(fname, _fname, sizeof(fname)-1);
+	}
+
+#ifdef _DEBUG
+	logg = new Logger("course.log");
+#endif
+
+	bp = 0;
+}
+
+
+
+/**********************************************************************
+	Destructor
+**********************************************************************/
+
+Course::~Course()  {
+	destroy();
+	return;
+}
+
+#if 0
+/**********************************************************************
+	writes a dummy / EMPTY course to the file
+**********************************************************************/
+
+
+void Course::writeEncrypted(FILE *outstream, CRF *s, FILE *_dbgstream)  {
+
+	strcpy(header.desc, "");
+	strcpy(header.fname, "");
+	header.nlegs = 0;
+	strcpy(header.units, "");
+
+	writeEncryptedHeader(outstream, s);
+
+	return;
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+void Course::writeEncryptedHeader(FILE *outstream, CRF *s)  {
+	Course::OLD_COURSE_HEADER cheader;
+	int status;
+
+	memcpy(&cheader, &header, sizeof(Course::OLD_COURSE_HEADER));
+	trimcrlf(cheader.desc);
+
+	s->doo((unsigned char *) &cheader, sizeof(Course::OLD_COURSE_HEADER));			// encrypt the local copy
+
+	status = fwrite(&cheader, sizeof(Course::OLD_COURSE_HEADER), 1, outstream);
+	if (status != 1)  {
+		throw (fatalError(__FILE__, __LINE__, "Error Writing Course Header"));
+	}
+
+	return;
+}
+/**********************************************************************
+	reads an encrypted course header embedded in a data file.
+**********************************************************************/
+
+void Course::readEncryptedHeader(FILE *instream, CRF *s)  {
+	int status;
+
+	status = fread(&header, sizeof(Course::OLD_COURSE_HEADER), 1, instream);
+	if (status != 1)  {
+		throw (fatalError(__FILE__, __LINE__, "Error Reading Course Header"));
+	}
+	s->doo((unsigned char *) &header, sizeof(Course::OLD_COURSE_HEADER));
+
+
+	return;
+}
+
+#endif
+
+/**********************************************************************
+
+**********************************************************************/
+
+void Course::write_header(FILE *outstream)  {
+	Course::OLD_COURSE_HEADER cheader;
+	int status;
+
+	memcpy(&cheader, &header, sizeof(Course::OLD_COURSE_HEADER));
+	trimcrlf(cheader.desc);
+
+	status = fwrite(&cheader, sizeof(Course::OLD_COURSE_HEADER), 1, outstream);
+	if (status != 1)  {
+		throw (fatalError(__FILE__, __LINE__, "Error Writing Course Header"));
+	}
+
+	return;
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+void Course::init(void)  {
+
+	fname[0] = 0;
+	enhanced = FALSE;
+	memset(&courserect, 0, sizeof(RECT));
+	metric = false;
+
+	memset(&courserect, 0, sizeof(courserect));
+	memset(&cs, 0, sizeof(cs));
+	//nsecs = 0L;
+	//nlegs = 0L;
+
+	mx2 = 0.0f;
+	bx2 = 0.0f;
+	memset(&header, 0, sizeof(header));
+	memset(&signature, 0, sizeof(signature));
+//	tess = NULL;
+
+    miny = FLT_MAX;
+    mini = 0;
+
+    maxy = -999999.0;
+    maxi = 0;
+     
+	enhanced = FALSE;
+	//courserect = _courserect;
+
+
+	warned = false;
+	//changed_in_edit_dialog = false;
+	firstrow = 0;
+	totalLegs = 0;
+
+	memset(signature, 0, sizeof(signature));
+	strncpy(signature, "00000000000000000000000000000000", 32);			// no signature yet
+
+	dbgstream = NULL;
+	defaultSavePath[0] = 0;
+
+	type = UNDEFINED;
+
+	if (indexIgnoreCase(fname, ".erg", 0) != -1)  {
+		type = ERGO;
+	}
+	else if (indexIgnoreCase(fname, ".mrc", 0) != -1)  {
+		type = ERGO;
+	}
+	else if (indexIgnoreCase(fname, ".crs", 0) != -1)  {
+		type = NONERGO;
+	}
+	else if (indexIgnoreCase(fname, ".3dc", 0) != -1)  {
+		type = THREED;
+	}
+	else  {
+		type = EMPTY;
+	}
+
+
+	strcpy(saveName, "");				// default file name
+	changed = false;
+	closed = false;
+
+	cs.version = 0;
+	cs.maxlaps = 0;
+	cs.minlaps = 9999999;
+	cs.maxsecs = 0;
+	cs.minsecs = 9999999;
+	cs.minlen = FLT_MAX;
+	cs.maxlen = -FLT_MAX;
+	cs.mingrade = FLT_MAX;
+	cs.maxgrade = -FLT_MAX;
+	cs.minangle = FLT_MAX;
+	cs.maxangle = -FLT_MAX;
+	cs.mindist = FLT_MAX;
+	cs.maxdist = -FLT_MAX;
+	cs.mindpm = FLT_MAX;			// "degrees per meter"
+	cs.maxdpm = -FLT_MAX;
+	cs.minElevation = FLT_MAX;
+	cs.maxElevation = -FLT_MAX;
+
+	cs.closed = false;
+	cs.avggrade = 0.0f;
+	cs.avggrade2 = 0.0f;
+	cs.avgwind = 0.0f;
+	cs.minwind = FLT_MAX;
+	cs.maxwind = -FLT_MAX;
+	cs.difficulty = 0.0f;
+	cs.max_meters_gain = 0.0f;
+	cs.laps = 0;
+
+	totalMeters = 0.0;
+	totalMiles = 0.0;
+	totalFeet = 0.0;
+
+	grade = NULL;
+	wind = NULL;
+	load = NULL;
+	//SetRect(&waverect, 0, 0, 0, 0);
+	memset(&waverect, 0, sizeof(FRECT));
+
+	laps = 0;
+	looped = false;
+	memset(&header, 0, sizeof(Course::OLD_COURSE_HEADER));
+	string[0] = 0;
+	fileline[0] = 0;
+	course_metric = false;
+	bp = 0;
+
+	stream = NULL;
+	logg = NULL;
+
+	mx2 = bx2 = 0.0f;
+	my2 = by2 = 0.0f;
+	//mxToPhys = bxToPhys = 0.0f;
+	//myToPhys = byToPhys = 0.0f;
+
+	//#ifdef _DEBUG
+
+	//sprintf(str, "%s\\bike.log", LOGPATH);
+
+	//logg = new Logger("course.log", dirs[DIR_DEBUG]);
+
+	if (courselog)  {
+		//logg = new Logger("course.log", dirs[DIR_DEBUG]);
+	}
+	else  {
+		logg = NULL;
+	}
+
+	//#endif
+
+	W = 0;
+
+	return;
+}
+
+
+
+char * Course::getFileName(void)  {
+#ifdef MULTI_APP
+	return fname;						// to get multirider to work
+#else
+	return header.fname;
+#endif
+
+}
+
+
+/*********************************************************************************
+Course Profile at top of Screen
+Name/path
+Overall Course Length (in miles/kms) as you now have it.
+Closed Loop Course?  Yes/No (PC1 courses always -- N/A)
+Number of Legs
+Version (if 3D, if PC1 -- N/A displayed)
+Lowest Grade
+Maximum Grade
+Avg Grade
+Maximum Elevation Gain
+Difficulty:
+   Very Easy = AVG GRADE below 0.0%
+   Easy = AVG GRADE 0% - 4%
+   Medium - AVG GRADE 4% - 8 %
+   Hard - AVG GRADE 8% -10%
+   Very Hard - AVG GRADE 10% - or higher
+Lowest Wind (wind on non v.6 3D courses -- N/A displayed)
+Maximum Wind
+Avg Wind
+
+*********************************************************************************/
+
+//#ifdef WIN32
+#if 0
+void Course::paintstats(HWND hwnd, HDC hdc)  {
+	int x, y, yd;
+
+	SetBkMode( hdc, OPAQUE );
+	SetBkColor( hdc, STATBACKGROUNDCOLOR);
+	SetTextColor(hdc, RGB(255,255,0));
+
+	assert(totalMiles != 0.0);
+
+	RECT r;
+	getClientRect(hwnd, &r);
+
+
+	if (courserect==NULL)  {
+		bp = 1;
+	}
+
+	courserect->left = r.left;
+	courserect->right = r.right;
+	courserect->top = 0;
+	courserect->bottom = 90;
+
+	//draw(hdc, NULL, false, 0.0, true, true);
+	draw(ogl, frect);
+
+
+	y = courserect->bottom + 20;
+
+	x = 30;
+	yd = 20;
+
+	//----------------------------
+	// course name & path
+	//----------------------------
+
+	sprintf(string, "%s", cs.fname);
+	TextOut(hdc, x, y, string, strlen(string) );
+
+	//----------------------------
+	// total distance:
+	//----------------------------
+
+	y += yd;
+	sprintf(string, "Overall Course Length = %.2lf Miles ( %.2lf KM )", cs.totalmeters*TOMILES/1000.0, cs.totalmeters/1000.0 );
+	TextOut(hdc, x, y, string, strlen(string) );
+
+	//----------------------------
+	// closed
+	//----------------------------
+
+	if (cs.version != 0)  {
+		y += yd;
+		sprintf(string, "Closed Loop Course? %s", cs.closed?"YES":"NO");
+		TextOut(hdc, x, y, string, strlen(string) );
+
+		if (cs.closed)  {
+			y += yd;
+			sprintf(string, "Laps = %d", cs.maxlaps);
+			TextOut(hdc, x, y, string, strlen(string) );
+		}
+	}
+	else  {
+		y += yd;
+		sprintf(string, "Closed Loop = FALSE");
+		TextOut(hdc, x, y, string, strlen(string) );
+	}
+
+	// number of legs:
+
+	y += yd;
+	sprintf(string, "Number of Legs = %ld", cs.nsecs);
+	TextOut(hdc, x, y, string, strlen(string) );
+
+	// version:
+
+	if (cs.version != 0)  {
+		y += yd;
+		sprintf(string, "Version %ld", cs.version);
+		TextOut(hdc, x, y, string, strlen(string) );
+	}
+	else  {
+		y += yd;
+		sprintf(string, "Version N/A");
+		TextOut(hdc, x, y, string, strlen(string) );
+	}
+
+	y += 2*yd;
+
+	// tlm20060408+++
+
+	// lowest grade:
+
+	if (type==THREED)  {
+		sprintf(string, "Minimum Grade = %.2f %%", 100.0f*cs.mingrade);
+	}
+	else  {
+		sprintf(string, "Minimum Grade = %.2f %%", cs.mingrade);
+	}
+	TextOut(hdc, x, y, string, strlen(string) );
+
+	// highest grade:
+
+	y += yd;
+	if (type==THREED)  {
+		sprintf(string, "Maximum Grade = %.2f %%", 100.0f*cs.maxgrade);
+	}
+	else  {
+		sprintf(string, "Maximum Grade = %.2f %%", cs.maxgrade);
+	}
+
+	TextOut(hdc, x, y, string, strlen(string) );
+	// tlm20060408---
+
+
+	// average grade:
+
+	y += yd;
+	sprintf(string, "Average Grade = %.2f %%", 100.0f*cs.avggrade);
+	TextOut(hdc, x, y, string, strlen(string) );
+
+	// maximum elevation gain:
+
+	y += yd;
+
+	if (course_metric)  {
+		sprintf(string, "Total Elevation Climbed = %.2f Meters", cs.max_meters_gain);
+	}
+	else  {
+		sprintf(string, "Total Elevation Climbed = %.2f Feet", (float) (METERSTOFEET*cs.max_meters_gain) );
+	}
+
+	TextOut(hdc, x, y, string, strlen(string) );
+
+	// difficulty:
+
+	y += yd;
+	strcpy(string, "Difficulty = ");
+
+	//tlm20031003+++
+	if (cs.avggrade2 <= .04f)  {
+		strcat(string, "Easy");
+	}
+	else if (cs.avggrade2 <= .08f)  {
+		strcat(string, "Medium");
+	}
+	else if (cs.avggrade2 <= .10f)  {
+		strcat(string, "Hard");
+	}
+	else  {
+		strcat(string, "Very Hard");
+	}
+	//tlm20031003---
+
+	TextOut(hdc, x, y, string, strlen(string) );
+
+	y += 2*yd;
+	sprintf(string, "Minimum Wind = %.2f", cs.minwind);
+	TextOut(hdc, x, y, string, strlen(string) );
+
+	y += yd;
+	sprintf(string, "Maximum Wind = %.2f", cs.maxwind);
+	TextOut(hdc, x, y, string, strlen(string) );
+
+	y += yd;
+	sprintf(string, "Average Wind = %.2f", cs.avgwind);
+	TextOut(hdc, x, y, string, strlen(string) );
+
+	return;
+}
+
+
+/*******************************************************************************
+
+*******************************************************************************/
+
+HWND Course::createStatWnd(void)  {
+	HWND hwnd = NULL;
+
+
+	if (statwnd)  {
+		buzz();
+		return NULL;
+	}
+
+	statbgbrush = CreateSolidBrush(STATBACKGROUNDCOLOR);
+
+
+	WNDCLASS wc = { 
+						CS_HREDRAW | CS_VREDRAW,
+						statWndProc,
+						0,
+						0,
+						hInstance,
+						//icon,
+						NULL,
+						LoadCursor(NULL, IDC_ARROW),
+						//(HBRUSH)GetStockObject(GRAY_BRUSH),
+						statbgbrush,
+						//MYMENUNAME,							// menu name
+						NULL,
+						"course_statistics"							// classname
+		};
+
+	if (!RegisterClass(&wc))  {
+		if (!UnregisterClass ("course_statistics", hInstance))  {
+			Err *err = new Err();
+			delete err;
+		}
+		else  {
+			if (!RegisterClass(&wc))  {
+				bp = 1;
+			}
+		}
+	}
+
+
+	hwnd = CreateWindowEx(
+						NULL,
+						"course_statistics",
+						"Course Statistics",
+
+						WS_OVERLAPPED |
+						WS_CAPTION |
+						WS_SYSMENU |
+						//WS_THICKFRAME |
+						WS_MINIMIZEBOX|
+						WS_MAXIMIZEBOX |
+						WS_VISIBLE,
+
+						0,	// x
+						0,	// y
+						600,
+						500,
+						phwnd,						// parent
+						0L,							// menu
+						hInstance,				// instance
+						//0L);
+						this);
+
+	if (hwnd==NULL)  {
+		Err *err = new Err();
+		DEL(err);
+		return NULL;
+	}
+	
+	return hwnd;
+}
+
+/*********************************************************************************
+
+this is the wndproc for the popup window statwnd. It is owned by the main window.
+
+*********************************************************************************/
+
+
+LRESULT CALLBACK Course::statWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+	static Course *jc = NULL;
+
+	switch(uMsg)  {
+		case WM_CREATE:								// 0x0001
+		case WM_GETTEXT:								// 0x000D
+		case WM_PAINT:									// 0x000f
+		case WM_MOUSEACTIVATE:						// 0x0021
+		case WM_GETMINMAXINFO:						// 0x0024
+		case WM_WINDOWPOSCHANGING:					// 0x0046
+		case WM_WINDOWPOSCHANGED:					// 0x0047
+		case WM_NCCALCSIZE:							// 0x0083
+		case WM_QUERYOPEN:							// 0x0013
+		case WM_SHOWWINDOW:							// 0x0018
+		case WM_ACTIVATEAPP:							// 0x001C
+		case WM_SIZE:									// 0x0005
+		case WM_ACTIVATE:								// 0x0006
+		case WM_NCCREATE:								// 0x0081
+		case WM_MOVE:									// 0x0003
+		case WM_NCACTIVATE:							// 0x0086
+		case WM_NCPAINT:								// 0x0085
+		case WM_ERASEBKGND:							// 0x0014
+		case WM_NOTIFYFORMAT:						// 0x0055
+		case WM_PARENTNOTIFY:						// 0x0210
+		case WM_CTLCOLORSTATIC:						// 0x0138
+		case WM_NOTIFY:								// 0x004E
+		case WM_SYNCPAINT:							// 0x0088
+		case WM_NCHITTEST:							// 0x0084
+		case WM_SETCURSOR:							// 0x0020
+		case WM_HSCROLL:								// 0x0114
+		case WM_MOUSEFIRST:							// 0x0200
+		case WM_LBUTTONDOWN:							// 0x0201
+		case 0x127:										// ???
+		case 0x129:										// ???
+		case WM_LBUTTONUP:							// 0x0202
+		case WM_NCMOUSEMOVE:							// 0x00A0
+		case WM_KEYFIRST:								// 0x0100
+		case WM_CTLCOLORBTN:							// 0x0135
+		case WM_COMMAND:								// 0x0111
+		case WM_RBUTTONDOWN:							// 0x0204
+		case WM_RBUTTONUP:							// 0x0205
+		case WM_RBUTTONDBLCLK:						// 0x0206
+		case WM_DRAWITEM:								// 0x002B
+		case WM_CONTEXTMENU:							// 0x007B
+		case WM_KEYUP:									// 0x0101
+		case WM_NCLBUTTONDOWN:						// 0x00A1
+		case WM_SYSCOMMAND:							// 0x0112
+		case WM_CAPTURECHANGED:						// 0x0215
+		case WM_ENTERSIZEMOVE:						// 0x0231
+		case WM_MOVING:								// 0x0216
+		case WM_EXITSIZEMOVE:						// 0x0232
+		case WM_CLOSE:									// 0x0010
+		case WM_DESTROY:								// 0x0002
+		case WM_NCDESTROY:							// 0x0082
+		case WM_KILLFOCUS:							// 0x0008
+		case WM_SETFOCUS:								// 0x0007
+			break;
+
+		default:
+			break;
+	}
+
+
+
+	switch(uMsg) {
+		case WM_CREATE:  {
+			CREATESTRUCT *cs = (CREATESTRUCT *)lParam;
+			jc = (Course *)cs->lpCreateParams;
+			break;
+		}
+
+		case WM_SYSCOMMAND:  {
+			int i = wParam & 0xfff0;
+
+			switch(i) {
+				case SC_SCREENSAVE:
+				case SC_MONITORPOWER:
+					return 0;
+
+				case SC_MOVE:
+					//tlm20020202 uncomment this if you don't want the window movable !!!!
+					//return FALSE;
+					//bp = 1;
+					break;
+
+				case SC_SIZE:
+					//tlm20020202 uncomment this if you don't want the window movable !!!!
+					//return FALSE;
+					//bp = 1;
+					break;
+
+				case SC_CLOSE:				// Closes the window. 
+					break;
+				case SC_CONTEXTHELP:		// Changes the cursor to a question mark with a pointer. If the user then clicks a control in the dialog box, the control receives a WM_HELP message. 
+					break;
+				case SC_DEFAULT:			// Selects the default item; the user double-clicked the window menu. 
+					break;
+				case SC_HOTKEY:			// Activates the window associated with the application-specified hot key. The lParam parameter identifies the window to activate. 
+					break;
+				case SC_HSCROLL:			// Scrolls horizontally. 
+					break;
+				case SC_KEYMENU:			// Retrieves the window menu as a result of a keystroke. For more information, see the Remarks section. 
+					break;
+				case SC_MAXIMIZE:			// Maximizes the window. 
+					break;
+				case SC_MINIMIZE:			// Minimizes the window. 
+					break;
+				case SC_MOUSEMENU:		// Retrieves the window menu as a result of a mouse click. 
+					break;
+				case SC_NEXTWINDOW:		// Moves to the next window. 
+					break;
+				case SC_PREVWINDOW:		// Moves to the previous window. 
+					break;
+				case SC_RESTORE:			// Restores the window to its normal position and size. 
+					InvalidateRect(hwnd, NULL, TRUE);
+					UpdateWindow(hwnd);
+					break;
+
+				case SC_TASKLIST:			// Activates the Start menu. 
+					break;
+				case SC_VSCROLL:			// Scrolls vertically. 
+					break;
+
+				default:
+					break;
+			}
+			break;
+		}
+
+		case WM_SIZE:  {
+			break;
+		}
+
+		case WM_PAINT:  {
+			PAINTSTRUCT ps;
+			HDC hdc;
+
+			if (!IsWindow(hwnd))  {
+				break;
+			}
+
+			hdc = BeginPaint(hwnd, &ps);
+			jc->paintstats(hwnd, hdc);
+			EndPaint (hwnd, &ps);
+			break;
+		}
+
+		case WM_DESTROY:
+			SendMessage(jc->phwnd, WM_USER, 0, 0);
+			break;
+
+
+		case WM_CLOSE:
+			break;
+
+		default:
+			break;
+	}
+
+	return DefWindowProc(hwnd, uMsg, wParam, lParam);
+
+}
+
+#endif		// win32
+
+
+
+void Course::destroy(void)  {
+
+	int i, len;
+
+	len = course_combine_vertices.size();
+	for(i=0; i<len; i++)  {
+		free (course_combine_vertices[i]);
+	}
+	course_combine_vertices.clear();
+
+/*
+	if (tess)  {
+		gluDeleteTess(tess);
+	}
+*/
+
+	DEL(logg);
+
+	if (stream)  {
+		fclose(stream);
+		stream = NULL;
+	}
+
+	return;
+}
+
+
+
+/**********************************************************************
+
+**********************************************************************/
+
+bool Course::savequestion(void)  {
+	int i;
+
+	i = MessageBox(NULL, "Save Changes?", "", MB_YESNO | MB_ICONQUESTION );
+
+	if (i==IDNO)  {
+		return false;
+	}
+	else if (i==IDYES)  {
+		return true;
+	}
+	else  {
+		bp = 1;
+	}
+	return true;
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+void Course::saveAs(void)  {
+	int i, len;
+#ifdef WIN32
+	OPENFILENAME ofn;
+#endif
+	char curdir[256];
+	char tpath[256];
+	char tfname[256];
+	char filter[32];
+	char initialtype[8];
+	char extension[8];
+
+
+	strcpy(saveName, "");				// default file name
+#ifdef WIN32
+	GetCurrentDirectory(sizeof(curdir)-1, curdir);
+
+	// header.fname contains our current path and filename
+
+	strncpy(tfname, header.fname, sizeof(tfname)-1);
+	strip_path(tfname);
+
+	if (indexIgnoreCase(tfname, ".crs", 0) != -1)  {
+		strcpy(initialtype, ".crs");
+		strncpy(filter,"CRS Files?*.crs?", sizeof(filter)-1);
+		strcpy(extension, "crs");
+	}
+	else if (indexIgnoreCase(tfname, ".3dc", 0) != -1)  {
+		strcpy(initialtype, ".3dc");
+		strncpy(filter,"3DC Files?*.3dc?", sizeof(filter)-1);
+		strcpy(extension, "3dc");
+	}
+	else  {
+		return;
+	}
+
+#endif
+
+
+
+	strncpy(tpath, defaultSavePath, sizeof(tpath)-1);				// for lpstrIinitialDir
+
+	assert(filter[strlen(filter)-1] == '?');		// need trailing '?'
+
+	len = strlen(filter);
+
+	for(i=0;i<len;i++)  {				// change '?' to 0
+		if (filter[i]=='?')  {
+			filter[i] = 0;
+		}
+	}
+
+#ifdef WIN32
+
+
+	memset(&ofn, 0, sizeof(ofn));
+
+	ofn.lStructSize			= sizeof(ofn);
+	ofn.hwndOwner				= NULL;
+	ofn.hInstance				= NULL;							// ignored
+	ofn.lpstrFilter			= filter;
+	ofn.lpstrCustomFilter	= NULL;
+	ofn.nMaxCustFilter		= 0;								// ignored
+	ofn.nFilterIndex			= 1;
+	ofn.lpstrFile				= saveName;						// entry: default file name
+																		// exit: full path & file name
+	ofn.nMaxFile				= sizeof(saveName);
+	ofn.lpstrFileTitle		= NULL;							// receives filename & extension without path
+	ofn.nMaxFileTitle			= 0;								//_MAX_FNAME + _MAX_EXT;
+	ofn.lpstrInitialDir		= tpath;
+	ofn.lpstrTitle				= "Save As";							// title in title bar
+	ofn.Flags					= OFN_OVERWRITEPROMPT |
+									  OFN_PATHMUSTEXIST |
+									  OFN_HIDEREADONLY |
+									  OFN_SHOWHELP;
+
+	ofn.nFileOffset			= 0;
+	ofn.nFileExtension		= 0;
+	ofn.lpstrDefExt			 = 0;		// extension;
+	ofn.lCustData				= 0;
+	ofn.lpfnHook				= NULL;
+	ofn.lpTemplateName		= NULL;
+
+
+	if (!GetSaveFileName(&ofn))  {
+		// cancel button hit
+		SetCurrentDirectory(curdir);
+		return;
+	}
+
+	strcpy(saveName, ofn.lpstrFile);
+
+	int pos = indexIgnoreCase(saveName, ".", 0);
+	if (pos==-1)  {
+		strcat(saveName, ".");
+		strcat(saveName, extension);
+	}
+
+
+	BOOL bstat = SetCurrentDirectory(curdir);
+	if (bstat==FALSE)  {
+	}
+
+#endif
+
+
+	return;
+}
+
+
+#ifdef PARENT_DRAW_COURSE
+
+/**********************************************************************
+	this is inside a compile block
+	entry: blending is enabled
+
+    top:    117, 165, 201
+    bottom: 15, 76, 121
+ogl->set_color(15, 76, 121);
+
+**********************************************************************/
+
+int Course::draw(OGL *ogl)  {
+	OGL::BCOLOR bc;
+	OGL::BCOLOR border_color;
+	float bottom, top;
+	int i;
+	//float miny=FLT_MAX;
+	//int idx;
+	float fx, fy;
+
+
+	//-------------------------------------
+	// fill the background with white:
+	// already done by the caller
+	//-------------------------------------
+
+//	ogl->set_color(255, 255, 255);
+//	ogl->orthorect(courserect.left, courserect.top, courserect.right , courserect.bottom, true);
+
+	//-----------------------------
+	// get the mappings:
+	//-----------------------------
+
+	Utils::map(0.0f, (float)totalMiles, courserect.left+1.0f, courserect.right-1.0f, mx2, bx2);
+
+	bottom = courserect.top + .90f*(courserect.bottom-courserect.top);
+	top = courserect.top + .20f*(courserect.bottom-courserect.top);
+	Utils::map(minel, maxel, bottom, top, my2, by2);
+
+	//-----------------------------
+	// CALCULATE THE COURSE:
+	//-----------------------------
+
+	if (logg) logg->write(0,0,0,"\n    I   Y[I]   ELEVATION:\n");
+
+  	x[0] = mx2 * 0.0f + bx2;
+	y[0] = my2 * 0.0f  +  by2;
+
+
+	for(i=0;i<(int)header.nlegs;i++)  {
+   		x[i+1] = mx2 * legs[i].accumMiles + bx2;
+		y[i+1] = my2 * legs[i].endel  +  by2;
+		sprintf(string, "%3d    %d   %f\n", i, (int)(.5+y[i]), legs[i].endel);
+		if (logg)  {
+			logg->write(0,3,0,string);
+		}
+	}
+
+	Utils::map(0.0f, legs[0].accumMiles, y[0], y[1], my[0], by[0]);
+
+	for(i=1; i<(int)header.nlegs; i++)  {
+		Utils::map(legs[i-1].accumMiles, legs[i].accumMiles, y[i], y[i+1], my[i], by[i]);
+	}
+
+	bp = 1;
+
+	//--------------------------------------------------------------
+	// REPLACE Y[] WITH THE MAV() FOR COMPLEX COURSES (>50 LEGS)
+	//--------------------------------------------------------------
+
+    if (header.nlegs>50)  {										// tlm: changed from 20 on 20040311 for multi-rider
+        Utils::mav(y, header.nlegs+1, 5, 0);				// 5 point moving average
+    }
+
+
+
+    //------------------------------------------------------------------------------
+    // FIRST ERASE THE COURSE AREA IN CASE WE ARE REDRAWING A DIFFERENT COURSE
+    //------------------------------------------------------------------------------
+
+#if 1
+    //------------------------------------------------------------------------------
+    // DRAW THE COURSE:
+    //------------------------------------------------------------------------------
+
+    fx = bx2;
+    fy = by2;
+
+    double *vertices=NULL;
+    double z = ogl->get_orthoz();
+
+
+    unsigned int k = (unsigned int) (NPOINTS*(header.nlegs+4));
+
+    vertices = new double[k];
+
+    //
+
+    vertices[0] = fx;
+    vertices[1] = fy;
+    vertices[2] = z;
+    vertices[3] = -1.0;       // 15.0/255.0;
+    vertices[4] = -1.0;       // 76.0/255.0;
+    vertices[5] = -1.0;       // 121.0/255.0;
+    #if NPOINTS==7
+        vertices[6] = 0;
+    #endif
+
+    mini = maxi = 0;
+    miny = maxy = fy;
+
+    for(i=1; i<(int)header.nlegs+1; i++)  {
+        vertices[i*NPOINTS] = x[i];
+        vertices[i*NPOINTS+1] = y[i];
+        vertices[i*NPOINTS+2] = z;
+        vertices[i*NPOINTS+3] = -1.0;         //  15.0/255.0;
+        vertices[i*NPOINTS+4] = -1.0;         //  76.0/255.0;
+        vertices[i*NPOINTS+5] = -1.0;         // 121.0/255.0;
+        #if NPOINTS==7
+            vertices[i*NPOINTS+6] = i;
+        #endif
+
+        if (y[i] < miny)  {							// this is to find the best floodfill point
+            miny = y[i];                                        // this is the *highest* point of the course
+            mini = i;
+        }
+
+        if (y[i] > maxy)  {							// this is to find the best floodfill point
+            maxy = y[i];                                        // this is the *highest* point of the course
+            maxi = i;
+        }
+    }
+#ifdef _DEBUG
+    printf("\nmini = %d,  miny = %.2f, maxi = %d, maxy = %.2f\n", mini, miny, maxi, maxy);
+#endif
+
+    // set the color of the highest point:
+
+    vertices[mini*NPOINTS+3] = -1.0;       // 117.0/255.0;                 // red
+    vertices[mini*NPOINTS+4] = -1.0;       // 165.0/255.0;                 // green
+    vertices[mini*NPOINTS+5] = -1.0;       // 201.0/255.0;                 // blue
+
+    // set the color of the lowest point:
+
+    vertices[maxi*NPOINTS+3] = -1.0;       // 15.0/255.0;                 // red
+    vertices[maxi*NPOINTS+4] = -1.0;       // 76.0/255.0;                 // green
+    vertices[maxi*NPOINTS+5] = -1.0;       // 121.0/255.0;                 // blue
+
+
+
+
+    // set the color of the bottom of the course
+	vertices[i*NPOINTS] = x[header.nlegs];
+	vertices[i*NPOINTS+1] = courserect.bottom-1.0f;
+	vertices[i*NPOINTS+2] = z;
+	vertices[i*NPOINTS+3] = -1.0;       // 15.0/255.0;
+	vertices[i*NPOINTS+4] = -1.0;       // 76.0/255.0;
+	vertices[i*NPOINTS+5] = -1.0;       // 121.0/255.0;
+    #if NPOINTS==7
+        vertices[i*NPOINTS+6] = i;
+	#endif
+
+	i++;
+	vertices[i*NPOINTS] = fx;
+	vertices[i*NPOINTS+1] = courserect.bottom-1.0f;
+	vertices[i*NPOINTS+2] = z;
+	vertices[i*NPOINTS+3] = -1.0;       // 15.0/255.0;
+	vertices[i*NPOINTS+4] = -1.0;       // 76.0/255.0;
+	vertices[i*NPOINTS+5] = -1.0;       // 121.0/255.0;
+    #if NPOINTS==7
+        vertices[i*NPOINTS+6] = i;
+    #endif
+
+        // this closes the polygon
+
+	i++;
+	vertices[i*NPOINTS] = fx;
+	vertices[i*NPOINTS+1] = fy;
+	vertices[i*NPOINTS+2] = z;
+	vertices[i*NPOINTS+3] = -1.0;       // 15.0/255.0;
+	vertices[i*NPOINTS+4] = -1.0;       // 76.0/255.0;
+	vertices[i*NPOINTS+5] = -1.0;       // 121.0/255.0;
+    #if NPOINTS==7
+        vertices[i*NPOINTS+6] = i;
+    #endif
+
+        // set up the colors of the vertices
+        float mr, br, mg, bg, mb, bb;
+
+        // 117.0/255.0      165.0/255.0     201.0/255.0
+	//  15.0/255.0       76.0/255.0     121.0/255.0
+
+        map(miny, maxy, 117.0f/255.0f,  15.0f/255.0f, &mr, &br);
+        map(miny, maxy, 165.0f/255.0f,  76.0f/255.0f, &mg, &bg);
+        map(miny, maxy, 201.0f/255.0f, 121.0f/255.0f, &mb, &bb);
+
+        for(i=0; i<(int)header.nlegs+4; i++)  {
+            vertices[i*NPOINTS+3] = mr*vertices[i*NPOINTS+1] + br;
+            vertices[i*NPOINTS+4] = mg*vertices[i*NPOINTS+1] + bg;
+            vertices[i*NPOINTS+5] = mb*vertices[i*NPOINTS+1] + bb;
+        }
+
+        #ifdef _DEBUG
+	       double *p;
+		    printf("\n");
+			for(i=0; i<(int) (header.nlegs+4); i++)  {
+				p = &vertices[NPOINTS* i];
+	            printf("%3d %7.2lf, %7.2lf, %7.2lf   color =  %4d, %4d, %4d\n", i, *p, *(p+1), *(p+2), (int) (.5 + (255.0*(*(p+3)))), (int) (.5 + (255.0*(*(p+4)))), (int) (.5 + (255.0*(*(p+5)))) );
+		    }
+			printf("\n");
+        #endif
+/*
+	xxx
+*/
+
+        GLUtesselator* tess = gluNewTess();
+
+		#ifdef WIN32
+			gluTessCallback(tess, GLU_TESS_BEGIN,	( GLvoid(__stdcall *)() ) &glu_tess_begin);
+			gluTessCallback(tess, GLU_TESS_END,     (GLvoid (__stdcall *) ()) &glu_tess_end);
+			gluTessCallback(tess, GLU_TESS_ERROR,	(GLvoid (__stdcall *) ())	&glu_tess_error);
+			gluTessCallback(tess, GLU_TESS_VERTEX, (GLvoid (__stdcall *) ()) &glu_tess_vertex);
+			gluTessCallback(tess, GLU_TESS_COMBINE, (GLvoid (__stdcall *) ()) &glu_tess_combine);
+			//gluTessCallback(tess, GLU_TESS_VERTEX, (GLvoid (__stdcall *) ()) &glVertex3dv);
+			//gluTessCallback(tess, GLU_TESS_END,		(GLvoid (__stdcall *) ())							&glu_tess_end);
+			//gluTessCallback(tess, GLU_TESS_ERROR,	(GLvoid (__stdcall *) ())							&glu_tess_error);
+		#else
+			gluTessCallback(tess, GLU_TESS_BEGIN,	( GLvoid(*)() ) &glu_tess_begin);
+			gluTessCallback(tess, GLU_TESS_END,     (GLvoid (*) ()) &glu_tess_end);
+			gluTessCallback(tess, GLU_TESS_ERROR,	(GLvoid (*) ())	&glu_tess_error);
+			gluTessCallback(tess, GLU_TESS_VERTEX,  (GLvoid (*) ()) &glu_tess_vertex);                  // 
+			gluTessCallback(tess, GLU_TESS_COMBINE, (GLvoid (*) ()) &glu_tess_combine);               // only needed for self-intersecting polygons
+
+			//gluTessCallback(tess, GLU_TESS_VERTEX, (GLvoid (*) ()) &glVertex3dv);                     // this uses the default if you have no color
+		#endif
+
+		glShadeModel(GL_SMOOTH);			// CAUSES MULTICOLORED LINES TO NOT WORK!!!!!!!!!! USE GL_SMOOTH TO UNDO IF YOU USE THIS!!!!!!
+
+#ifdef _DEBUG
+        int kk = (int) (header.nlegs + 4);
+#endif
+
+		gluTessBeginPolygon(tess, NULL);
+			gluTessBeginContour(tess);
+				for(i=0; i<(int)header.nlegs+4; i++)  {
+					gluTessVertex(tess, &vertices[i*NPOINTS], &vertices[i*NPOINTS] );                    // 
+                }
+            gluTessEndContour(tess);
+#ifdef _DEBUG
+	ogl->check();
+#endif
+
+		gluTessEndPolygon(tess);		// this actually invokes glu_tess_vertex() for each vertex
+
+#ifdef _DEBUG
+	ogl->check();
+#endif
+	bp = 4;
+
+	gluDeleteTess(tess);
+	tess = NULL;
+	DELARR(vertices);
+	glShadeModel(GL_FLAT);			// CAUSES MULTICOLORED LINES TO NOT WORK!!!!!!!!!! USE GL_SMOOTH TO UNDO IF YOU USE THIS!!!!!!
+#ifdef _DEBUG
+        printf("\n");
+#endif
+
+#endif
+
+
+#if 1
+	//--------------------------------------------------------------------------------------------
+	// redraw top of course with dark line in order to get rid of the polygon aliasing
+	//--------------------------------------------------------------------------------------------
+
+	fx = bx2;
+	fy = by2;
+	ogl->set_line_width(1.0f);
+//	glEnable(GL_BLEND);							// Enable Blending
+	//ogl->set_color(113, 161, 197);
+	ogl->set_color(15, 76, 121);
+
+	glBegin(GL_LINE_STRIP);
+		glVertex3f(fx, fy, ogl->get_orthoz());
+		for(i=1;i<(int)header.nlegs+1;i++)  {
+			glVertex3f(x[i], y[i], ogl->get_orthoz());
+		}
+	glEnd();
+#endif
+
+	/*
+	ogl->set_line_width(3.0f);
+	ogl->set_color(113, 161, 197);
+	ogl->ortholine(x[0], fy, x[0], y[0]);
+	*/
+
+	return 0;
+}					// draw(), blend
+
+
+/**********************************************************************
+
+**********************************************************************/
+
+#ifdef WIN32
+GLvoid CALLBACK Course::glu_tess_begin(GLenum which)  {
+#else
+GLvoid regularCourse::glu_tess_begin(GLenum which)  {
+#endif
+
+   glBegin(which);
+
+#ifdef _DEBUG
+	if (glGetError() != GL_NO_ERROR)  {
+		int bp = 0;
+	}
+#endif
+
+	return;
+}
+
+
+/**********************************************************************
+
+**********************************************************************/
+
+#ifdef WIN32
+GLvoid CALLBACK Course::glu_tess_end(void)  {
+#else
+GLvoid regularCourse::glu_tess_end(void)  {
+#endif
+
+   glEnd();
+#ifdef _DEBUG
+	if (glGetError() != GL_NO_ERROR)  {
+		int bp = 0;
+	}
+#endif
+
+	return;
+}
+
+/**********************************************************************
+
+**********************************************************************/
+
+#ifdef WIN32
+GLvoid CALLBACK Course::glu_tess_error(GLenum errorCode)  {
+#else
+GLvoid regularCourse::glu_tess_error(GLenum errorCode)  {
+#endif
+
+	const GLubyte *estring;
+
+   estring = gluErrorString(errorCode);
+   fprintf (stderr, "Tessellation Error: %s\n", estring);
+   exit (0);
+	//return;
+}
+
+/**********************************************************************
+	vertex is an array of 3 doubles (x, y, z)
+	x is optional data that can be passed (like color info)
+**********************************************************************/
+
+
+/*
+GLvoid regularCourse::glu_tess_vertex(GLUtesselator *tess, GLdouble *vertex, GLvoid *x)  {
+	regularCourse *rc = (regularCourse *) x;
+
+	rc->bp = 33;
+
+	return;
+}
+*/
+
+
+#ifdef WIN32
+GLvoid CALLBACK Course::glu_tess_vertex(GLvoid *vertex)  {
+#else
+GLvoid regularCourse::glu_tess_vertex(GLvoid *vertex)  {
+#endif
+
+	const GLdouble *p;
+
+ #ifdef _DEBUG
+   static int i=0;
+	if (glGetError() != GL_NO_ERROR)  {
+		int bp = 0;
+	}
+#endif
+
+    p = (GLdouble *) vertex;
+    double red = *(p+3);
+    if (red > 0.0)  {
+        glColor3dv(p+3);
+    }
+    else  {
+        int bp = 1;
+    }
+    glVertex3dv(p);                  // 
+
+#ifdef _DEBUG
+	if(i==4)  {
+		int bp = 1;
+	}
+    #if NPOINTS==7
+        int k = (int)(*(p+6));
+        printf("%3d %3d %7.2lf, %7.2lf, %7.2lf   color =  %4d, %4d, %4d\n", i, k, *p, *(p+1), *(p+2), (int) (.5 + (255.0*(*(p+3)))), (int) (.5 + (255.0*(*(p+4)))), (int) (.5 + (255.0*(*(p+5)))) );
+    #else
+        printf("%3d %7.2lf, %7.2lf, %7.2lf   color =  %4d, %4d, %4d\n", i, *p, *(p+1), *(p+2), (int) (.5 + (255.0*(*(p+3)))), (int) (.5 + (255.0*(*(p+4)))), (int) (.5 + (255.0*(*(p+5)))) );
+    #endif
+
+   i++;
+#endif
+    return;
+}
+
+
+
+/*
+GLvoid regularCourse::regularCourse::glu_tess_vertex(float x, float y, float z)  {
+	glVertex3f(x, y, z);
+	return;
+}
+*/
+
+/**********************************************************************
+
+**********************************************************************/
+
+#ifdef WIN32
+GLvoid CALLBACK Course::glu_tess_combine(
+							   GLdouble coords[3], 
+							   GLdouble *vertex_data[4], 
+							   GLfloat weight[4], 
+							   GLdouble **dataOut)  {
+#else
+GLvoid regularCourse::glu_tess_combine(
+							   GLdouble coords[3],
+							   GLdouble *vertex_data[4],
+							   GLfloat weight[4],
+							   GLdouble **dataOut)  {
+#endif
+
+	GLdouble *vertex;
+   int i, j;
+
+   //
+#ifdef _DEBUG
+	if (glGetError() != GL_NO_ERROR)  {
+		int bp = 0;
+	}
+#endif
+
+
+   vertex = (GLdouble *) malloc(NPOINTS * sizeof(GLdouble));
+
+#ifdef _DEBUG
+   i = NPOINTS;
+#endif
+
+   vertex[0] = coords[0];
+   vertex[1] = coords[1];
+   vertex[2] = coords[2];
+
+	for (i=3; i < 6; i++)  {
+		vertex[i] = 0.0;
+		for(j=0; j<4; j++)  {
+			if (vertex_data[j])  {
+				vertex[i] += weight[j] * vertex_data[j][i];
+			}
+		}
+		/*
+		vertex[i] =	weight[0] * vertex_data[0][i] + 
+					weight[1] * vertex_data[1][i] + 
+					weight[2] * vertex_data[2][i] + 
+					weight[3] * vertex_data[3][i];
+		*/
+	}
+
+#if NPOINTS==7
+	vertex[i] = -1.0;
+#endif
+
+	course_combine_vertices.push_back(vertex);								// save to deallocate later
+
+   *dataOut = vertex;				// must deallocate later!!!!!!!!!
+
+	return;
+}
+
+#endif							// #ifdef DRAW_REGULAR_COURSE
+

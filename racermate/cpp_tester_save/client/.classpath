@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="client1.java|client2.java|client3.java|client4.java" kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/media/larry/data/java/utils/dist/utils.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

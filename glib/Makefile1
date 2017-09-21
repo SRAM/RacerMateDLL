@@ -1,0 +1,117 @@
+
+
+SRCS = \
+			tinystr.cpp \
+			tinyxml.cpp \
+			tinyxmlerror.cpp \
+			tinyxmlparser.cpp \
+			amplifier.cpp \
+			averagetimer.cpp \
+			bmp.cpp \
+			crc.cpp \
+			crf.cpp \
+			dir.cpp \
+			err.cpp \
+			fasttimer.cpp \
+			fatalerror.cpp \
+			fileselector.cpp \
+			float2d.cpp \
+			globals.cpp \
+			ini.cpp \
+			iobase.cpp \
+			linux_ogl.cpp \
+			linux_serial.cpp \
+			linux_utils.cpp \
+			logger.cpp \
+			lpfilter.cpp \
+			md5.cpp \
+			ogl.cpp \
+			person.cpp \
+			progressbar.cpp \
+			scaler.cpp \
+			signalstrengthmeter.cpp \
+			smav.cpp \
+			timer.cpp \
+			twopolefilter.cpp \
+			utilsclass.cpp \
+			utils.cpp
+
+
+LIB = gen_lib
+
+#-----------------------------------------------------------------
+
+INCLUDE_PATH = -I/usr/lib/jvm/java-6-sun/include/linux \
+					-I/usr/lib/jvm/java-6-sun/include \
+					-I/usr/include \
+					-I/usr/include/atk-1.0 \
+					-I/usr/lib/gtk-2.0/include \
+					-I/usr/lib/glib-2.0/include \
+					-I/usr/include/pango-1.0 \
+					-I/usr/include/cairo \
+					-I/usr/include/glib-2.0 \
+					-I/usr/include/gtk-2.0 \
+					-I../freetype/include/freetype2 \
+					-I.
+
+AR = ar
+RANLIB = ranlib
+CXX = g++
+# -O0 is for valgrind extra debugging:
+#CXXFLAGS =    -g -DGNU -D_THREAD_SAFE
+CXXFLAGS = -O0 -g -DGNU -D_THREAD_SAFE
+
+
+
+LD = g++
+LDFLAGS = 
+DEPDIR = ./
+OBJDIR = ./
+
+OBJS = $(addprefix $(OBJDIR),$(SRCS:.cpp=.o))
+DEPS = $(addprefix $(DEPDIR),$(SRCS:.cpp=.d))
+	
+all: $(LIB).a $(LIB).so
+	ls -al $(LIB).a $(LIB).so
+
+# @ is $(LIB).so:
+
+$(LIB).so: $(OBJS) Makefile
+	#$(CXX) -shared -fPIC -o $@ $(OBJS)
+	$(CXX) -shared -fPIC -o $@ $(OBJS) -pthread -L../lib  -lpthread
+	#$(CXX) -shared -fPIC -o $@ $(OBJS) -pthread -L../lib  -lpthread $(__SYSLIB2_p_1)
+
+$(LIB).a: $(OBJS)
+	rm -f $@
+	$(AR) rcu $@ $(OBJS)
+	$(RANLIB) $@
+
+#-------------------------------------------------------------------------
+# % is a wildcard
+# The "$<" string refers to the dependency list that was matched by the rule 
+# (in our case - the full name of the source file). There are other 
+#similar strings, such as "$@" which refers to the full target name, 
+#or "$*", that refers the part that was matched by the "%" character.
+#-------------------------------------------------------------------------
+
+%.o:%.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCLUDE_PATH) $< -o $@
+
+#$(OBJDIR)%.o:
+#	$(CXX) $(CXXFLAGS) $(INCLUDE_PATH) -o $@ -c $<
+
+# automatically generate dependencies based on all .cpp files:
+$(DEPDIR)%.d: %.cpp
+	$(CXX) -MM $(CXXFLAGS) $(INCLUDE_PATH) $< \
+		| sed 's/$*.o/$(OBJDIR:/=\/)$*.o/g' \
+		| sed 's/$*.o/& $(subst /,\/,$@)/g' > $@
+
+clean:
+	rm -f ./*.o
+	rm -f $(DEPDIR)*.d
+	rm -f $(LIB).so
+	rm -f $(LIB).a
+	
+# include the listed cpp files' dependencies:
+include $(addprefix $(DEPDIR),$(SRCS:.cpp=.d))
+

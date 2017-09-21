@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		463824661815400E00E08ABB /* heartrate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 463824621815400E00E08ABB /* heartrate.cpp */; };
+		463824671815400E00E08ABB /* heartrate.h in Headers */ = {isa = PBXBuildFile; fileRef = 463824631815400E00E08ABB /* heartrate.h */; };
+		463824681815400E00E08ABB /* simulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 463824641815400E00E08ABB /* simulator.cpp */; };
+		463824691815400E00E08ABB /* simulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 463824651815400E00E08ABB /* simulator.h */; };
+		4638247018155A0000E08ABB /* formula.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4638246A181559FF00E08ABB /* formula.cpp */; };
+		4638247118155A0000E08ABB /* formula.h in Headers */ = {isa = PBXBuildFile; fileRef = 4638246B181559FF00E08ABB /* formula.h */; };
+		4638247218155A0000E08ABB /* perfdata.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4638246C18155A0000E08ABB /* perfdata.cpp */; };
+		4638247318155A0000E08ABB /* perfdata.h in Headers */ = {isa = PBXBuildFile; fileRef = 4638246D18155A0000E08ABB /* perfdata.h */; };
+		4638247418155A0000E08ABB /* rtd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4638246E18155A0000E08ABB /* rtd.cpp */; };
+		4638247518155A0000E08ABB /* rtd.h in Headers */ = {isa = PBXBuildFile; fileRef = 4638246F18155A0000E08ABB /* rtd.h */; };
+		4638247818155A5500E08ABB /* rmp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4638247618155A5500E08ABB /* rmp.cpp */; };
+		4638247918155A5500E08ABB /* rmp.h in Headers */ = {isa = PBXBuildFile; fileRef = 4638247718155A5500E08ABB /* rmp.h */; };
+		4638248018155E3600E08ABB /* computrainer_decoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4638247A18155E2D00E08ABB /* computrainer_decoder.cpp */; };
+		4638248118155E3600E08ABB /* computrainer_decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 4638247B18155E2E00E08ABB /* computrainer_decoder.h */; };
+		4638248218155E3600E08ABB /* datasource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4638247C18155E3200E08ABB /* datasource.cpp */; };
+		4638248318155E3600E08ABB /* datasource.h in Headers */ = {isa = PBXBuildFile; fileRef = 4638247D18155E3500E08ABB /* datasource.h */; };
+		4638248418155E3600E08ABB /* decoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4638247E18155E3600E08ABB /* decoder.cpp */; };
+		4638248518155E3600E08ABB /* decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 4638247F18155E3600E08ABB /* decoder.h */; };
+		4638248818155EAA00E08ABB /* velotron_decoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4638248618155EAA00E08ABB /* velotron_decoder.cpp */; };
+		4638248918155EAA00E08ABB /* velotron_decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 4638248718155EAA00E08ABB /* velotron_decoder.h */; };
+		4638248D18155EF900E08ABB /* simdecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4638248B18155EF900E08ABB /* simdecoder.cpp */; };
+		4638248E18155EF900E08ABB /* simdecoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 4638248C18155EF900E08ABB /* simdecoder.h */; };
+		463824911815609500E08ABB /* performance_decoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4638248F1815609500E08ABB /* performance_decoder.cpp */; };
+		463824921815609500E08ABB /* performance_decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 463824901815609500E08ABB /* performance_decoder.h */; };
+		463824971815617400E08ABB /* computrainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 463824931815617400E08ABB /* computrainer.cpp */; };
+		463824981815617400E08ABB /* computrainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 463824941815617400E08ABB /* computrainer.h */; };
+		463824991815617400E08ABB /* velotron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 463824951815617400E08ABB /* velotron.cpp */; };
+		4638249A1815617400E08ABB /* velotron.h in Headers */ = {isa = PBXBuildFile; fileRef = 463824961815617400E08ABB /* velotron.h */; };
+		4638249C181561C100E08ABB /* performance.h in Headers */ = {isa = PBXBuildFile; fileRef = 4638249B181561C100E08ABB /* performance.h */; };
+		4638249E181561E200E08ABB /* performance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4638249D181561E200E08ABB /* performance.cpp */; };
+		463824A11815639400E08ABB /* course.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4638249F1815639400E08ABB /* course.cpp */; };
+		463824A21815639400E08ABB /* course.h in Headers */ = {isa = PBXBuildFile; fileRef = 463824A01815639400E08ABB /* course.h */; };
+		463824A5181564A900E08ABB /* tglobs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 463824A3181564A900E08ABB /* tglobs.cpp */; };
+		463824A6181564A900E08ABB /* tglobs.h in Headers */ = {isa = PBXBuildFile; fileRef = 463824A4181564A900E08ABB /* tglobs.h */; };
+		463824AB1815653900E08ABB /* ss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 463824A71815653900E08ABB /* ss.cpp */; };
+		463824AC1815653900E08ABB /* ss.h in Headers */ = {isa = PBXBuildFile; fileRef = 463824A81815653900E08ABB /* ss.h */; };
+		463824AD1815653900E08ABB /* vutils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 463824A91815653900E08ABB /* vutils.cpp */; };
+		463824AE1815653900E08ABB /* vutils.h in Headers */ = {isa = PBXBuildFile; fileRef = 463824AA1815653900E08ABB /* vutils.h */; };
+		463824B31815686700E08ABB /* physics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 463824AF1815686700E08ABB /* physics.cpp */; };
+		463824B41815686700E08ABB /* physics.h in Headers */ = {isa = PBXBuildFile; fileRef = 463824B01815686700E08ABB /* physics.h */; };
+		463824B51815686700E08ABB /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 463824B11815686700E08ABB /* user.cpp */; };
+		463824B61815686700E08ABB /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 463824B21815686700E08ABB /* user.h */; };
+		463824BD1815690B00E08ABB /* bike.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 463824B71815690B00E08ABB /* bike.cpp */; };
+		463824BE1815690B00E08ABB /* bike.h in Headers */ = {isa = PBXBuildFile; fileRef = 463824B81815690B00E08ABB /* bike.h */; };
+		463824BF1815690B00E08ABB /* monarch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 463824B91815690B00E08ABB /* monarch.cpp */; };
+		463824C01815690B00E08ABB /* monarch.h in Headers */ = {isa = PBXBuildFile; fileRef = 463824BA1815690B00E08ABB /* monarch.h */; };
+		463824C11815690B00E08ABB /* nvram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 463824BB1815690B00E08ABB /* nvram.cpp */; };
+		463824C21815690B00E08ABB /* nvram.h in Headers */ = {isa = PBXBuildFile; fileRef = 463824BC1815690B00E08ABB /* nvram.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4638245A18153EAD00E08ABB /* libtlib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libtlib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		463824621815400E00E08ABB /* heartrate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = heartrate.cpp; sourceTree = "<group>"; };
+		463824631815400E00E08ABB /* heartrate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = heartrate.h; sourceTree = "<group>"; };
+		463824641815400E00E08ABB /* simulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simulator.cpp; sourceTree = "<group>"; };
+		463824651815400E00E08ABB /* simulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simulator.h; sourceTree = "<group>"; };
+		4638246A181559FF00E08ABB /* formula.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = formula.cpp; sourceTree = "<group>"; };
+		4638246B181559FF00E08ABB /* formula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = formula.h; sourceTree = "<group>"; };
+		4638246C18155A0000E08ABB /* perfdata.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = perfdata.cpp; sourceTree = "<group>"; };
+		4638246D18155A0000E08ABB /* perfdata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = perfdata.h; sourceTree = "<group>"; };
+		4638246E18155A0000E08ABB /* rtd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rtd.cpp; sourceTree = "<group>"; };
+		4638246F18155A0000E08ABB /* rtd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rtd.h; sourceTree = "<group>"; };
+		4638247618155A5500E08ABB /* rmp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rmp.cpp; sourceTree = "<group>"; };
+		4638247718155A5500E08ABB /* rmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rmp.h; sourceTree = "<group>"; };
+		4638247A18155E2D00E08ABB /* computrainer_decoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = computrainer_decoder.cpp; sourceTree = "<group>"; };
+		4638247B18155E2E00E08ABB /* computrainer_decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = computrainer_decoder.h; sourceTree = "<group>"; };
+		4638247C18155E3200E08ABB /* datasource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = datasource.cpp; sourceTree = "<group>"; };
+		4638247D18155E3500E08ABB /* datasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datasource.h; sourceTree = "<group>"; };
+		4638247E18155E3600E08ABB /* decoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = decoder.cpp; sourceTree = "<group>"; };
+		4638247F18155E3600E08ABB /* decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decoder.h; sourceTree = "<group>"; };
+		4638248618155EAA00E08ABB /* velotron_decoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = velotron_decoder.cpp; sourceTree = "<group>"; };
+		4638248718155EAA00E08ABB /* velotron_decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = velotron_decoder.h; sourceTree = "<group>"; };
+		4638248A18155EF900E08ABB /* regularcourse.h.save */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = regularcourse.h.save; sourceTree = "<group>"; };
+		4638248B18155EF900E08ABB /* simdecoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simdecoder.cpp; sourceTree = "<group>"; };
+		4638248C18155EF900E08ABB /* simdecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simdecoder.h; sourceTree = "<group>"; };
+		4638248F1815609500E08ABB /* performance_decoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = performance_decoder.cpp; sourceTree = "<group>"; };
+		463824901815609500E08ABB /* performance_decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = performance_decoder.h; sourceTree = "<group>"; };
+		463824931815617400E08ABB /* computrainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = computrainer.cpp; sourceTree = "<group>"; };
+		463824941815617400E08ABB /* computrainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = computrainer.h; sourceTree = "<group>"; };
+		463824951815617400E08ABB /* velotron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = velotron.cpp; sourceTree = "<group>"; };
+		463824961815617400E08ABB /* velotron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = velotron.h; sourceTree = "<group>"; };
+		4638249B181561C100E08ABB /* performance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = performance.h; sourceTree = "<group>"; };
+		4638249D181561E200E08ABB /* performance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = performance.cpp; sourceTree = "<group>"; };
+		4638249F1815639400E08ABB /* course.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = course.cpp; sourceTree = "<group>"; };
+		463824A01815639400E08ABB /* course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = course.h; sourceTree = "<group>"; };
+		463824A3181564A900E08ABB /* tglobs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tglobs.cpp; sourceTree = "<group>"; };
+		463824A4181564A900E08ABB /* tglobs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tglobs.h; sourceTree = "<group>"; };
+		463824A71815653900E08ABB /* ss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ss.cpp; sourceTree = "<group>"; };
+		463824A81815653900E08ABB /* ss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ss.h; sourceTree = "<group>"; };
+		463824A91815653900E08ABB /* vutils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vutils.cpp; sourceTree = "<group>"; };
+		463824AA1815653900E08ABB /* vutils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vutils.h; sourceTree = "<group>"; };
+		463824AF1815686700E08ABB /* physics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = physics.cpp; sourceTree = "<group>"; };
+		463824B01815686700E08ABB /* physics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = physics.h; sourceTree = "<group>"; };
+		463824B11815686700E08ABB /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user.cpp; sourceTree = "<group>"; };
+		463824B21815686700E08ABB /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
+		463824B71815690B00E08ABB /* bike.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bike.cpp; sourceTree = "<group>"; };
+		463824B81815690B00E08ABB /* bike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bike.h; sourceTree = "<group>"; };
+		463824B91815690B00E08ABB /* monarch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = monarch.cpp; sourceTree = "<group>"; };
+		463824BA1815690B00E08ABB /* monarch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = monarch.h; sourceTree = "<group>"; };
+		463824BB1815690B00E08ABB /* nvram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nvram.cpp; sourceTree = "<group>"; };
+		463824BC1815690B00E08ABB /* nvram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nvram.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4638245718153EAD00E08ABB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4638245118153EAC00E08ABB = {
+			isa = PBXGroup;
+			children = (
+				463824B71815690B00E08ABB /* bike.cpp */,
+				463824931815617400E08ABB /* computrainer.cpp */,
+				4638247A18155E2D00E08ABB /* computrainer_decoder.cpp */,
+				4638249F1815639400E08ABB /* course.cpp */,
+				4638247C18155E3200E08ABB /* datasource.cpp */,
+				4638247E18155E3600E08ABB /* decoder.cpp */,
+				4638246A181559FF00E08ABB /* formula.cpp */,
+				463824621815400E00E08ABB /* heartrate.cpp */,
+				463824B91815690B00E08ABB /* monarch.cpp */,
+				463824BB1815690B00E08ABB /* nvram.cpp */,
+				4638246C18155A0000E08ABB /* perfdata.cpp */,
+				4638249D181561E200E08ABB /* performance.cpp */,
+				4638248F1815609500E08ABB /* performance_decoder.cpp */,
+				463824AF1815686700E08ABB /* physics.cpp */,
+				4638247618155A5500E08ABB /* rmp.cpp */,
+				4638246E18155A0000E08ABB /* rtd.cpp */,
+				4638248B18155EF900E08ABB /* simdecoder.cpp */,
+				463824641815400E00E08ABB /* simulator.cpp */,
+				463824A71815653900E08ABB /* ss.cpp */,
+				463824A3181564A900E08ABB /* tglobs.cpp */,
+				463824B11815686700E08ABB /* user.cpp */,
+				463824951815617400E08ABB /* velotron.cpp */,
+				4638248618155EAA00E08ABB /* velotron_decoder.cpp */,
+				463824A91815653900E08ABB /* vutils.cpp */,
+				463824B81815690B00E08ABB /* bike.h */,
+				463824941815617400E08ABB /* computrainer.h */,
+				4638247B18155E2E00E08ABB /* computrainer_decoder.h */,
+				463824A01815639400E08ABB /* course.h */,
+				4638247D18155E3500E08ABB /* datasource.h */,
+				4638247F18155E3600E08ABB /* decoder.h */,
+				4638246B181559FF00E08ABB /* formula.h */,
+				463824631815400E00E08ABB /* heartrate.h */,
+				463824BA1815690B00E08ABB /* monarch.h */,
+				463824BC1815690B00E08ABB /* nvram.h */,
+				4638246D18155A0000E08ABB /* perfdata.h */,
+				4638249B181561C100E08ABB /* performance.h */,
+				463824901815609500E08ABB /* performance_decoder.h */,
+				463824B01815686700E08ABB /* physics.h */,
+				4638247718155A5500E08ABB /* rmp.h */,
+				4638246F18155A0000E08ABB /* rtd.h */,
+				4638248C18155EF900E08ABB /* simdecoder.h */,
+				463824651815400E00E08ABB /* simulator.h */,
+				463824A81815653900E08ABB /* ss.h */,
+				463824A4181564A900E08ABB /* tglobs.h */,
+				463824B21815686700E08ABB /* user.h */,
+				463824961815617400E08ABB /* velotron.h */,
+				4638248718155EAA00E08ABB /* velotron_decoder.h */,
+				463824AA1815653900E08ABB /* vutils.h */,
+				4638248A18155EF900E08ABB /* regularcourse.h.save */,
+				4638245B18153EAD00E08ABB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4638245B18153EAD00E08ABB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4638245A18153EAD00E08ABB /* libtlib.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4638245818153EAD00E08ABB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4638248E18155EF900E08ABB /* simdecoder.h in Headers */,
+				4638247918155A5500E08ABB /* rmp.h in Headers */,
+				463824AC1815653900E08ABB /* ss.h in Headers */,
+				4638247118155A0000E08ABB /* formula.h in Headers */,
+				463824671815400E00E08ABB /* heartrate.h in Headers */,
+				463824981815617400E08ABB /* computrainer.h in Headers */,
+				463824B41815686700E08ABB /* physics.h in Headers */,
+				4638248118155E3600E08ABB /* computrainer_decoder.h in Headers */,
+				4638248918155EAA00E08ABB /* velotron_decoder.h in Headers */,
+				463824C21815690B00E08ABB /* nvram.h in Headers */,
+				4638249A1815617400E08ABB /* velotron.h in Headers */,
+				463824921815609500E08ABB /* performance_decoder.h in Headers */,
+				463824691815400E00E08ABB /* simulator.h in Headers */,
+				4638248318155E3600E08ABB /* datasource.h in Headers */,
+				4638247318155A0000E08ABB /* perfdata.h in Headers */,
+				4638248518155E3600E08ABB /* decoder.h in Headers */,
+				463824B61815686700E08ABB /* user.h in Headers */,
+				463824C01815690B00E08ABB /* monarch.h in Headers */,
+				4638247518155A0000E08ABB /* rtd.h in Headers */,
+				463824BE1815690B00E08ABB /* bike.h in Headers */,
+				463824AE1815653900E08ABB /* vutils.h in Headers */,
+				463824A6181564A900E08ABB /* tglobs.h in Headers */,
+				4638249C181561C100E08ABB /* performance.h in Headers */,
+				463824A21815639400E08ABB /* course.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		4638245918153EAD00E08ABB /* tlib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4638245E18153EAD00E08ABB /* Build configuration list for PBXNativeTarget "tlib" */;
+			buildPhases = (
+				4638245618153EAD00E08ABB /* Sources */,
+				4638245718153EAD00E08ABB /* Frameworks */,
+				4638245818153EAD00E08ABB /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = tlib;
+			productName = tlib;
+			productReference = 4638245A18153EAD00E08ABB /* libtlib.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4638245218153EAC00E08ABB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = me;
+			};
+			buildConfigurationList = 4638245518153EAC00E08ABB /* Build configuration list for PBXProject "tlib" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4638245118153EAC00E08ABB;
+			productRefGroup = 4638245B18153EAD00E08ABB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4638245918153EAD00E08ABB /* tlib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4638245618153EAD00E08ABB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4638248018155E3600E08ABB /* computrainer_decoder.cpp in Sources */,
+				463824AD1815653900E08ABB /* vutils.cpp in Sources */,
+				463824BD1815690B00E08ABB /* bike.cpp in Sources */,
+				4638247218155A0000E08ABB /* perfdata.cpp in Sources */,
+				4638248218155E3600E08ABB /* datasource.cpp in Sources */,
+				4638247018155A0000E08ABB /* formula.cpp in Sources */,
+				463824C11815690B00E08ABB /* nvram.cpp in Sources */,
+				4638247418155A0000E08ABB /* rtd.cpp in Sources */,
+				463824971815617400E08ABB /* computrainer.cpp in Sources */,
+				463824BF1815690B00E08ABB /* monarch.cpp in Sources */,
+				463824B31815686700E08ABB /* physics.cpp in Sources */,
+				463824A5181564A900E08ABB /* tglobs.cpp in Sources */,
+				4638249E181561E200E08ABB /* performance.cpp in Sources */,
+				4638248818155EAA00E08ABB /* velotron_decoder.cpp in Sources */,
+				4638248418155E3600E08ABB /* decoder.cpp in Sources */,
+				463824911815609500E08ABB /* performance_decoder.cpp in Sources */,
+				4638247818155A5500E08ABB /* rmp.cpp in Sources */,
+				463824B51815686700E08ABB /* user.cpp in Sources */,
+				463824681815400E00E08ABB /* simulator.cpp in Sources */,
+				463824AB1815653900E08ABB /* ss.cpp in Sources */,
+				463824A11815639400E08ABB /* course.cpp in Sources */,
+				4638248D18155EF900E08ABB /* simdecoder.cpp in Sources */,
+				463824991815617400E08ABB /* velotron.cpp in Sources */,
+				463824661815400E00E08ABB /* heartrate.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4638245C18153EAD00E08ABB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		4638245D18153EAD00E08ABB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		4638245F18153EAD00E08ABB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				"ALWAYS_SEARCH_USER_PATHS[arch=*]" = YES;
+				CLANG_CXX_LIBRARY = "libc++";
+				EXECUTABLE_PREFIX = lib;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
+					"_DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "../glib .";
+			};
+			name = Debug;
+		};
+		4638246018153EAD00E08ABB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LIBRARY = "libc++";
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4638245518153EAC00E08ABB /* Build configuration list for PBXProject "tlib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4638245C18153EAD00E08ABB /* Debug */,
+				4638245D18153EAD00E08ABB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4638245E18153EAD00E08ABB /* Build configuration list for PBXNativeTarget "tlib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4638245F18153EAD00E08ABB /* Debug */,
+				4638246018153EAD00E08ABB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4638245218153EAC00E08ABB /* Project object */;
+}

@@ -1,0 +1,6 @@
+#!/bin/bash
+rm x.zip
+
+zip x Makefile fileselector.h progressbar.h minmax.h averagetimer.cpp linux_utils.h utils.cpp pcre2.cpp earth.cpp Makefile.linux64 do
+
+

@@ -1,0 +1,7 @@
+#!/bin/bash
+/Users/larry/Qt/5.5/clang_64/bin/qmake computrainer.pro -o build-computrainer-Desktop_Qt_5_5_0_clang_64bit-Debug/Makefile -r -spec macx-clang CONFIG+=debug CONFIG+=x86_64
+
+cd build-computrainer-Desktop_Qt_5_5_0_clang_64bit-Debug
+make clean
+make
+

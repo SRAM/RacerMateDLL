@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>glib</ProjectName>
+    <ProjectGuid>{83488CE8-95F5-4FE4-ACCD-D294EA3D02FC}</ProjectGuid>
+    <RootNamespace>gen_lib</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\temp\$(ProjectName)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../freetype/include;../freetype/include/freetype2;..\common;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>../freetype/include;../freetype/include/freetype2;../pcre/include;..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\inc;..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\serial;..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\system;..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\USB\devices;..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\USB\device_handles;..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\USB;../common;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <BrowseInformation>
+      </BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\common\comglobs.cpp" />
+    <ClCompile Include="..\common\smav.cpp" />
+    <ClCompile Include="..\common\twopolefilter.cpp" />
+    <ClCompile Include="amplifier.cpp" />
+    <ClCompile Include="averagetimer.cpp" />
+    <ClCompile Include="axis.cpp" />
+    <ClCompile Include="bmp.cpp" />
+    <ClCompile Include="button.cpp" />
+    <ClCompile Include="clientsocket.cpp" />
+    <ClCompile Include="crc.cpp" />
+    <ClCompile Include="cregexp.cpp" />
+    <ClCompile Include="csv.cpp" />
+    <ClCompile Include="dir.cpp" />
+    <ClCompile Include="earth.cpp" />
+    <ClCompile Include="editbox.cpp" />
+    <ClCompile Include="err.cpp" />
+    <ClCompile Include="fasttimer.cpp" />
+    <ClCompile Include="fatalerror.cpp" />
+    <ClCompile Include="fileselector.cpp" />
+    <ClCompile Include="file_rotator.cpp" />
+    <ClCompile Include="float2d.cpp" />
+    <ClCompile Include="globals.cpp" />
+    <ClCompile Include="ini.cpp" />
+    <ClCompile Include="inputdlg.cpp" />
+    <ClCompile Include="intel.cpp" />
+    <ClCompile Include="listbox.cpp" />
+    <ClCompile Include="logger.cpp" />
+    <ClCompile Include="lpfilter.cpp" />
+    <ClCompile Include="md5.cpp" />
+    <ClCompile Include="modaldialog.cpp" />
+    <ClCompile Include="modallistbox.cpp" />
+    <ClCompile Include="mru.cpp" />
+    <ClCompile Include="png.cpp" />
+    <ClCompile Include="scaler.cpp" />
+    <ClCompile Include="oldsdirs.cpp" />
+    <ClCompile Include="serial.cpp" />
+    <ClCompile Include="signalstrengthmeter.cpp" />
+    <ClCompile Include="splash.cpp" />
+    <ClCompile Include="statictext.cpp" />
+    <ClCompile Include="statusdlg.cpp" />
+    <ClCompile Include="tga.cpp" />
+    <ClCompile Include="timeout.cpp" />
+    <ClCompile Include="tinystr.cpp" />
+    <ClCompile Include="tinyxml.cpp" />
+    <ClCompile Include="tinyxmlerror.cpp" />
+    <ClCompile Include="tinyxmlparser.cpp" />
+    <ClCompile Include="utils.cpp" />
+    <ClCompile Include="utilsclass.cpp" />
+    <ClCompile Include="wcon.cpp" />
+    <ClCompile Include="win_utils.cpp" />
+    <ClCompile Include="windower.cpp" />
+    <ClCompile Include="xml.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\comdefs.h" />
+    <ClInclude Include="..\common\comglobs.h" />
+    <ClInclude Include="..\common\smav.h" />
+    <ClInclude Include="..\common\twopolefilter.h" />
+    <ClInclude Include="amplifier.h" />
+    <ClInclude Include="averagetimer.h" />
+    <ClInclude Include="axis.h" />
+    <ClInclude Include="beep2.h" />
+    <ClInclude Include="beepsound.h" />
+    <ClInclude Include="bmp.h" />
+    <ClInclude Include="button.h" />
+    <ClInclude Include="camera.h" />
+    <ClInclude Include="clientsocket.h" />
+    <ClInclude Include="config.h" />
+    <ClInclude Include="console.h" />
+    <ClInclude Include="crc.h" />
+    <ClInclude Include="cregexp.h" />
+    <ClInclude Include="csv.h" />
+    <ClInclude Include="defines.h" />
+    <ClInclude Include="dir.h" />
+    <ClInclude Include="earth.h" />
+    <ClInclude Include="editbox.h" />
+    <ClInclude Include="err.h" />
+    <ClInclude Include="fasttimer.h" />
+    <ClInclude Include="fatalerror.h" />
+    <ClInclude Include="fileselector.h" />
+    <ClInclude Include="file_rotator.h" />
+    <ClInclude Include="float2d.h" />
+    <ClInclude Include="gentypes.h" />
+    <ClInclude Include="glib_defines.h" />
+    <ClInclude Include="glib_types.h" />
+    <ClInclude Include="globals.h" />
+    <ClInclude Include="ini.h" />
+    <ClInclude Include="inputdlg.h" />
+    <ClInclude Include="intel.h" />
+    <ClInclude Include="listbox.h" />
+    <ClInclude Include="logger.h" />
+    <ClInclude Include="lpfilter.h" />
+    <ClInclude Include="md5.h" />
+    <ClInclude Include="minmax.h" />
+    <ClInclude Include="modaldialog.h" />
+    <ClInclude Include="modallistbox.h" />
+    <ClInclude Include="model.h" />
+    <ClInclude Include="mru.h" />
+    <ClInclude Include="png.h" />
+    <ClInclude Include="ref.h" />
+    <ClInclude Include="rider.h" />
+    <ClInclude Include="round.h" />
+    <ClInclude Include="scaler.h" />
+    <ClInclude Include="oldsdirs.h" />
+    <ClInclude Include="seh.h" />
+    <ClInclude Include="serial.h" />
+    <ClInclude Include="signalstrengthmeter.h" />
+    <ClInclude Include="splash.h" />
+    <ClInclude Include="statictext.h" />
+    <ClInclude Include="statusdlg.h" />
+    <ClInclude Include="tga.h" />
+    <ClInclude Include="timeout.h" />
+    <ClInclude Include="tinystr.h" />
+    <ClInclude Include="tinyxml.h" />
+    <ClInclude Include="types.h" />
+    <ClInclude Include="utils.h" />
+    <ClInclude Include="utilsclass.h" />
+    <ClInclude Include="wcon.h" />
+    <ClInclude Include="win_fasttimer.h" />
+    <ClInclude Include="win_serial.h" />
+    <ClInclude Include="win_utils.h" />
+    <ClInclude Include="windower.h" />
+    <ClInclude Include="xml.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

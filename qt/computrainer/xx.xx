@@ -1,0 +1,97 @@
+	bool connected_to_trainer;
+	bool finished;
+	bool finishEdge;
+	bool hrbeep_enabled;
+	bool hrvalid;
+	bool paused;
+	bool registered;
+	bool slipflag;
+	bool started;
+	DATA data;
+	double aerodrag;
+	double mps;
+	DWORD lastidletime;
+	DWORD packets;
+	FILE *outstream;
+	float accum_hr;
+	float accum_kph;
+	float accum_rpm;
+	float accum_watts;
+	float bars[NBARS];
+	float draft_wind;
+	float grade;                             // sent float grade, controlled by course or manually
+	float igradex10;
+	float last_export_grade;
+	float manwts;
+	float pedalrpm;
+	float raw_rpm;
+	float rawspeed;
+	float tiredrag;
+	float wind;
+	int accum_hr_count;                       // used for ergvid
+	int accum_kph_count;                      // used for ergvid
+	int accum_rpm_count;                      // used for ergvid
+	int accum_tdc;
+	int accum_watts_count;                    // used for ergvid
+	int bp;
+	int ilbs;                      // rd.kgs converted to in lbs for transmitter
+	int packetIndex;
+	int parity_errors;                              // keys byte parity bit
+	int rxinptr;
+	int rxoutptr;
+	int serialport;                                          // associated serial port for this client
+	int sscount;
+	int tick;
+	int txinptr;
+	int txoutptr;
+	LoggingType logging_type;
+	PerfPoint pp;
+	QAbstractSocket::SocketState socket_state;
+	QHash<QTcpSocket*, QByteArray*> buffers;              // we need a buffer to store data until block has completely received
+	QHash<QTcpSocket*, qint32*> sizes;                    // we need to store the size to verify if a block has received completely
+	qint64 lastbeeptime;
+	qint64 lastCommTime;
+	qint64 lastdisplaytime;
+	qint64 lastlinkuptime;
+	qint64 lastWriteTime;
+	QTimer *timer;
+	RAW_COMPUTRAINER_LOGPACKET lp;
+	Rider rider;
+	SS *ss;
+	std::vector<float> calories;
+	std::vector<float> winds;
+	unsigned char accum_keys;
+	unsigned char control_byte;
+	unsigned char HB_ERGO_PAUSE;
+	unsigned char HB_ERGO_RUN;
+	unsigned char idle_packet[7];
+	unsigned char is_signed;
+	unsigned char keydown;
+	unsigned char keys;                             // the 6 hb keys + the polar heartrate bit
+	unsigned char keyup;
+	unsigned char lastkeys;
+	unsigned char newmask[6];
+	unsigned char packet[16 + 1];
+	unsigned char pkt_mask[6];
+	unsigned char rawpacket[6];
+	unsigned char rpmValid;
+	unsigned char rxbuf[RXBUFLEN];
+	unsigned char rxq[RXQLEN];
+	unsigned char ssraw[NBARS];
+	unsigned char txbuf[6];
+	unsigned char txq[TXQLEN];
+	unsigned char tx_select;
+	unsigned long bytes_in;
+	//unsigned long bytes_out;
+	unsigned long incomplete;
+	unsigned long inpackets;
+	unsigned long ptime;
+	unsigned long recordsOut;
+	unsigned short hbstatus;
+	unsigned short maxhr;
+	unsigned short minhr;
+	unsigned short rfdrag;
+	unsigned short rfmeas;
+	unsigned short rpmflags;
+	unsigned short slip;
+	unsigned short version;

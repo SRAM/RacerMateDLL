@@ -1,0 +1,127 @@
+# to dump symbols:
+#		nm -D libglib.a
+#		nm --defined-only libglib.a
+
+
+SIZE = 64
+
+SRCS = \
+		dll.cpp \
+		dll_globals.cpp \
+		errors.cpp \
+		ev.cpp \
+		internal.cpp
+
+LIB = libracermate
+
+#-----------------------------------------------------------------
+
+ifeq ($(SIZE), 32)
+INCLUDE_PATH = \
+					-I/usr/include \
+					-I/usr/include/atk-1.0 \
+					-I/usr/include/gdk-pixbuf-2.0 \
+					-I/usr/lib/gtk-2.0/include \
+					-I/usr/include/gtk-3.0 \
+					-I/usr/lib/x86_64-linux-gnu/glib-2.0/include \
+					-I/usr/lib/glib-2.0/include \
+					-I/usr/include/pango-1.0 \
+					-I/usr/include/cairo \
+					-I/usr/include/glib-2.0 \
+					-I/usr/include/gtk-2.0 \
+					-I../glib \
+					-I../tlib \
+					-I.
+else
+INCLUDE_PATH = \
+					-I/usr/include \
+					-I/usr/include/atk-1.0 \
+					-I/usr/include/gdk-pixbuf-2.0 \
+					-I/usr/lib/gtk-2.0/include \
+					-I/usr/include/gtk-3.0 \
+					-I/usr/lib/x86_64-linux-gnu/glib-2.0/include \
+					-I/usr/lib/glib-2.0/include \
+					-I/usr/include/pango-1.0 \
+					-I/usr/include/cairo \
+					-I/usr/include/glib-2.0 \
+					-I/usr/include/gtk-2.0 \
+					-I/home/larry/jdk1.7.0_07/include/linux \
+					-I/home/larry/jdk1.7.0_07/include \
+					-I../tinythread++ \
+					-I../glib \
+					-I../tlib \
+					-I.
+endif
+
+#dependent libraries:
+#A = ../pcre/lib/libpcre.dll.a ../glib/libglib.a ../tlib/libtlib.a
+A = ../glib/libglib.a ../tlib/libtlib.a
+
+AR = ar
+RANLIB = ranlib
+
+CXX = g++
+# -O0 is for valgrind extra debugging:
+ifeq ($(SIZE), 32)
+CXXFLAGS = -std=gnu++0x -c -m32 -fPIC -O0 -g -DGNU -D_THREAD_SAFE -D__STDC_CONSTANT_MACROS
+else
+CXXFLAGS = -std=gnu++0x -c -fPIC -O0 -g -D_DEBUG -DGNU -D_THREAD_SAFE -D__STDC_CONSTANT_MACROS -Wall -pedantic
+endif
+
+LD = g++
+LDFLAGS = -v -shared -fPIC
+DEPDIR = ./
+OBJDIR = ./
+
+OBJS = $(addprefix $(OBJDIR),$(SRCS:.cpp=.o))
+DEPS = $(addprefix $(DEPDIR),$(SRCS:.cpp=.d))
+	
+.PHONY : all
+all:
+	$(MAKE) all -C ../glib
+	$(MAKE) all -C ../tlib
+	$(MAKE) $(LIB).a $(LIB).so
+	ls -al $(LIB).a $(LIB).so
+	cp $(LIB).so ./cpp_tester
+
+#----------------------------------------------------------
+# @ is $(LIB).so ( libracermate.so ):
+#----------------------------------------------------------
+
+$(LIB).so: $(OBJS) $(A) Makefile Makefile.linux64
+	$(CXX) $(LDFLAGS) $(OBJS) $(A) -o $@
+
+#----------------------------------------------------------
+# @ is $(LIB).so ( libracermate.a ):
+#----------------------------------------------------------
+
+# @ is $(LIB).a:
+$(LIB).a: $(OBJS) $(A) Makefile Makefile.linux64
+	rm -f $@
+	$(AR) rcu $@ $(OBJS)
+	$(RANLIB) $@
+
+%.o:%.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCLUDE_PATH) $< -o $@
+
+# automatically generate dependencies based on all .cpp files:
+$(DEPDIR)%.d: %.cpp
+	$(CXX) -MM $(CXXFLAGS) $(INCLUDE_PATH) $< \
+		| sed 's#$*\.o#$(OBJDIR:/=\/)$*.o#g' \
+		| sed 's#$*\.o#& $(subst /,\/,$@)#g' > $@
+
+.PHONY : clean
+clean:
+	$(MAKE) clean -C ../glib
+	$(MAKE) clean -C ../tlib
+	rm -f $(DEPDIR)*.d >/dev/null
+	rm -f ./*.o
+	rm -f $(LIB).a
+	rm -f $(LIB).so
+
+# include the listed cpp files' dependencies:
+ifneq ($MAKECMDGOALS), clean)
+include $(addprefix $(DEPDIR),$(SRCS:.cpp=.d))
+endif
+
+	

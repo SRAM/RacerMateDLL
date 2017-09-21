@@ -1,0 +1,131 @@
+
+#ifndef _VERSIONS_H_
+#define _VERSIONS_H_
+
+/*
+	1.0.9
+		added const char *get_errstr(int err);
+		fixed setting what in startTrainer()
+		added return code = calibration to EndRecalibrationMode()
+	1.0.10
+		changed error code scheme a little
+		fixed bug at beginning of haveDevice() to return true if thread is running without checking for timeout
+	1.0.11
+		worked on the test program
+		found a few bugs with the new test program
+		switched to 'NEWUSER'
+		fixed return code in EndRecalibrationMode()
+	1.0.12
+		disabled physics.log and the .ini files.
+		put the log files in the correct directories
+		removed the Velotron shifting beep.
+		keystroke +/- on computrainer
+		retested StartTrainer for both Computrainer and Velotron.
+	1.0.13
+		fixed hrbeepbounds() functions
+	1.0.14
+		library changes from SSC
+		stepped through velotron gear shifting
+		stepped through bike constructor
+		stepped through physics
+	1.0.15
+		pre-allocated grear tables: 5 for front, 20 for rear, max
+		fixed velotron setslope()
+	1.0.16
+		added check for 0 or negative teeth count in setvelparams() and a new error code: BAD_TEETH_COUNT
+		fixed velotron virtual function for setting the rider weight (setkgs())
+	1.0.17
+		debugged for phantom keypresses
+		moved global variable of serial class into the class.
+
+	1.0.18 / 1.0.1
+		renamed ERGVID_VERSION to API_VERSION
+		added DLL_VERSION and get_dll_version(). started it at 1.0.1
+		fixed bug where do_10_hz_filter was being called every 10 ms instead of every 100 ms
+
+	1.0.19 / 1.0.2
+		added these functions:
+		float get_calories(int, int);
+		float get_np(int, int);
+		float get_if(int, int);
+		float get_tss(int, int);
+		float get_pp(int, int);
+		int set_ftp(int, int, float ftp);
+		began work on velotron calibration code. Not finished.
+		did major cleanup of dead code.
+
+		1.0.19 / 1.0.3
+		added code to allow using the encryptor
+
+	1.0.20 / 1.0.3
+		added:
+		int ResetAverages(int, int);
+		int set_wind(int, int, float _wind_kph);
+		int set_draftwind(int, int, float _draft_wind_kph);
+		Will requested that this be 1.0.3 for DLL_VERSION
+
+	1.0.20 / 1.0.4
+		fixed bug in GetHandlebarKeys(), set accum_keys to keys instead of setting it to 0. Was causing sporadic 0's
+
+	1.0.20 / 1.0.5
+		locked getTrainerData() and EV::threadproc()
+		made shift key in Velotron not cause gears to shift
+
+	1.0.20 / 1.0.6
+		fixed computrainer not going out of calibraiton mode.
+
+	1.0.21 / 1.0.7
+		fixed computrainer drag factor
+		had computrainer decoder call formula->calc
+		added start_trainer() to the API
+
+	1.0.22 / 1.0.8
+		more drag factor stuff
+		added get_status_bits() to the API
+
+	1.0.22 / 1.0.9
+		fixed pause/resume that was causing tss to not work
+
+	1.0.22 / 1.0.10
+		fixed wind being set to 0 if started flag was set (see tlm20110810)
+
+	API    / DLL
+	1.0.23 / 1.0.11
+		added is_connected() interface on feb 7, 2012
+		added jni option
+		got rid of using globals.cpp and tglobs.cpp
+		added ANT functions
+		added access levels and new obfuscation algorithm
+
+	1.0.24	1.0.12		Dec 12, 2014
+		first release in a long time. New dll has ANT stuff in the project (not turned on at this time), wifi stuff (untested), etc.
+		This is the first unobfuscated version
+
+	1.1.0		1.0.13
+		eliminated obfuscation
+
+		added functions:
+			const char * GetPortNames(void) throw(...);
+			int racermate_init(void);
+			int racermate_close(void);
+			int set_network(int, const char *, int);
+			inline float get_pp(int, int);
+			inline float get_calories(int, int);
+			inline float get_np(int, int);
+			inline float get_if(int, int);
+			inline float get_tss(int, int);
+			const char * get_build_date(void);
+
+	API = 1.1.1 / DLL = 1.1.1			March 28, 2016
+		lots of changes, finished with udp wifi
+
+	API = 1.2.0 / DLL = 1.2.0			Sept 21, 2016
+		wifi done for Interbike
+
+	*/
+
+#define API_VERSION "1.2.0"			// bump this only when the API changes
+#define DLL_VERSION "1.2.0"			// bump this "always", will wanted it to be 1.0.3, but it was really 1.0.4
+
+#endif						// #ifndef _VERSIONS_H_
+

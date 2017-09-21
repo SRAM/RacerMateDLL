@@ -1,0 +1,22 @@
+{
+  "C:\\Program Files\\Java\\jre1.8.0_25\\lib\\rt.jar": {
+    "coordinate": "jre:jre:zip:call:1.0.0",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_25\\lib\\rt.jar",
+    "status": "RESOLVED"
+  },
+  "D:\\_fs\\racermate\\cpp_tester\\client": {
+    "location": "D:\\_fs\\racermate\\cpp_tester\\client",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027D:\\_fs\\racermate\\cpp_tester\\client\u0027. Skipped."
+  },
+  "D:\\_fs\\racermate\\cpp_tester\\server": {
+    "location": "D:\\_fs\\racermate\\cpp_tester\\server",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027D:\\_fs\\racermate\\cpp_tester\\server\u0027. Skipped."
+  },
+  "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\rt.jar": {
+    "coordinate": "jre:jre:zip:call:1.0.0",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\rt.jar",
+    "status": "RESOLVED"
+  }
+}

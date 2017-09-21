@@ -1,0 +1,328 @@
+
+#ifndef COURSE_H_							// don't use _COURSE_H_ because _course.h uses that!!
+#define COURSE_H_
+
+#include <float.h>
+#include <memory.h>
+
+//#include <config.h>
+#include <defines.h>
+#include <tdefs.h>
+#include <gentypes.h>
+//#include <crf.h>
+#include <logger.h>
+#include <ogl.h>
+
+#define STATBACKGROUNDCOLOR  RGB(0, 0, 100)
+
+#define DUMPBACKGROUNDCOLOR  RGB(100, 100, 200)
+#define DUMPFGCOLOR  RGB(250, 250, 200)
+//#define PARENT_DRAW_COURSE
+
+#ifdef WIN32
+	#ifdef DOC
+		extern "C" {
+		class __declspec(dllexport) Course  {
+	#else
+class Course {
+	#endif
+#else
+class Course {
+#endif
+
+	//protected:
+	friend class dataSource;
+	friend class demoSource;
+
+	public:
+		typedef struct  {
+			char fname[256];
+			double minElevation;
+			double maxElevation;
+			long maxlaps;
+			long minlaps;
+			long maxsecs;
+			long minsecs;
+			double minlen;
+			double maxlen;
+			double mingrade;
+			double maxgrade;
+			double minangle;
+			double maxangle;
+			double mindist;
+			double maxdist;
+			double mindpm;			// "degrees per meter"
+			double maxdpm;
+			unsigned long version;
+			long nsecs;
+			double totalmeters;
+			double total_miles;
+			bool closed;
+			double avggrade;			// total average grade
+			double avggrade2;			// average grade for grades above 0 only
+			//double maxElevGain;			// can be either feet or meters
+			//double max_feet_gain;
+			double avgelev;
+			double max_meters_gain;
+			double difficulty;			// 0-4 = easy, 4-8 = medium, 8-10 = hard, 10+ = very hard
+			double minwind;
+			double maxwind;
+			double avgwind;
+			int laps;
+			double total_up_feet;
+			int nlegs;
+			bool looped;
+		} STATS;
+
+		enum  {								// units enum
+			FEET,
+			METERS,
+			MILES,
+			KM
+		};
+		typedef struct  {
+			char desc[256];
+			char fname[256];
+			char units[16];
+			DWORD nlegs;
+		} OLD_COURSE_HEADER;					//COURSE_HEADER;
+
+		typedef struct  {
+			float length;					// miles * 100
+			float grade;					// percent * 10
+			float wind;						// signed mph
+		} OLD_COURSE_DATA;
+
+		enum  {
+			UNDEFINED,
+			NONERGO,
+			ERGO,
+			THREED,
+			VIDEO,
+			EMPTY									// dummy course holder for spinscan-created files and manual charts
+		};
+
+		//Course(void);
+		Course(const char *_fname=NULL);
+		virtual ~Course();
+
+		virtual void reset_wind_lookup(void) { return; }
+		virtual void move(OGL *ogl, float _mx, float _bx, float _bottom, float _top, float _miles) { return; }
+
+		double getmingrade(void)  { return cs.mingrade; }
+		double getavggrade(void)  { return cs.avggrade; }
+		double getmaxgrade(void)  { return cs.maxgrade; }
+
+		double getminwind(void)  { return cs.minwind; }
+		double getavgwind(void)  { return cs.avgwind; }
+		double getmaxwind(void)  { return cs.maxwind; }
+		double get_max_meters_gain(void)  { return cs.max_meters_gain; }
+		//float getMaxElevGain(void)  { return cs.maxElevGain; }
+		bool get_looped(void)  { return looped; }
+
+		char *getdesc(void)  {
+			return header.desc;
+		}
+		char *getfilename(void)  {
+			return fname;
+		}
+
+		char *getsignature(void)  {
+			return signature;
+		}
+
+		virtual float getMinX(void)  {
+			return 0.0f;
+		}
+		virtual float getMaxX(void)  {
+			return 0.0f;
+		}
+		virtual float getMinY(void)  {
+			return 0.0f;
+		}
+		virtual float getMaxY(void)  {
+			return 0.0f;
+		}
+
+		virtual float *get_x_array(void)  {
+			return NULL;
+		}
+		virtual float *get_y_array(void)  {
+			return NULL;
+		}
+		virtual int getnpoints(void)  {
+			return 0;
+		}
+		virtual int getnlegs(void)  {
+			return 0;
+		}
+
+		void setLaps(long _laps) { laps = _laps; }
+		long getLaps(void) { return laps; }
+		virtual FPOINT *getGradeChangeCoordinates(int *n)  {
+			*n = 0;
+			return NULL;
+		}
+
+		float mx2, bx2;
+		//float mxToGDI, bxToGDI;
+		//float mxToPhys, bxToPhys;
+
+		//virtual int draw(OGL *ogl) { return 0; }
+#ifdef PARENT_DRAW_COURSE
+		int draw(OGL *ogl);
+		float minel;				// in miles
+		float maxel;				// in miles
+#else
+		virtual int draw(OGL *ogl)  { return 0; }
+#endif
+		virtual void resize(FRECT waverect)  { return; }
+		virtual float getGrade(double _miles, int *_lastGrade_i=NULL)  { return 0.0f; }
+		virtual float getGrade(int)  { return 0.0f; }			// gets the grade for leg 'i'
+
+		//virtual float getWind(double)  { return 0.0f; }
+		virtual float getWind(double dist, int *_lastWind_i=NULL)  {
+			return 0.0f;
+		}
+
+		virtual float getTotalLen(void)  { return 0.0f; }		// returns feet or minutes
+		inline int getTotalLegs(void)  {								// accounts for laps!!!
+			return totalLegs; 
+		}
+
+		virtual float getLoad(int i)  { return 0.0f; }
+		virtual double getLoad(double _minutes)  { return 0.0; }
+
+		virtual float gety(double)  { return 0.0f; }
+		//virtual void writeEncrypted(FILE *outstream, CRF *s, FILE *_dbgstream=NULL);		// serializes the course to outstream
+		virtual void write(FILE *outstream)  { return; }
+		virtual void exportLegs(FILE *stream)  { return; }
+
+		char *getFileName(void);
+
+		//void writeEncryptedHeader(FILE *outstream, CRF *s);
+		//void readEncryptedHeader(FILE *instream, CRF *s);
+		void write_header(FILE *outstream);
+
+
+		float *grade;
+		float *wind;
+		float *load;
+		OLD_COURSE_HEADER header;
+		virtual void test(int i)  { return; }
+
+		virtual double getSummedMeters(void)  {
+			return 0.0;
+		}
+
+		double getTotalMeters(void)  {
+			return totalMeters;
+		}
+
+		int type;
+		virtual void reset(void)  {
+			bp = 1;
+		}
+
+		FRECT *get_course_rect(void)  { return &courserect; }
+
+		void set_course_rect(FRECT *_r)  { 
+			memcpy( &courserect, _r, sizeof(FRECT) ); 
+		}
+
+		float getTotalMiles(void)  { return (float)totalMiles; }
+
+		float getkm(void)  {
+			return (float) (totalMeters / 1000.0);
+		}
+
+
+
+	private:
+		char signature[32+1];							// md5 hash string of course for security
+		BOOL enhanced;
+		void init(void);
+		void destroy(void);
+		bool changed;
+		bool savequestion(void);
+
+		#ifdef PARENT_DRAW_COURSE
+			float *y;
+			float *x;
+			#ifdef WIN32
+				static GLvoid __stdcall glu_tess_vertex(GLvoid *vertex);
+				static GLvoid __stdcall glu_tess_begin(GLenum which);
+				static GLvoid __stdcall glu_tess_end(void);
+				static GLvoid __stdcall glu_tess_error(GLenum errorCode);
+				static GLvoid __stdcall glu_tess_combine(GLdouble coords[3], GLdouble *vertex_data[4], GLfloat weight[4], GLdouble **dataOut );
+
+			#else
+				static GLvoid glu_tess_vertex(GLvoid *vertex);
+				static GLvoid glu_tess_begin(GLenum which);
+				static GLvoid glu_tess_end(void);
+				static GLvoid glu_tess_error(GLenum errorCode);
+				static GLvoid glu_tess_combine(GLdouble coords[3], GLdouble *vertex_data[4], GLfloat weight[4], GLdouble **dataOut );
+			#endif
+		#endif
+
+	protected:
+#ifdef PARENT_DRAW_COURSE
+		#define NPOINTS 6            // number of points per vertex
+#endif
+
+		//GLUtesselator* tess;
+		/*
+		static GLvoid glu_tess_vertex(void);
+		static GLvoid glu_tess_begin(void);
+		static GLvoid glu_tess_end(void);
+		static GLvoid glu_tess_error(void);
+		*/
+                float miny, maxy;
+                int mini, maxi;
+		bool metric;
+		bool course_metric;			// passed into constructor
+		bool warned;
+		int firstrow;
+		int totalLegs;						// accounts for laps
+		FILE *dbgstream;
+		char fname[256];
+		long laps;
+		bool looped;
+		Logger *logg;
+		char string[256];
+		FILE *stream;
+		char fileline[256];
+		int W;
+		FRECT courserect;
+		FRECT waverect;
+
+		int bp;
+		float my2, by2;
+		//float myToPhys, byToPhys;
+		STATS cs;
+
+		double totalMeters;
+		double totalMiles;
+		double totalFeet;
+
+		bool closed;
+		char saveName[_MAX_PATH];
+		void saveAs();
+		char defaultSavePath[_MAX_PATH];
+
+	public:
+		virtual void save(char *)  {};
+		void set_total_miles(double _d)  { totalMiles = _d; }
+
+};
+
+#ifdef WIN32
+	#ifdef DOC
+		}				//extern "C" {
+	#endif
+#endif
+
+
+#endif		// #ifndef _COURSE_H_
+
+

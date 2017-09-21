@@ -1,0 +1,957 @@
+AP Interface functions
+	Return Code Enumerations:
+	Some functions do not return a specific value, but will report on Error
+	conditions. No error is denoted by a return value of 0, and all error
+	conditions are 32-bit integers with most significant bit set. This allows as
+	well the possibility that functions which return positive values in normal
+	operation, may still return error codes as well. No such functions currently
+	exist.
+
+	The enumeration for error codes is as follows:
+		ALL_OK=0				
+			No error condition
+			
+		DEVICE_NOT_RUNNNING=0X80000000
+			Thrown when a command is sent to a device before it is has been
+			started with StartTrainer (eg. GetTrainerData, SetSlope etc.)
+	
+		WRONG_DEVICE=0X80000001
+			When a VeloTron specific command is sent to a CompuTrainer.
+			
+		DIRECTORY_DOES_NOT_EXIST=0X80000002
+			If a file path requested is found not to exist, or log files are
+			requested to be created, but the log path has not been set to an
+			existing directory. The API will not create directories.
+			
+		DEVICE_ALREADY_RUNNING = 0X80000003
+			Thrown when a command is sent to start it running, but already is.
+			
+		BAD_FIRMWARE_VERSION=0X80000004
+			Thrown when an illegal or unsupported Firmware Version is detected in
+			an API call.
+			
+		VELOTRON_PARAMETERS_NOT_SET=0X80000005
+			Thrown when a command has been issued to a VeloTron, which requires
+			that VeloTron be initialized first with SetVeloTronParameters.
+			Example, StartTrainer, StopTrainer, SetSlope etc.
+			
+		BAD_GEAR_COUNT = 0X80000006
+			Thrown when the number of non zero gear elements in
+			SetVelotronParameters is not 3 (rings) and 10 (cogs).
+			
+		GENERIC_ERROR = 0X80000007 
+			Any other error condition
+
+Structures
+
+enum  {
+	ALL_OK = 0,
+	DEVICE_NOT_RUNNING = INT_MIN,			// 0x80000000
+	WRONG_DEVICE,							// 0x80000001
+	DIRECTORY_DOES_NOT_EXIST,
+	DEVICE_ALREADY_RUNNING,
+	BAD_FIRMWARE_VERSION,
+	VELOTRON_PARAMETERS_NOT_SET,
+	BAD_GEAR_COUNT,
+	BAD_TEETH_COUNT,
+	PORT_DOES_NOT_EXIST,
+	PORT_OPEN_ERROR,
+	PORT_EXISTS_BUT_IS_NOT_A_TRAINER,
+	DEVICE_RUNNING,
+	BELOW_UPPER_SPEED,
+	ABORTED,
+	TIMEOUT,
+	BAD_RIDER_INDEX,
+	DEVICE_NOT_INITIALIZED,
+	CAN_NOT_OPEN_FILE,
+	GENERIC_ERROR
+};
+#define NERRORS (GENERIC_ERROR - INT_MIN + 2)
+
+extern const char *err_strs[NERRORS];
+
+enum DIRTYPE {
+	DIR_PROGRAM,                    // 0
+	DIR_PERSONAL,
+	DIR_SETTINGS,
+	DIR_REPORT_TEMPLATES,
+	DIR_REPORTS,
+	DIR_COURSES,
+	DIR_PERFORMANCES,
+	DIR_DEBUG,
+	DIR_HELP,                       // 8
+	NDIRS                           // 9
+};
+
+struct SSDATA	{
+	float ss;						// overall spinscan
+	float lss;						// left spinscan
+	float rss;						// right spinscan
+	float lsplit;					// left leg watts percentage
+	float rsplit;					// right leg watts percentage
+};
+
+struct TrainerData	{
+	float kph;			// ALWAYS in KPH, application will metric convert. <0 on error
+	float cadence;		// in RPM, any number <0 if sensor not connected or errored.
+	float HR;			// in BPM, any number <0 if sensor not connected or errored.
+	float Power;		// in Watts <0 on error
+	//bool tdc;			// accumulated tdc
+};
+
+enum EnumDeviceType {
+	DEVICE_NOT_SCANNED,					// unknown, not scanned
+	DEVICE_DOES_NOT_EXIST,				// serial port does not exist
+	DEVICE_EXISTS,						// exists, openable, but no RM device on it
+	DEVICE_COMPUTRAINER,
+	DEVICE_VELOTRON,
+	DEVICE_SIMULATOR,
+	DEVICE_RMP,
+	DEVICE_ACCESS_DENIED,				// port present but can't open it because something else has it open
+	DEVICE_OPEN_ERROR,					// port present, unable to open port
+	DEVICE_OTHER_ERROR					// prt present, error, none of the above
+};
+
+------------------------------------------------------------------------------
+
+get_errstr
+	Converts the integer enum error code to a human readable string
+	
+	Format:
+		Const char *get_errstr(int errorcode)
+		Input: Error code as returned by any api function
+		Return values: See error enumeration
+
+------------------------------------------------------------------------------
+
+GetRacerMateDeviceID
+	Determines the type of RacerMate device attached to a specific port. Returns
+	status of Com port if a RacerMate device is not found to be attached, or
+	could not be found due to some other Com port state.
+	
+	Format:
+		int GetRacerMateDeviceID (int Comport)
+	Input: 
+		Comport is an integer 0-255 corresponding to Com1, Com2, Com3
+		
+	Return values:
+		0: DEVICE_NOT_SCANNED,					// unknown, not scanned
+		1: DEVICE_DOES_NOT_EXIST				// serial port does not exist
+		2: DEVICE_EXISTS		               // port exists,but no RM device
+		3: DEVICE_COMPUTRAINER
+		4: DEVICE_VELOTRON
+		5: DEVICE_ACCESS_DENIED            	// port present, in use, not RacerMate
+		6: DEVICE_OPEN_ERROR	     	        	// port present, unable to open
+		7: DEVICE_OTHER_ERROR	            // port present, other error
+
+Notes:
+	If a RacerMate device is detected, frame processing of the bidirectional
+	communication protocol can be commanded to begin with the startTrainer(int
+	Comport) function call. Running state will be started.
+
+------------------------------------------------------------------------------
+
+Setlogfilepath
+	Establishes the root folder for any log and performance files that may be
+	created by the API .dll while in operation. The main purpose of this is to
+	prevent the API .dll from creating files Windows folders which will not be
+	normally accessible under the selected operating system security rules. The
+	Application will provide a path which is valid and free to be written.
+
+	Format:
+		int Setlogfilepath(char *pathtosafefolder)
+	
+	Input:
+		pathtosafefolder is a full path specification to a folder safe to write by the application,
+		following security access rules of the operating system. The API may create
+		subfolders in the folder, as well as files for logging data and debug
+		information. The performance record, if enabled, will also be stored in a
+		subfolder of this folder.
+	
+	Return values:
+  		ALL_OK:
+			no error
+		DIRECTORY_DOES_NOT_EXIST:
+			The API will not create a directory. It must exist before this api
+			call is used.
+
+------------------------------------------------------------------------------
+
+Enablelogs
+	Selectively disables/enables log files. These files will be written in files in
+	the pathtosafefolder or subdirectories thereof if they are enabled.
+	
+	Format:
+		int Enablelogs(bool bikelog, bool courselog, bool decode, bool ds,bool gears, bool physics)
+	
+	Input:
+		True will allow the log file to be created, False disables. These are C-style bools, 8-bits False=0, True=-1.
+		
+	Return values:
+		ALL_OK: no errors DIRECTORY_DOES_NOT_EXIST: The
+		API will not create a directory. It must exist before this api call is used.
+		GENERIC_ERROR: a file could not be created.
+
+------------------------------------------------------------------------------
+
+GetFirmWareVersion
+	Query and return firmware version of the appliance
+	
+	Format:
+		int GetFirmWareVersion(int Comport)
+	Input: 
+		Comport is an integer 0-255 corresponding to Com1, Com2, Com3
+	Return values:
+		Firmware version number as assigned by RacerMate as an integer
+		GENERIC_ERROR for any errors.
+		
+	Notes:
+		Function should only be called after GetRacerMateDeviceID successfully
+		returns a valid trainer.
+
+------------------------------------------------------------------------------
+
+get_dll_version
+	Returns a string indicating the DLL version which will be logically numbered.
+	
+	Format:
+		Const char *get_dll_verion(void)
+	
+	Input: 
+	Return values:
+		DLL version string
+
+------------------------------------------------------------------------------
+
+GetAPIVersion
+	Returns a string indicating API version which will be logically numbered
+	
+	Format:
+		Const char *GetAPIVersion(void)
+	Input: 
+	Return values:
+		API version string
+
+------------------------------------------------------------------------------
+
+check_for_trainers
+	returns a EnumDeviceType that indicates what is found on the serial port.
+
+	Format:
+		EnumDeviceType check_for_trainers(int Comport)
+
+	Input:
+  		Comport is an integer 1-256 corresponding to Com1, Com2, Com3 
+	
+	Return value:
+		EnumDeviceType
+
+	Note:
+	The input parameter is the actual comport number, numbered from 1, unlike some
+	of the comport input parameters in other functions.
+
+------------------------------------------------------------------------------
+
+GetIsCalibrated
+	Query and return the calibrated state of the appliance.
+	
+	Format:
+		bool GetIsCalibrated(int Comport, int FirmwareVersion)
+	Input:
+		Comport is an integer 0-255 corresponding to Com1, Com2, Com3
+	Return values:
+		True = -1 if appliance has been calibrated since power-on. (8 bit C-style
+		bool)
+	
+		False = 0 if appliance has not been calibrated since power on. (8-bit
+		C-Style bool is returned)
+	
+	Notes:
+		1) Function should only be called after GetRacerMateDeviceID successfully
+		returns a valid trainer.
+
+		2) Firmware version is passed as a parameter in case the appropriate
+		implementation for commands messaging is FW version dependent.
+
+------------------------------------------------------------------------------
+
+GetCalibration
+	Query and return calibration number, RRC or AccuWatt, of the appliance.
+	
+	Format:
+		int GetCalibration (int Comport, int FirmwareVersion)Input: Comport is an integer 0-255 corresponding to Com1, Com2, Com3
+	Return values:
+		CompuTrainer: an int representing the RRC
+		Velotron: an int representing AccuWatt value
+		GENERIC_ERROR on failure to read a value.
+		
+	Notes:
+		1) Function should only be called after GetRacerMateDeviceID successfully
+		returns a valid trainer.
+
+		2) Firmware version is passed as a parameter in case the appropriate
+		implementation for commands messaging is FW version dependent.
+
+------------------------------------------------------------------------------
+
+resetTrainer
+Sets the appliance into an initial known state and continues frame processing. All previously buffered/framed Speed, Power, HR, RPM data may be reset. Load is set to 0W; RRC/Accuwatt setting within the appliance will not be affected. The intent of this command is to initiate fresh communications with the appliance, as well as to enable recovery from apparent insanity detected by the application layer. It would be common for the application to follow this command with a GetTrainerData and SetSlope or SetLoad sequence, but it is not necessary.  The API will keep the comms alive automatically as long as connection is maintained.
+
+	Format:
+		int resetTrainer (int Comport, int FirmwareVersion, int RRC)
+	Input:
+  		Comport is an integer 0-255 corresponding to Com1, Com2, Com3 
+		Firmware version is an int as assigned by RacerMate and read by GetFirmWareVersion
+		RRC/AccuWatt is an int representing the quantity.
+	Return values:
+		ALL_OK:
+	  		Device successfully Reset
+		GENERIC_ERROR:
+	  		Failed to Reset/no connection
+			
+	Operations:
+		1) Issue reset command (if one exists) to the appliance
+		
+		2) Reset stored sums for Speed, HR, Watts, RPM sampling to 0
+		
+		3) Issue commands to appliance to establish Erg mode at 0W, according to
+		necessary protocol, that may be dependent on Firmware version.
+		
+		4) Failed is detected by lack of data being streamed from the appliance
+		to the PC. Thus a check of incoming frames must be made before returning
+		a result. Failed can also be asserted on any error.
+
+		5) The handlebar controller may require transmission of 0W load setting
+		or 0 slope setting depending on current mode, before this command is
+		correctly executed in the handlebar controller.
+
+	Notes:
+
+	1) Firmware version is passed as a parameter in case the appropriate
+	implementation for commands messaging is FW version dependent.
+
+------------------------------------------------------------------------------
+
+startTrainer
+	Starts communications data framing/acquisition thread for a trainer. This
+	command must be issued at least once before collecting real-time data.
+	
+	Format:
+		int startTrainer (int Comport)
+	Input:
+  		Comport is an integer 0-255 corresponding to Com1, Com2, Com3
+  	Return values:
+		ALL_OK:
+			Started
+		GENERIC_ERROR:
+			not started (failure to start)
+	
+		DEVICE_ALREADY_RUNNING
+		VELOTRON_PARAMETERS_NOT_SET:
+  			If VeloTron, requires initialization before starting, for physics engine.
+		
+	Notes:
+
+		1) Function should only be called after GetRacerMateDeviceID successfully
+		returns a valid trainer.
+
+		2) This function starts frame processing and initiates the running state.
+
+------------------------------------------------------------------------------
+
+ResetAverages
+
+	Resets average values of the data to 0.
+	
+	Format:
+		int ResetAverages(int Comport, int FWVersion)
+
+	Input:
+  		Comport is an integer 0-255 corresponding to Com1, Com2, Com3 
+		Firmware version is an int as assigned by RacerMate and read by GetFirmWareVersion
+
+	Return values:
+		ALL_OK:
+			Success
+		DEVICE_NOT_RUNNING:
+		  	startTrainer not issued.
+
+
+Notes:
+	1) Used for spinscan display; slope mode only.
+
+------------------------------------------------------------------------------
+
+GetTrainerData
+	Reads the most recent average values of received trainer data: Speed, Cadence, HR, and Power . Most recent average values means that the average value of all samples received since the last call to this function.
+	
+	Format:
+		struct TrainerData GetTrainerData(int Comport, int FirmwareVersion)
+	Input:
+  		Comport is an integer 0-255 corresponding to Com1, Com2, Com3 
+		Firmware version is an int as assigned by RacerMate and read by GetFirmWareVersion
+	Return values:
+		struct TrainerData  {
+			float speed; 	//ALWAYS in MPH, application will metric convert. <0 on error
+			float cadence; //in RPM, any number <0 if sensor not connected or errored.
+			float HR;      //in BPM, any number <0 if sensor not connected or errored.
+			float Power;   //in Watts <0 on error
+		}
+
+	Operations:
+		1) Upon the startTrainer command being issued, the API clears accumulated
+		data, and commences communications with the appliance at the line rate.
+		Reset Trainer also does this if the startTrainer command has already been
+		issued.  Speed, Cadence, HR, and Power shall each be accumulated in a
+		variable, as well as a count of the number of samples collected (of each)
+		since last call to this function. When this function is called, the summed
+		quantities shall be divided by the number of samples summed, to yield the
+		'most recent average value' of each quantity. These averages are reported in
+		the returned structure.
+		
+		2) The sums and sample counters are cleared to begin accumulation of data
+		to serve the next request.
+		
+		3) The most recently reported values are also saved. Should this function
+		be called again before any new data has been accumulated, (i.e. count =0)
+		to avoid reporting '0', or worse 0/0, for the averages, the previously
+		reported data is simply repeated as the return result.
+		
+		4) In the case of disconnected or malfunctioning HR or Cadence sensors,
+		by accumulating -1's as the sampled values for these quantities, the
+		computed averages will also be -1 and thus will indicate unconnected
+		devices to the caller application.
+		
+		5) Should the connection break, reporting negative numbers in Speed and
+		Power fields can be used as indication to the application program. It is
+		the application program's responsibility to initiate a
+		GetRacerMateDeviceID cycle. The API will not automatically or
+		independently re-establish. 
+		
+	Notes:
+		1) This function may be called at intervals ranging from 0.1 to a few
+		seconds. Simply reporting instantaneous or most recent samples for these
+		quantities (effectively decimating the sampled dataset) can yield vast
+		errors especially in computing distance travelled, as derived from speed
+		and time interval. Hence the average is desired. Moreover, if samples are
+		errored, a decimated sample in error can vastly impact perceived quality
+		of collected data.
+
+		2) Firmware version is passed as a parameter in case the appropriate
+		implementation for commands messaging is FW version dependent.
+
+------------------------------------------------------------------------------
+
+get_average_bars
+	
+	Format:
+		Float *get_bars(int Comport,int FWVersion), 
+		Float *get_average_bars(int Comport,int FWVersion)
+	
+	Input:
+		Comport is an integer 0-255 corresponding to Com1, Com2, Com3 
+		Firmware version is an int as assigned by RacerMate and read by GetFirmWareVersion
+	Return values:
+		Arrays indicating spinscan data as bar height and average bar height
+
+------------------------------------------------------------------------------
+
+get_ss_data
+	Returns the spinscan data.
+
+	Format:
+		get_ss_data(int Comport, int FWVersion) throw(...)
+
+	Input:
+  		Comport is an integer 0-255 corresponding to Com1, Com2, Com3 
+		Firmware version is an int as assigned by RacerMate and read by GetFirmWareVersion
+
+	Return values:
+		A SSDATA structure (see above)
+
+------------------------------------------------------------------------------
+
+SetSlope
+	Sets the appliance into Slope Mode and sets the resistance to correspond to
+	the level required to simulate a slope of 'slope'%, for a rider of given
+	Weight, DragFactor, RRC. The API shall maintain the slope setting until the
+	next time the function is called. 
+	
+	Format:
+		int SetSlope(int Comport, int FirmwareVersion, int RRC,float bike_kgs, float rider_kgs int DragFactor, float slope)
+	Input:
+  		Comport is an integer 0-255 corresponding to Com1, Com2, Com3 
+		Firmware version is an int as assigned by RacerMate and read by GetFirmWareVersion
+		RRC/AccuWatt is an int representing the quantity.
+		Weight is ALWAYS IN KG. The application will manage imperial conversions.
+		DragFactor is between 0 and 100 representing a user setting from 0 to 100%
+	
+	Return values:
+		ALL_OK:
+	  		Success
+		DEVICE_NOT_RUNNING:
+  			The startTrainer command has not been issued.
+		GENERIC_ERROR:
+			Error
+	
+	Operations:
+		1) Issue new Slope command to the appliance, and maintain it until next
+		call to this function. Use the specified RRC/AccuWatt, Weight, DragFactor
+		as necessary to compute the appropriate physical resistance factor.
+
+Notes:
+	1) Firmware version is passed as a parameter in case the appropriate
+	implementation for commands messaging is FW version dependent. 
+	
+	2) It is apparent that RRC does not change the trainer calibration, it is
+	used optionally by API embedded functions should it be required to compute
+	actual load.
+
+------------------------------------------------------------------------------
+
+setPause
+	Sends appropriate messages to the Trainer  to display Pause on the Handlebar unit when the Paused parameter is true, and operation resumes when parameter =0. The slope is forced to 0 or the Power Load is 0W when paused.
+	
+	Format:
+		int setPause(int Comport, int FirmwareVersion, bool Paused)
+	Input:
+  		Comport is an integer 0-255 corresponding to Com1, Com2, Com3 
+		Firmware version is an int as assigned by RacerMate and read by GetFirmWareVersion
+		Paused = True will pause, Pause = False will unpause; (8-bit c-style bool).
+	Return values:
+		ALL_OK:
+			Success
+		DEVICE_NOT_RUNNING:
+	  		requires startTrainer
+		GENERIC_ERROR:
+			Pause/unpause operation failed
+			
+	Operations:
+		1) Sends appropriate messaging to the appliance to display Pause (true)
+		or resume previous load or slope when false. 
+		
+	Notes:
+  		1) Firmware version is passed as a parameter in case the appropriate
+		implementation for commands messaging is FW version dependent.
+
+------------------------------------------------------------------------------
+
+stopTrainer
+	Stops communications data framing thread for a trainer. Data collection
+	terminated.
+	
+	Format:
+		int startTrainer (int Comport)Input: Comport is an integer 0-255 corresponding to Com1, Com2, Com3
+	  	Return values:
+			ALL_OK:
+				Stopped
+			DEVICE_NOT_RUNNING:
+		  		startTrainer not issued.
+			GENERIC_ERROR:
+				not stopped (failure to start)
+	Notes:
+
+	1) Function should only be called after startTrainer successfully returns. 
+	
+	2) This function stops frame processing and returns to the idle state.
+
+------------------------------------------------------------------------------
+
+ResettoIdle
+	Terminates running threads to return to idle state, should a thread be locked or insane.
+	
+	Format:
+		int ResettoIdle(int Comport)
+	
+	Input:
+  		Comport is an integer 0-255 corresponding to Com1, Com2, Com3
+	 Return values:
+	 	ALL_OK:
+			Success
+		GENERIC_ERROR:
+	  		operation failed
+			
+		Notes:
+			1) Use this command following stopTrainer to be sure memory is
+			de-allocated in the API, prior to sending subsequent startTrainer or
+			SetVeloTronParameters.
+
+------------------------------------------------------------------------------
+
+GetHandleBarButtons
+	Reads the LATCHED STATE of all button presses detected since the last call to this function. Latched state means that button presses are captured and logically persisted until this function is called, whereupon their persistence is cleared.
+	
+	Format:
+		int GetHandleBarButtons(int Comport, int FirmwareVersion)
+	Input:
+  		Comport is an integer 0-255 corresponding to Com1, Com2, Com3 
+		Firmware version is an int as assigned by RacerMate and read by GetFirmWareVersion
+	Return values:
+		Int as a bitmask where B0 is least significant bit. A 1 in the bit position indicates keypressed.
+		B0: Reset/Stop key
+		B1: F1/Start key
+		B2: F2/Display key
+		B3: F3/Set key
+		B4: + key
+		B5: - key
+		B6: Alarm! Connection lost.
+		
+	Operations:
+		1) Upon the startTrainer command being issued, the API commences
+		communications with the appliance at the line rate. Button presses shall
+		be accumulated and logically Or'd into a variable representing the button
+		status. The bits set will persist until this function is called,
+		whereupon the  result is returned and the memory location is cleared to
+		0. Communications continues and button status is accumulated anew.
+		
+		2) The most recently reported values are also saved. Should this function
+		be called again before any new data has been accumulated, (i.e. count =0,
+		the previously reported data is simply repeated as the return
+		result.
+			
+		3) It is intended that this function is called by an application (if it
+		is interested in key presses) frequently enough to distinguish
+		multiple key presses and long vs. short key presses, with reasonable
+		reliability.
+
+		4) If the connection is lost between calls, B6 must be set in the return
+		value.
+		
+	Notes:
+		1) Firmware version is passed as a parameter in case the appropriate
+		implementation for commands messaging is FW version dependent. 
+		
+		2) Previous states may be accumulated by higher layers to detect the
+		key-up event.
+
+------------------------------------------------------------------------------
+
+SetErgModeLoad
+	Sets the appliance ErgMode Load setpoint, in watts. The API shall maintain the load setting until the next time the function is called. 
+	
+	Format:
+		int SetErgModeLoad(int Comport, int FirmwareVersion, int RRC, float Load)
+	Input:
+  		Comport is an integer 0-255 corresponding to Com1, Com2, Com3 
+		Firmware version is an int as assigned by RacerMate and read by GetFirmWareVersion
+		RRC/AccuWatt is an int representing the quantity.
+		Load is in watts.
+	Return values:
+		ALL_OK:
+	  		Success
+		DEVICE_NOT_RUNNING:
+	  		The startTrainer command has not been issued.
+		GENERIC_ERROR:
+			Error
+	Operations:
+		1) Issue new Load command to the appliance, and maintain it until next
+		call to this function.
+
+Notes:
+
+	1) Firmware version is passed as a parameter in case the appropriate
+	implementation for commands messaging is FW version dependent. 
+
+	2) RRC/AccuWatt is passed as a parameter. This relieves the API from needing
+	a configuration interface for the appliance.
+
+	3) It is apparent that RRC does not change the trainer calibration, it is
+	used optionally by API embedded functions should it be required to compute
+	actual load.
+
+------------------------------------------------------------------------------
+
+SetHRBeepBounds
+	Sets the upper and lower HR bounds where beeping will be enabled. Beeping
+	below the low bound  and above the high bound will be enabled when
+	'BeepEnabled' parameter is true. 
+
+	Format:
+		int SetHRBeepBounds(int Comport, int FirmwareVersion, int LowBound, int HighBound, bool BeepEnabled)
+	Input:
+  		Comport is an integer 0-255 corresponding to Com1, Com2, Com3 
+		Firmware version is an int as assigned by RacerMate and read by GetFirmWareVersion
+		LowBound is the HR below which beeps should sound
+		HighBound is the HR above which a beep should sound
+		BeepEnabled is True is Beeping should be enabled. False to disable all beeping. (8-bit c-style bool.)
+	Return values:
+		ALL_OK:
+	  		Success
+		GENERIC ERROR:
+	  		Failed
+			
+	Operations:
+		1) Issue command to Handlebar controller to enable beeping on the
+		specified bounds.
+		
+		2) If BeepEnabled is false and the handlebar controller beep cannot be
+		explicitly disabled, send lowbound=0 and highbound = 255 (or its max
+		possible value)to the handlebar controller.
+		
+	Notes:
+		1) Firmware version is passed as a parameter in case the appropriate
+		implementation for commands messaging is FW version dependent.
+
+------------------------------------------------------------------------------
+
+SetRecalibrationMode
+	Sends appropriate messages to the Trainer to force it into Recalibration Mode.
+	It is presumed that, like the 3d-program's operation, the user will hit a key
+	(or sequence), key presses caught and handled by the Application layer. Upon
+	this keystroke sequence, the SetRecalibrationMode is issued.  A CompuTrainer
+	latches its new RRC following a calibration cycle when the user keys 'F3'. Upon
+	this keypress, EndRecalibrationMode should be issued to read the new RRC value
+	from the controller and end the recalibration state, returning to the state
+	prior to recalibration, whether paused or running.
+
+	Format:
+		int SetRecalibrationMode(int Comport, int FirmwareVersion)
+	Input:
+  		Comport is an integer 0-255 corresponding to Com1, Com2, Com3 
+		Firmware version is an int as assigned by RacerMate and read by GetFirmWareVersion
+	Return values:
+		ALL_OK:
+			Entered recalibration Mode OKAY
+		DEVICE_NOT_RUNNING:
+	  		start trainer is required.
+		GENERIC_ERROR:
+			Error, recal mode not ready
+			
+	Operations:
+		1) Sends appropriate messaging to the CT to force recalibration mode. Reads
+		data stream status to verify the ReCal mode has been entered by the
+		appliance, and returns.
+	
+	Notes:
+		1) Firmware version is passed as a parameter in case the appropriate
+		implementation for commands messaging is FW version dependent.
+
+------------------------------------------------------------------------------
+
+EndRecalibrationMode
+	Sends appropriate messages to the Trainer  to force it out of the Recalibration Mode. It is presumed that, like the 3d-program's operation, the user will hit a key (or sequence), key presses caught and handled by the Application layer. Upon this keystroke sequence, the SetRecalibrationMode is issued. 
+	A CompuTrainer latches its new RRC following a calibration cycle when the user keys 'F3'. Upon this keypress, EndRecalibrationMode is issued to read the new RRC value from the controller and end the recalibration state, returning to the state prior to recalibration, whether paused or running.
+	
+	Format:
+		int EndRecalibrationMode(int Comport, int FirmwareVersion)
+	Input:
+  		Comport is an integer 0-255 corresponding to Com1, Com2, Com3 
+		Firmware version is an int as assigned by RacerMate and read by GetFirmWareVersion
+	Return values:
+		Any positive number: the Calibration number currently in use by the handlebar controller.
+		GENERIC_ERROR
+		
+	Operations:
+		1) Sends appropriate messaging to the appliance to end the recalibration
+		mode. Reads data stream status to verify the ReCal mode has been exited
+		by the appliance, and returns.
+		
+	Notes:
+		1) Firmware version is passed as a parameter in case the appropriate
+		implementation for commands messaging is FW version dependent.
+
+------------------------------------------------------------------------------
+
+SetVelotronParameters
+	Sets the VeloTron specific parameters necessary to compute correct load by
+	the physics. The API will read and reference these parameters in the
+	SetSlope and SetErgModeLoad commands. It is therefore necessary to send this
+	command prior to any SetSlope or SetLoad commands to a Velotron.
+
+	Format:
+		int SetVelotronParameters(int Comport, int FirmwareVersion, int numchainrings, int numrearcogs, int[]Chainrings, int[]cogset, float wheeldiameter_mm, int ActualChainring, int Actualcog, float bike_kgs, int frontselectionindex, int rearselectionindex)
+	Input:
+  		Comport is an integer 0-255 corresponding to Com1, Com2, Com3 
+		Firmware version is an int as assigned by RacerMate and read by GetFirmWareVersion
+		Numchainrings is number of elements in the Chainring array
+		Numrearcogs is number of elements in the rearcogarray
+		Chainrings is a integer array describing chainring size, in teeth, to simulate on gear changes, largest in Chainrings[0]
+		Cogset is an integer array of gears describing cogsize in teeth, with largest in cogs[0] and decreasing size with array index increase. The velotron will use these to simulate gear changes.
+		Wheel diameter_mm is in mm.
+		Actual chainring and Actualcog represent the real size of the chainring and cogs present on the velotron. 
+		Bike_kgs represents weight of the bike in kgs
+		Frontselection index and rearselectionindex indicate the gear that VeloTron simulation should use when the physics engine first starts.
+		
+	Return values:
+		ALL_OK:
+		GENERIC_ERROR
+		BAD_GEAR_COUNT:
+			Occurs if array length is detced to not agree with input parms, or if
+			a gear contains a 0 element. Higher layers should ensure 0-entries in
+			the gear array are never passed.
+		WRONG_DEVICE:
+			When this command issued to a com port index with a known CompuTrainer
+			attached.
+			
+	Operation:
+		1) The Velotron Gear Change is handled locally in the handlebar
+		controller. This message will initialize the gear table used.
+
+		2) While a gear change key press may be detected by the Comm protocol,
+		the effect is applied locally and not under the remote computer's
+		guidance.  The higher layer should call GetVeloTronGear to read the
+		current gear.
+		
+	Notes:
+		1) Firmware version is passed as a parameter in case the appropriate
+		implementation for commands messaging is FW version dependent.
+
+------------------------------------------------------------------------------
+
+GetCurrentVTGear
+	Reads the current Gears selected for the VeloTron. The actual gear-teeth are returned, looked up from the configured Gear Table.
+	
+	Format:
+		Struct Gearpair GetCurrentVTGearPair(int Comport, int FirmwareVersion)
+  		where Gearpair is {int front, int Rear}
+	Input:
+		Comport is an integer 0-255 corresponding to Com1, Com2, Com3 
+		Firmware version is an int as assigned by RacerMate and read by GetFirmWareVersion
+	Return values:
+		Valid GearPair:
+	  		Success
+		GearPair = -1, -1
+			indicates value not readable.
+	
+	Notes:
+		1) Firmware version is passed as a parameter in case the appropriate
+		implementation for commands messaging is FW version dependent.
+
+------------------------------------------------------------------------------
+
+setGear
+	Reads the current Gears selected for the VeloTron. The actual gear-teeth are
+	returned, looked up from the configured Gear Table.
+
+	Format:
+		int setGear(int Comport, int FirmwareVersion, int front_index, int rear_index)
+	Input:
+  		Comport is an integer 0-255 corresponding to Com1, Com2, Com3 
+		Firmware version is an int as assigned by RacerMate and read by GetFirmWareVersion
+		Front_index and rear_index are indices into the current gear table set with SetVeloTronParameters.
+	Return values:
+		ALL_OK:
+	  		Success
+		GENERIC_ERROR:
+	  		Any error, typically out of bounds indices.
+	
+	Notes:
+		1) Firmware version is passed as a parameter in case the appropriate
+		implementation for commands messaging is FW version dependent.
+
+------------------------------------------------------------------------------
+
+get_bars
+	
+	Format:
+		Float *get_bars(int Comport,int FWVersion), 
+	Input:
+  		Comport is an integer 0-255 corresponding to Com1, Com2, Com3 
+		Firmware version is an int as assigned by RacerMate and read by GetFirmWareVersion
+		
+	Return values:
+		Arrays indicating spinscan data as bar height and average bar height
+
+------------------------------------------------------------------------------
+
+Handlebar Controller state information
+---------------------------------------
+
+	From the point of view of the API, there are essentially three states in
+	which a Trainer can exist: Idle, Running, and Recalibrating. Recalibrating
+	is nearly the same as running state, except handlebar display shows
+	standalone functions.
+
+	Idle state: The user is not expected to be riding, and indeed no data is
+	being gathered. Logically he is riding in trainer 'standalone' mode and the
+	display indicates it. Button functions are local. This is the default state
+	and is entered upon  StopTrainer, ResettoIdle, ResetAllToIdle. Functions
+	such as GetFirmwareVersion, GetIsCalibrated, GetCalibration,
+	GetRacerMateDeviceID can be used to get trainer information for functions to
+	be provided to running-state commands.
+	
+	Running state: the Trainer is under influence of the remote computer. Data
+	is being acquired and keypresses may be sensed. Data framer threads are
+	active for the port. This state is entered with StartTrainer or
+	EndRecalibrationMode, and exited with StopTrainer or SetRecalibrationMode.
+	Functions such as GetTrainerData, SetErgModeLoad, ResetTrainer, SetSlope,
+	SetHRBeepBounds, GetHandleBarButtons, SetRecalibrationMode,
+	EndRecalibrationMode, SetPause can all be called. For VeloTron, the
+	SetVeloTronParameters must be called before the startTrainer, to initialize
+	the API with parameters for the simulation physics.
+
+	Recalibrating state: The trainer state prior to entering this state is
+	saved, and the Recalibration state is entered. Typically this is 'running'
+	after a pause command, but may be simply 'running' as well. Data acquisition
+	and keypresses are still available to be seen in by the remote computer. It
+	is recommended that no commands are sent during this state except
+	EndRecalibrationMode. Keypresses can be read.  The handlebar display shows
+	the recalibration mode as if in standalone mode.  Upon exiting Recalibration
+	state with EndRecalibrationMode (say, in response to a keypress), the new
+	calibration number is provided and previous trainer state is restored. This
+	state is entered only from Running State with SetRecalibrationMode, and
+	exited with EndRecalibrationMode. 
+
+
+	Why Paused is not documented here as a 'state'. While sending Pause(port, true)
+	will show the Paused indicator  on the bar controller and remove load, as far
+	as the Application is concerned, it is indiscernible from the running state in
+	the GetTrainerData sample stream. For this reason, the Paused state has little
+	significance, other than as a user indicator. It is in fact optional in the
+	recalibration sequence.
+
+
+Typical Recalibration Sequence
+-------------------------------
+
+Note that the Paused state is optional to the recalibration sequence of events,
+but it is included here since it will be the likely typical method an
+application would use to correctly guide a rider through recalibration. 
+
+The sequence of commands described is NOT a function of the API, but is
+controlled by the Application itself, using the simple atomic function calls
+available in the API. Here we describe how and application may implement
+'anytime recalibration', such as when riding a course or erg session.
+
+	1) Running state: This description begins with the trainer in the running
+	state, typically entered with start trainer or through any previous sequence of
+	commands that can put the trainer into the simple running state. It is
+	acquiring data, and setting load.
+	
+	2) Optional: Typically the user would hit a button interpreted as 'Pause
+	requested'. In response, the Pause(port, true) is sent by the application
+	layer. The API DOES NOT DO THIS AUTOMATICALLY. The Application senses the
+	request by reading GethandleBarButtons, interpreting as a pause request, and
+	calling the Pause(port, true). A 'PAUS' will appear on the handlebar
+	controller. 
+	
+	3) The user would hit a button interpreted as 'Recal requested'. In response,
+	the 'SetRecalibrationMode(port, FWVersion)' is sent to the port. The API
+	DOES NOT DO THIS AUTOMATICALLY. The Application senses the request by
+	reading GetHandleBarButton, interpreting as a 'Recal requested' and then
+	calling SetRecalibrationMode. The recal indicator shows on the handlebar
+	controller. 
+	
+	4) Subsequent keypresses are interpreted, and indeed data may or may not be
+	logged. The GetTrainerData functions operate normally. A special key seen as
+	'end of recal requested' can be detected, and when seen, the rider is assumed
+	to have performed a new spin down. The application can send
+	EndRecalibrationMode(port, FWVersion).  The API DOES NOT DO THIS AUTOMATICALLY.
+	The Application senses the request by reading GetHandleBarButtons, interpreting
+	as 'end of recal requested' and then calling EndRecalibrationMode. The
+	handlebar controller will return to the display state prior to the
+	recalibration state being entered.
+	
+	5) The application should read the returned value as the new calibration value
+	to be used in function calls going forward in the riding session.
+	
+	6) Optional: if the Paused 'substate' was active (see 2 above) prior to the
+	Recalibration state, Step 4 restores the trainer to display the PAUS indicator.
+	The user would typically hit a key to unpause. Typically the user would hit a
+	button interpreted as 'Unpause requested'. In response, the Pause(port, false)
+	is sent by the application layer. The API DOES NOT DO THIS AUTOMATICALLY.
+	The Application senses the request by reading GetHandleBarButtons,
+	interpreting as a unpause request, and calling the Pause(port, false). The
+	normal running state display will appear.
+	
+	7) The Running state is re-established.

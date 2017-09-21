@@ -1,0 +1,28 @@
+
+ 1 Device:    vendor = 8087    product = 0024
+
+ 2 Device:    vendor = 1d6b    product = 0002
+
+ 3 Device:    vendor = 05e3    product = 0612
+
+ 4 Device:    vendor = 1d6b    product = 0003
+
+ 5 Device:    vendor = 0fcf    product = 1008
+   manufacture = Dynastream Innovations
+   product = ANT USBStick2
+   serial number = 097
+   num configs = 1
+
+ 6 Device:    vendor = 05e3    product = 0610
+
+ 7 Device:    vendor = 04f2    product = 0976
+
+ 8 Device:    vendor = 1d6b    product = 0002
+
+ 9 Device:    vendor = 8087    product = 07d6
+
+10 Device:    vendor = 05ca    product = 18c0
+
+11 Device:    vendor = 8087    product = 0024
+
+12 Device:    vendor = 1d6b    product = 0002

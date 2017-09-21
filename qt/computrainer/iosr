@@ -1,0 +1,7 @@
+#!/bin/bash
+/Users/larry/Qt/5.5/clang_64/bin/qmake computrainer.pro -o build-computrainer-iphoneos_clang_Qt_5_5_0_for_iOS-Release/Makefile -r -spec macx-ios-clang CONFIG-=debug CONFIG+=release CONFIG+=iphoneos
+
+cd build-computrainer-iphoneos_clang_Qt_5_5_0_for_iOS-Release
+make clean
+make
+

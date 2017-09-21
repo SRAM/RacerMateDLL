@@ -1,0 +1,249 @@
+[
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "2a168e4dd5f0385ccde79ce9edf6643e6d1cbc97",
+    "jarFileModificationDate": "2015-01-26T09:25:13.345-05:00",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\ext\\sunec.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "c366df5937b43294477b8fbf8990bf94693a8188",
+    "jarFileModificationDate": "2015-01-26T09:25:14.925-05:00",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\charsets.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "a3e0955c27fa870d1a61715082bf178a8a829484",
+    "jarFileModificationDate": "2015-01-26T09:25:13.345-05:00",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\ext\\jaccess.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "fa5c25d5bd242f52be01b10b757dad94181ea1e3",
+    "jarFileModificationDate": "2015-01-26T09:25:14.835-05:00",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\rt.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "a35ff82a676752d932475cbfaa8952e07f38e89c",
+    "jarFileModificationDate": "2015-01-26T09:25:13.345-05:00",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\ext\\sunpkcs11.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "49e58f1b29de9811bbdffae3919dbf2e991643f5",
+    "jarFileModificationDate": "2015-01-26T09:25:13.335-05:00",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\ext\\access-bridge-64.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "utils",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "f13ec71aee125c06365d1e483827b3ad004e078a",
+    "jarFileModificationDate": "2012-10-18T09:14:40-04:00",
+    "location": "D:\\java\\utils\\dist\\utils.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "243517be110f63d4450d926aa104424b4ec5f51f",
+    "jarFileModificationDate": "2015-01-26T09:25:13.375-05:00",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\jce.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "60d42886ff93ce21933e54193e8b4248987f6049",
+    "jarFileModificationDate": "2015-01-26T09:25:13.375-05:00",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\jfr.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "85c1909e39025d29ab897af7fed91fffdbffc119",
+    "jarFileModificationDate": "2015-01-26T09:25:15.395-05:00",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\ext\\localedata.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "d4cd907fc5ef198cd874547e184424725f22cd07",
+    "jarFileModificationDate": "2015-01-26T09:25:13.385-05:00",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\resources.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "46590ad66b2059efbee41ffa6dcf9fd97357af84",
+    "jarFileModificationDate": "2015-01-26T09:25:15.295-05:00",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\jsse.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "98526b8e83cef82428c5a83a6ccdf1a4ab6a0f9d",
+    "jarFileModificationDate": "2015-01-26T09:25:13.335-05:00",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\ext\\cldrdata.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "4c517b0332501940a54306743c233c6e5e15d2b2",
+    "jarFileModificationDate": "2015-01-26T09:25:13.345-05:00",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\ext\\sunmscapi.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "397b723539d61787ebfdfd1d34041576efeb0cb4",
+    "jarFileModificationDate": "2015-01-26T09:25:13.335-05:00",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\ext\\dnsns.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "c52fe9177a077c9acde33b1eb6476344ab62ea2e",
+    "jarFileModificationDate": "2015-01-26T09:25:15.755-05:00",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\ext\\jfxrt.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "26f2fdab668362c6f86ad54016db0d0aabfef1ab",
+    "jarFileModificationDate": "2015-01-26T09:25:13.345-05:00",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\ext\\zipfs.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "b5fdbbfe2aa789f17edbbb930dfceaff5ac03c7f",
+    "jarFileModificationDate": "2015-01-26T09:25:13.345-05:00",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\ext\\sunjce_provider.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "0fb27b9d9f29dc86c69ec95f25350af508dbbab7",
+    "jarFileModificationDate": "2015-01-26T09:25:13.345-05:00",
+    "location": "C:\\Program Files\\Java\\jre1.8.0_31\\lib\\ext\\nashorn.jar",
+    "javaRuntime": true
+  }
+]

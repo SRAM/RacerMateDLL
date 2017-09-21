@@ -1,0 +1,3 @@
+#!/bin/bash
+zip x *.cpp *.h *.pro
+

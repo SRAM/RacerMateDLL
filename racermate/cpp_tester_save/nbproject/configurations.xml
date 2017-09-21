@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="80">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df name="cpp_tester" root=".">
+      <df name="cpp_tester">
+      </df>
+      <df name="cpp_tester.xcodeproj">
+        <df name="project.xcworkspace">
+          <df name="xcuserdata">
+            <df name="larry.xcuserdatad">
+            </df>
+          </df>
+        </df>
+        <df name="xcuserdata">
+          <df name="larry.xcuserdatad">
+            <df name="xcdebugger">
+            </df>
+            <df name="xcschemes">
+            </df>
+          </df>
+        </df>
+      </df>
+      <df name="Debug">
+      </df>
+      <df name="debug">
+      </df>
+      <df name="logs">
+      </df>
+      <df name="Release">
+      </df>
+      <df name="release">
+      </df>
+      <in>files.i</in>
+      <in>main.cpp</in>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false">
+      <itemPath>Makefile</itemPath>
+      <itemPath>Makefile-cpp_tester.mk</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile-cpp_tester.mk</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
+        <compilerSet>GNU|GNU</compilerSet>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath>./main</executablePath>
+          <ccTool>
+            <incDir>
+              <pElem>../../glib</pElem>
+              <pElem>/usr/include/gtk-2.0</pElem>
+              <pElem>/usr/include/glib-2.0</pElem>
+              <pElem>/usr/include/cairo</pElem>
+              <pElem>/usr/lib/gtk-2.0/include</pElem>
+              <pElem>/usr/include</pElem>
+              <pElem>../../tlib</pElem>
+              <pElem>.</pElem>
+              <pElem>../freetype/include/freetype2</pElem>
+              <pElem>/usr/lib/glib-2.0/include</pElem>
+              <pElem>/usr/include/pango-1.0</pElem>
+              <pElem>/usr/lib/jvm/java-6-sun/include</pElem>
+              <pElem>..</pElem>
+              <pElem>/usr/include/atk-1.0</pElem>
+              <pElem>/usr/lib/jvm/java-6-sun/include/linux</pElem>
+            </incDir>
+            <preprocessorList>
+              <Elem>GNU</Elem>
+              <Elem>_THREAD_SAFE</Elem>
+            </preprocessorList>
+          </ccTool>
+        </makeTool>
+        <requiredProjects>
+          <makeArtifact PL="../../glib"
+                        CT="0"
+                        CN="Default"
+                        AC="true"
+                        BL="true"
+                        WD="../../glib"
+                        BC="${MAKE}  -f Makefile-glib.mk CONF=Default"
+                        CC="${MAKE}  -f Makefile-glib.mk CONF=Default clean"
+                        OP="">
+          </makeArtifact>
+          <makeArtifact PL="../../tlib"
+                        CT="0"
+                        CN="Default"
+                        AC="true"
+                        BL="true"
+                        WD="../../tlib"
+                        BC="${MAKE}  -f Makefile-tlib.mk CONF=Default"
+                        CC="${MAKE}  -f Makefile-tlib.mk CONF=Default clean"
+                        OP="">
+          </makeArtifact>
+          <makeArtifact PL=".."
+                        CT="0"
+                        CN="Default"
+                        AC="true"
+                        BL="true"
+                        WD=".."
+                        BC="${MAKE}  -f Makefile-dll.mk CONF=Default"
+                        CC="${MAKE}  -f Makefile-dll.mk CONF=Default clean"
+                        OP="">
+          </makeArtifact>
+        </requiredProjects>
+      </makefileType>
+    </conf>
+  </confs>
+</configurationDescriptor>
