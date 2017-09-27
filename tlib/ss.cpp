@@ -52,7 +52,7 @@ SS::SS(void)  {
 		log = NULL;
 	#endif
 
-	SSShift = 18;
+	SSShift = 6;		//nca: was 18;
 
 	middle = NBARS / 2;
 	degperseg = 360.0 / (double)NBARS;				// 15 degrees
