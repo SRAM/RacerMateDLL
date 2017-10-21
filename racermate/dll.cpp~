@@ -1423,7 +1423,7 @@ int ResetAverages(const char *_id, int _fw) {
 
 		if (what==DEVICE_VELOTRON)  {
 			if (fw != 190)  {
-				throw(fatalError(__FILE__, __LINE__));
+			//nca:	throw(fatalError(__FILE__, __LINE__));
 			}
 		}
 	#endif
@@ -1567,7 +1567,7 @@ int ResetAverages(const char *_id, int _fw) {
 			what = devices[_id].ev->getwhat();
 			if (what==DEVICE_VELOTRON)  {
 				if (fw != 190)  {
-					throw(fatalError(__FILE__, __LINE__));
+			//nca:		throw(fatalError(__FILE__, __LINE__));
 				}
 			}
 		}
@@ -2008,6 +2008,10 @@ int setPause(const char *_id, bool _paused) {
 			fclose(logstream);
 		#endif
 			int status;
+		//devices[_id].ev->set_slope(bike_kgs, person_kgs, _drag_factor, grade);
+		//	void Computrainer::setConstantWatts(float _watts);  
+		devices[_id].ev->set_watts(_manwatts);
+
 		return ALL_OK;
 	}							// int
 
@@ -2632,7 +2636,7 @@ float get_pp(const char * ix, int fw)  {
 		}
 		else if (what==DEVICE_VELOTRON)  {
 			if (fw != 190)  {
-				throw(fatalError(__FILE__, __LINE__));
+			//nca:	throw(fatalError(__FILE__, __LINE__));
 			}
 		}
 	#endif

@@ -2008,6 +2008,10 @@ int setPause(const char *_id, bool _paused) {
 			fclose(logstream);
 		#endif
 			int status;
+		//devices[_id].ev->set_slope(bike_kgs, person_kgs, _drag_factor, grade);
+		//	void Computrainer::setConstantWatts(float _watts);  
+		devices[_ix].ev->set_watts(_manwatts);
+
 		return ALL_OK;
 	}							// int
 

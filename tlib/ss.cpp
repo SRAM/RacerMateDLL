@@ -296,7 +296,10 @@ void SS::load(double rpm)  {
 	}
 
 	for(k=0;k<NBARS;k++)  {
-		thisRevForces[k] /= counts[k];
+		//nca+++ protect from div zero
+		if(counts[k]) {
+			thisRevForces[k] /= counts[k];
+		}
 	}
 	
 	for(i=0;i<NBARS;i++) lastTwoRevForces[i] = lastTwoRevForces[NBARS+i];
