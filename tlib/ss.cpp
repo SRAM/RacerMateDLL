@@ -151,7 +151,7 @@ float SS::run(double _watts, double _force, double _rpm, METADATA *_meta)  {
 
 	//avgTimer->update();							// result was 5 ms
 
-	ssrec++;
+	//nca: ssrec++;
 
 #if 1
 	thisforce = (float)_force;
@@ -176,8 +176,56 @@ float SS::run(double _watts, double _force, double _rpm, METADATA *_meta)  {
 		thisforce = 0.0f;
 	}
 #endif
+/************************************************************************************************
+  New VT spinscan: works like CT handlebar code.
+  incoming 200hz force values write into a 512 float ring buffer.
+  ss_index points to the latest sample.
+
+  on tdc, ss_length = ss_index - last_ss_index, last_ssindex = ss_index
+************************************************************************************************/
+	
+	//nca+++
+	ss_index++;
+	ss_index &= 511;
+	force[ss_index] = thisforce;
+
+	if (((ss_index - ss_lastindex) & 511) == 500) {		// 500 samples, 2.5 sec since last tdc
+		primed = false;											// < 24 rpm, stop loading bars
+		primed1 = false;
+		primed2 = false;
+
+		for(int i=0;i<NBARS;i++)  {
+			thisRevForces[i] = 0;							// no more data, settle to 0
+		}
+	}
+
+	tdc_debounce--;
+	if (tdc_debounce < 0) {
+
+		tdc_debounce = 0;
+
+		if (_meta->tdc )  {
+			tdc_debounce = 40;										//block tdc for 200 mS, 300 rpm 
+			ss_length = (ss_index - ss_lastindex) & 511;
+			ss_start = ((ss_length+2)/4 + ss_lastindex) & 511;
+			ss_end = (ss_start + ss_length) & 511;
+			ss_lastindex = ss_index;
+
+			primed = primed2;
+			primed2 = primed1;
+			primed1 = true;
+			
+		}
+	}
+
+	if ( primed ) {
+		if (ss_index == ss_end)  {
+			load(_rpm);
+		}
+	}
 
 
+	/*****
 	if (_meta->tdc)  {
 		if (peddlingTimeout)  {
 			peddlingTimeout = false;
@@ -206,6 +254,9 @@ float SS::run(double _watts, double _force, double _rpm, METADATA *_meta)  {
 			}
 		}
 	}
+	******/
+
+	//nca---
 
 	int i;
 
@@ -246,7 +297,8 @@ float SS::run(double _watts, double _force, double _rpm, METADATA *_meta)  {
 		rata = 90.0f;
 	}
 
-	if (_rpm<=30.0)  {
+	//if (_rpm<=30.0)  {
+	if (!primed)  {
 		lata = rata = 90.0f;
 	}
 
@@ -271,7 +323,7 @@ float SS::run(double _watts, double _force, double _rpm, METADATA *_meta)  {
 void SS::load(double rpm)  {
 	int i, k;
 
-	loadcount++;
+//	loadcount++;
 
 	for(k=0; k<NBARS; k++)  {
 		thisRevForces[k] = 0.0f;
@@ -279,19 +331,19 @@ void SS::load(double rpm)  {
 	}
 
 	// divide into NBARS NBARS
-
-	if (inptr<NBARS)  {
+	if (ss_length<NBARS) {
 		bp =1;
 		return;
 	}
 
 	float m, b;
-	map(0.0f, (float)inptr, 0.0f, (float)NBARS, &m, &b);
+	//map(0.0f, (float)inptr, 0.0f, (float)NBARS, &m, &b);
+	map(0.0f, (float)ss_length, 0.0f, (float)NBARS, &m, &b);
 
 
-	for(i=0; i<inptr; i++)  {
+	for(i=0; i<ss_length; i++)  {
 		k = (int)(m*i + b);
-		thisRevForces[k] += force[i];
+		thisRevForces[k] += force[(ss_start+i)&511];
 		counts[k]++;
 	}
 
@@ -302,19 +354,19 @@ void SS::load(double rpm)  {
 		}
 	}
 	
-	for(i=0;i<NBARS;i++) lastTwoRevForces[i] = lastTwoRevForces[NBARS+i];
-	for(i=0;i<NBARS;i++) lastTwoRevForces[NBARS+i] = thisRevForces[i];
+//	for(i=0;i<NBARS;i++) lastTwoRevForces[i] = lastTwoRevForces[NBARS+i];
+//	for(i=0;i<NBARS;i++) lastTwoRevForces[NBARS+i] = thisRevForces[i];
 
-	for(i=0;i<NBARS;i++)  {
-		thisRevForces[i] = lastTwoRevForces[SSShift + i];
-	}
+//	for(i=0;i<NBARS;i++)  {
+//		thisRevForces[i] = lastTwoRevForces[SSShift + i];
+//	}
 
 	
-	if (!primed)  {
-		if (loadcount >= 2)  {			// give filteredTorques[] time to get two valid cycles
-			primed = true;
-		}
-	}
+//	if (!primed)  {
+//		if (loadcount >= 2)  {			// give filteredTorques[] time to get two valid cycles
+//			primed = true;
+//		}
+//	}
 
 	//-------------------------------------------
 	// detect one foot out of the pedal here:
@@ -332,11 +384,11 @@ void SS::load(double rpm)  {
 		}
 	}
 
-	if (rpm < CUTOFF_RPM)  {
-		for(i=0;i<NBARS;i++)  {
-			thisRevForces[i] = 0;							// no more data, settle to 0
-		}
-	}
+//nca:	if (rpm < CUTOFF_RPM)  {
+//		for(i=0;i<NBARS;i++)  {
+//			thisRevForces[i] = 0;							// no more data, settle to 0
+//		}
+//	}
 
 	return;
 }
@@ -484,13 +536,14 @@ void SS::filter(void)  {
 		rightss = (float) ((100.0/(NBARS/2)) * rsum / maxright);
 	}
 
+	//nca20180116: spinscan can be less than 50, Wilf.
 	// tlm20081124:
-	if (leftss < 50.0f)  {
-		leftss = 50.0f;
-	}
-	if (rightss < 50.0f)  {
-		rightss = 50.0f;
-	}
+//	if (leftss < 50.0f)  {
+//		leftss = 50.0f;
+//	}
+//	if (rightss < 50.0f)  {
+//		rightss = 50.0f;
+//	}
 
 	totalss = (leftss + rightss)/2.0f;
 	return;
@@ -545,14 +598,24 @@ void SS::reset(void)  {
 	rightss = 0.0;
 	totalss = 0.0;
 
-	peddlingTimeout = true;
+	//nca+++
+	//peddlingTimeout = true;
+	primed1 = false;
+	primed2 = false;
 	primed = false;
-	inptr = 0;
-	loadcount = 0;
+	//inptr = 0;
+	//loadcount = 0;
 	averageForce = 0;
 	belowcount = abovecount = 0;
 
-	ssrec = 0;
+	ss_index = 0;
+	ss_lastindex = 0;
+	ss_length = 0;
+	ss_start = 0;
+	ss_end = 0;
+	//nca---
+
+	//nca: ssrec = 0;
 	leftss = 0.0f;
 	rightss = 0.0f;
 	totalss = 0.0f;

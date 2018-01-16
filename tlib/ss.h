@@ -99,16 +99,26 @@ class SS {
 		float *lastTwoRevForces;
 		void init(void);
 		double averageForce;
-		BOOL peddlingTimeout;
+		//nca+++
+		//BOOL peddlingTimeout;
 		BOOL primed;
-		int inptr;
+		BOOL primed1;
+		BOOL primed2;
+		//int inptr;
+		int ss_index;
+		int ss_lastindex;
+		int ss_length;
+		int ss_start;
+		int ss_end;
+		int tdc_debounce;
+		//unsigned long loadcount;
+		//nca---
 		float thisforce;
 		float *force;
-		unsigned long loadcount;
 		BOOL firstValidTDC;
 		int middle;
 		int *counts;
-		DWORD ssrec;
+		//nca: DWORD ssrec;
 		float TCD;
 		float TCN;
 		sMav *rpmMav;

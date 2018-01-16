@@ -1,7 +1,7 @@
 Microsoft (R) Build Engine version 14.0.25420.1
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 10/12/2017 4:08:53 PM.
+Build started 1/16/2018 01:50:43 PM.
      1>Project "Z:\rm6dll\racermate\dll_2015.sln" on node 1 (rebuild target(s)).
      1>ValidateSolutionConfiguration:
          Building solution configuration "Release|Win32".
@@ -34,25 +34,40 @@ Build started 10/12/2017 4:08:53 PM.
      2>Project "Z:\rm6dll\racermate\dll.vcxproj.metaproj" (2) is building "Z:\rm6dll\racermate\dll.vcxproj" (6) on node 2 (Rebuild target(s)).
      6>_PrepareForClean:
          Deleting file "Release\racermate.tlog\racermate.lastbuildstate".
-     6>Project "Z:\rm6dll\racermate\dll.vcxproj" (6) is building "Z:\rm6dll\tinythread++\tinythread++.vcxproj" (7) on node 2 (Clean target(s)).
-     7>_PrepareForClean:
-         Deleting file "Release\tinythread++.tlog\tinythread++.lastbuildstate".
      1>Project "Z:\rm6dll\racermate\dll_2015.sln" (1) is building "Z:\rm6dll\racermate\..\tlib\trainer_lib.vcxproj.metaproj" (4) on node 1 (Rebuild target(s)).
-     4>Project "Z:\rm6dll\racermate\..\tlib\trainer_lib.vcxproj.metaproj" (4) is building "Z:\rm6dll\tlib\trainer_lib.vcxproj" (8) on node 3 (Rebuild target(s)).
-     8>_PrepareForClean:
+     4>Project "Z:\rm6dll\racermate\..\tlib\trainer_lib.vcxproj.metaproj" (4) is building "Z:\rm6dll\tlib\trainer_lib.vcxproj" (7) on node 3 (Rebuild target(s)).
+     7>_PrepareForClean:
          Deleting file "Release\tlib.tlog\tlib.lastbuildstate".
+     6>Project "Z:\rm6dll\racermate\dll.vcxproj" (6) is building "Z:\rm6dll\tinythread++\tinythread++.vcxproj" (8) on node 2 (Clean target(s)).
+     8>_PrepareForClean:
+         Deleting file "Release\tinythread++.tlog\tinythread++.lastbuildstate".
      1>Project "Z:\rm6dll\racermate\dll_2015.sln" (1) is building "Z:\rm6dll\racermate\..\glib\gen_lib.vcxproj.metaproj" (3) on node 1 (Rebuild target(s)).
      3>Project "Z:\rm6dll\racermate\..\glib\gen_lib.vcxproj.metaproj" (3) is building "Z:\rm6dll\glib\gen_lib.vcxproj" (9) on node 1 (Rebuild target(s)).
      9>_PrepareForClean:
          Deleting file "Release\glib.tlog\glib.lastbuildstate".
-     7>Done Building Project "Z:\rm6dll\tinythread++\tinythread++.vcxproj" (Clean target(s)).
+     8>Done Building Project "Z:\rm6dll\tinythread++\tinythread++.vcxproj" (Clean target(s)).
      9>InitializeBuildStatus:
          Creating "Release\glib.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I../freetype/include /I../freetype/include/freetype2 /I../pcre/include /I..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\inc /I..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\serial /I..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\system /I..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\USB\devices /I..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\USB\device_handles /I..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\USB /I../common /I. /Z7 /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _LIB /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\glib.pdb" /Gd /TP /analyze- /errorReport:queue ..\common\comglobs.cpp ..\common\smav.cpp ..\common\twopolefilter.cpp amplifier.cpp averagetimer.cpp axis.cpp bmp.cpp button.cpp clientsocket.cpp crc.cpp cregexp.cpp csv.cpp dir.cpp earth.cpp editbox.cpp err.cpp fasttimer.cpp fatalerror.cpp fileselector.cpp file_rotator.cpp float2d.cpp globals.cpp ini.cpp inputdlg.cpp intel.cpp listbox.cpp logger.cpp lpfilter.cpp md5.cpp modaldialog.cpp modallistbox.cpp mru.cpp png.cpp scaler.cpp oldsdirs.cpp serial.cpp signalstrengthmeter.cpp splash.cpp statictext.cpp statusdlg.cpp tga.cpp timeout.cpp tinystr.cpp tinyxml.cpp tinyxmlerror.cpp tinyxmlparser.cpp utils.cpp utilsclass.cpp wcon.cpp win_utils.cpp windower.cpp xml.cpp
          comglobs.cpp
+     7>Project "Z:\rm6dll\tlib\trainer_lib.vcxproj" (7) is building "Z:\rm6dll\tinythread++\tinythread++.vcxproj" (8:3) on node 2 (default targets).
+     8>InitializeBuildStatus:
+         Creating "Release\tinythread++.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I../../../tinythread++ /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _LIB /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\tinythread++.pdb" /Gd /TP /analyze- /errorReport:queue tinythread.cpp
+         tinythread.cpp
+     9>ClCompile:
          smav.cpp
          twopolefilter.cpp
+     8>Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\Lib.exe /OUT:"Z:\rm6dll\racermate\Release\tinythread++.lib" /NOLOGO /LTCG Release\tinythread.obj
+         tinythread++.vcxproj -> Z:\rm6dll\racermate\Release\tinythread++.lib
+       FinalizeBuildStatus:
+         Deleting file "Release\tinythread++.tlog\unsuccessfulbuild".
+         Touching "Release\tinythread++.tlog\tinythread++.lastbuildstate".
+     8>Done Building Project "Z:\rm6dll\tinythread++\tinythread++.vcxproj" (default targets).
+     9>ClCompile:
          amplifier.cpp
          averagetimer.cpp
          axis.cpp
@@ -163,20 +178,7 @@ Build started 10/12/2017 4:08:53 PM.
          Touching "Release\glib.tlog\glib.lastbuildstate".
      9>Done Building Project "Z:\rm6dll\glib\gen_lib.vcxproj" (Rebuild target(s)).
      3>Done Building Project "Z:\rm6dll\racermate\..\glib\gen_lib.vcxproj.metaproj" (Rebuild target(s)).
-     8>Project "Z:\rm6dll\tlib\trainer_lib.vcxproj" (8) is building "Z:\rm6dll\tinythread++\tinythread++.vcxproj" (7:3) on node 2 (default targets).
      7>InitializeBuildStatus:
-         Creating "Release\tinythread++.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
-       ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I../../../tinythread++ /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _LIB /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\tinythread++.pdb" /Gd /TP /analyze- /errorReport:queue tinythread.cpp
-         tinythread.cpp
-       Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\Lib.exe /OUT:"Z:\rm6dll\racermate\Release\tinythread++.lib" /NOLOGO /LTCG Release\tinythread.obj
-         tinythread++.vcxproj -> Z:\rm6dll\racermate\Release\tinythread++.lib
-       FinalizeBuildStatus:
-         Deleting file "Release\tinythread++.tlog\unsuccessfulbuild".
-         Touching "Release\tinythread++.tlog\tinythread++.lastbuildstate".
-     7>Done Building Project "Z:\rm6dll\tinythread++\tinythread++.vcxproj" (default targets).
-     8>InitializeBuildStatus:
          Creating "Release\tlib.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /Ic:\Qt\5.6\msvc2015\include /IC:\Qt\5.6\msvc2015\include\QtCore /Ic:\Qt\5.6\msvc2015\include\QtNetwork /I..\freetype\include /I..\freetype\include\freetype2 /I..\pcre\include /I..\tinythread++ /I..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\inc /I..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\serial /I..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\system /I..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\USB\devices /I..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\USB\device_handles /I..\ant\ANT_Windows_Library_Package_v3.0\ANT_LIB\software\USB /I..\common /I..\glib /I..\rm_common /I..\qt\common /I..\qt\ctsrv /I..\qt\rmg /I. /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _LIB /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\tlib.pdb" /Gd /TP /analyze- /errorReport:queue bike.cpp client.cpp client2.cpp computrainer.cpp computrainer_decoder.cpp course.cpp data.cpp datasource.cpp decoder.cpp formula.cpp heartrate.cpp monarch.cpp nvram.cpp perfdata.cpp performance.cpp performance_decoder.cpp physics.cpp rtd.cpp simdecoder.cpp simulator.cpp ss.cpp stat.cpp user.cpp velotron.cpp velotron_decoder.cpp
@@ -236,10 +238,10 @@ Build started 10/12/2017 4:08:53 PM.
        FinalizeBuildStatus:
          Deleting file "Release\tlib.tlog\unsuccessfulbuild".
          Touching "Release\tlib.tlog\tlib.lastbuildstate".
-     8>Done Building Project "Z:\rm6dll\tlib\trainer_lib.vcxproj" (Rebuild target(s)).
+     7>Done Building Project "Z:\rm6dll\tlib\trainer_lib.vcxproj" (Rebuild target(s)).
      4>Done Building Project "Z:\rm6dll\racermate\..\tlib\trainer_lib.vcxproj.metaproj" (Rebuild target(s)).
      6>InitializeBuildStatus:
-         Touching "Release\racermate.tlog\unsuccessfulbuild".
+         Creating "Release\racermate.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
        PreBuildEvent:
          Description: ------------------- PRE.BAT ------------------------
          .\release\pre.bat
@@ -305,4 +307,4 @@ Build succeeded.
     1 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:01:36.49
+Time Elapsed 00:01:38.01
